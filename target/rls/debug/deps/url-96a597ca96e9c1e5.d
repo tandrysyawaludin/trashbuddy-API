@@ -1,0 +1,13 @@
+/home/tandry/mb-api/target/rls/debug/deps/url-96a597ca96e9c1e5.rmeta: /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/lib.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/encoding.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/host.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/origin.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/path_segments.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/parser.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/slicing.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/form_urlencoded.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/quirks.rs
+
+/home/tandry/mb-api/target/rls/debug/deps/url-96a597ca96e9c1e5.d: /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/lib.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/encoding.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/host.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/origin.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/path_segments.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/parser.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/slicing.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/form_urlencoded.rs /home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/quirks.rs
+
+/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/lib.rs:
+/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/encoding.rs:
+/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/host.rs:
+/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/origin.rs:
+/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/path_segments.rs:
+/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/parser.rs:
+/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/slicing.rs:
+/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/form_urlencoded.rs:
+/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/url-1.7.0/src/quirks.rs:

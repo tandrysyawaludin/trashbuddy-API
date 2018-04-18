@@ -1,0 +1,1 @@
+{"rustc":14344520799936451267,"features":"[]","target":10302599402843504198,"profile":3026933032369683551,"path":9336440323212581668,"deps":[["antidote v1.0.0",867385206898238678],["log v0.4.1",13635761397751275891],["scheduled-thread-pool v0.2.0",13185925221309519415]],"local":[{"Precalculated":"0.8.2"}],"rustflags":["--error-format=json"],"edition":"Edition2015"}
