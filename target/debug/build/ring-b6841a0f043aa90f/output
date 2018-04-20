@@ -37,21 +37,23 @@ CARGO_PKG_VERSION_MINOR: 11
 CARGO_PKG_VERSION_PATCH: 0
 CARGO_PKG_VERSION_PRE: 
 COLORTERM: truecolor
-DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus
+DATABASE_URL: postgres://postgres:1234567890@localhost/majesticapp_api
+DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus,guid=720288fee1c86fa4bd6ff5085ada0924
+DBUS_STARTER_ADDRESS: unix:path=/run/user/1000/bus,guid=720288fee1c86fa4bd6ff5085ada0924
+DBUS_STARTER_BUS_TYPE: session
 DEBUG: true
 DESKTOP_SESSION: gnome
 DISPLAY: :0
 GDMSESSION: gnome
 GDM_LANG: en_US.UTF-8
-GJS_DEBUG_OUTPUT: stderr
-GJS_DEBUG_TOPICS: JS ERROR;JS LOG
 GNOME_DESKTOP_SESSION_ID: this-is-deprecated
 HISTCONTROL: ignoredups
 HISTSIZE: 1000
 HOME: /home/tandry
 HOST: x86_64-unknown-linux-gnu
 HOSTNAME: localhost.localdomain
-JOURNAL_STREAM: 9:34156
+INVOCATION_ID: 55857a97238541d3804a3d2b2ae42718
+JOURNAL_STREAM: 9:35020
 LANG: en_US.UTF-8
 LD_LIBRARY_PATH: /home/tandry/mb-api/target/debug/deps:/home/tandry/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib:/home/tandry/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib
 LESSOPEN: ||/usr/bin/lesspipe.sh %s
@@ -59,10 +61,10 @@ LOADEDMODULES:
 LOGNAME: tandry
 LS_COLORS: rs=0:di=38;5;33:ln=38;5;51:mh=00:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=01;05;37;41:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;40:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.zst=38;5;9:*.tzst=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.wim=38;5;9:*.swm=38;5;9:*.dwm=38;5;9:*.esd=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.mjpg=38;5;13:*.mjpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.m4a=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.oga=38;5;45:*.opus=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:
 MAIL: /var/spool/mail/tandry
+MANAGERPID: 1467
 MODULEPATH: /etc/scl/modulefiles:/etc/scl/modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles:/usr/share/modulefiles
 MODULESHOME: /usr/share/Modules
 NUM_JOBS: 4
-OLDPWD: /home/tandry
 OPT_LEVEL: 0
 OUT_DIR: /home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out
 PATH: /home/tandry/.cargo/bin:/home/tandry/.cargo/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/tandry/.local/bin:/home/tandry/bin
@@ -75,12 +77,13 @@ RUSTDOC: rustdoc
 RUSTUP_HOME: /home/tandry/.rustup
 RUSTUP_TOOLCHAIN: nightly-x86_64-unknown-linux-gnu
 RUST_RECURSION_COUNT: 1
-SESSION_MANAGER: local/unix:@/tmp/.ICE-unix/1471,unix/unix:/tmp/.ICE-unix/1471
+SESSION_MANAGER: local/unix:@/tmp/.ICE-unix/1495,unix/unix:/tmp/.ICE-unix/1495
 SHELL: /bin/bash
 SHLVL: 2
 SSH_AUTH_SOCK: /run/user/1000/keyring/ssh
 SSL_CERT_DIR: /etc/pki/tls/certs
 SSL_CERT_FILE: /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+SYSTEMD_NSS_BYPASS_BUS: 1
 TARGET: x86_64-unknown-linux-gnu
 TERM: xterm-256color
 USER: tandry
@@ -113,14 +116,9 @@ TARGET = Some("x86_64-unknown-linux-gnu")
 HOST = Some("x86_64-unknown-linux-gnu")
 OPT_LEVEL = Some("0")
 TARGET = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
 HOST = Some("x86_64-unknown-linux-gnu")
-HOST_CFLAGS = None
-CFLAGS = None
 TARGET = Some("x86_64-unknown-linux-gnu")
 TARGET = Some("x86_64-unknown-linux-gnu")
-DEBUG = Some("true")
 HOST = Some("x86_64-unknown-linux-gnu")
 CC_x86_64-unknown-linux-gnu = None
 CC_x86_64_unknown_linux_gnu = None
@@ -130,7 +128,6 @@ HOST = Some("x86_64-unknown-linux-gnu")
 TARGET = Some("x86_64-unknown-linux-gnu")
 HOST = Some("x86_64-unknown-linux-gnu")
 CFLAGS_x86_64-unknown-linux-gnu = None
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/aes-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/aes-x86_64-elf.S"
 CFLAGS_x86_64_unknown_linux_gnu = None
 HOST_CFLAGS = None
 CFLAGS = None
@@ -155,6 +152,12 @@ HOST_CFLAGS = None
 CFLAGS = None
 DEBUG = Some("true")
 running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/generic.o" "crypto/bn/generic.c"
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/aes-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/aes-x86_64-elf.S"
 OPT_LEVEL = Some("0")
 TARGET = Some("x86_64-unknown-linux-gnu")
 HOST = Some("x86_64-unknown-linux-gnu")
@@ -173,7 +176,7 @@ CFLAGS_x86_64_unknown_linux_gnu = None
 HOST_CFLAGS = None
 CFLAGS = None
 DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/ecp_nistz256.o" "crypto/ec/ecp_nistz256.c"
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/p256-x86_64-asm-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/p256-x86_64-asm-elf.S"
 OPT_LEVEL = Some("0")
 TARGET = Some("x86_64-unknown-linux-gnu")
 HOST = Some("x86_64-unknown-linux-gnu")
@@ -211,7 +214,45 @@ CFLAGS_x86_64_unknown_linux_gnu = None
 HOST_CFLAGS = None
 CFLAGS = None
 DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/aesni-gcm-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/aesni-gcm-x86_64-elf.S"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
 running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/bsaes-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/bsaes-x86_64-elf.S"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/ghash-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/ghash-x86_64-elf.S"
 OPT_LEVEL = Some("0")
 TARGET = Some("x86_64-unknown-linux-gnu")
 HOST = Some("x86_64-unknown-linux-gnu")
@@ -250,9 +291,6 @@ HOST_CFLAGS = None
 CFLAGS = None
 DEBUG = Some("true")
 running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/vpaes-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/vpaes-x86_64-elf.S"
-running: "ar" "crs" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/libring-test.a" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/constant_time_test.o"
-exit code: 0
-cargo:rustc-link-lib=static=ring-test
 OPT_LEVEL = Some("0")
 TARGET = Some("x86_64-unknown-linux-gnu")
 HOST = Some("x86_64-unknown-linux-gnu")
@@ -271,7 +309,8 @@ CFLAGS_x86_64_unknown_linux_gnu = None
 HOST_CFLAGS = None
 CFLAGS = None
 DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/mem.o" "crypto/mem.c"
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/poly1305-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/poly1305-x86_64-elf.S"
+running: "ar" "crs" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/libring-test.a" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/constant_time_test.o"
 OPT_LEVEL = Some("0")
 TARGET = Some("x86_64-unknown-linux-gnu")
 HOST = Some("x86_64-unknown-linux-gnu")
@@ -291,63 +330,8 @@ HOST_CFLAGS = None
 CFLAGS = None
 DEBUG = Some("true")
 running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/x86_64-mont-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/x86_64-mont-elf.S"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/x86_64-mont5-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/x86_64-mont5-elf.S"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/montgomery_inv.o" "crypto/bn/montgomery_inv.c"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/gcm.o" "crypto/modes/gcm.c"
+exit code: 0
+cargo:rustc-link-lib=static=ring-test
 OPT_LEVEL = Some("0")
 TARGET = Some("x86_64-unknown-linux-gnu")
 HOST = Some("x86_64-unknown-linux-gnu")
@@ -385,7 +369,26 @@ CFLAGS_x86_64_unknown_linux_gnu = None
 HOST_CFLAGS = None
 CFLAGS = None
 DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/mul.o" "crypto/bn/mul.c"
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/sha512-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/sha512-x86_64-elf.S"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/x86_64-mont5-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/x86_64-mont5-elf.S"
 OPT_LEVEL = Some("0")
 TARGET = Some("x86_64-unknown-linux-gnu")
 HOST = Some("x86_64-unknown-linux-gnu")
@@ -423,292 +426,7 @@ CFLAGS_x86_64_unknown_linux_gnu = None
 HOST_CFLAGS = None
 CFLAGS = None
 DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/p256-x86_64-asm-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/p256-x86_64-asm-elf.S"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/cpu-intel.o" "crypto/cpu-intel.c"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/aesni-gcm-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/aesni-gcm-x86_64-elf.S"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/shift.o" "crypto/bn/shift.c"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/x25519-x86_64.o" "crypto/curve25519/x25519-x86_64.c"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/gfp_p256.o" "crypto/ec/gfp_p256.c"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/ghash-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/ghash-x86_64-elf.S"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/e_aes.o" "crypto/cipher/e_aes.c"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/poly1305-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/poly1305-x86_64-elf.S"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/gfp_p384.o" "crypto/ec/gfp_p384.c"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/sha512-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/sha512-x86_64-elf.S"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/x25519-asm-x86_64.o" "crypto/curve25519/asm/x25519-asm-x86_64.S"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/crypto.o" "crypto/crypto.c"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/sha256-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/sha256-x86_64-elf.S"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/limbs.o" "crypto/limbs/limbs.c"
-OPT_LEVEL = Some("0")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CC_x86_64-unknown-linux-gnu = None
-CC_x86_64_unknown_linux_gnu = None
-HOST_CC = None
-CC = None
-HOST = Some("x86_64-unknown-linux-gnu")
-TARGET = Some("x86_64-unknown-linux-gnu")
-HOST = Some("x86_64-unknown-linux-gnu")
-CFLAGS_x86_64-unknown-linux-gnu = None
-CFLAGS_x86_64_unknown_linux_gnu = None
-HOST_CFLAGS = None
-CFLAGS = None
-DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/curve25519.o" "crypto/curve25519/curve25519.c"
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/montgomery_inv.o" "crypto/bn/montgomery_inv.c"
 OPT_LEVEL = Some("0")
 TARGET = Some("x86_64-unknown-linux-gnu")
 HOST = Some("x86_64-unknown-linux-gnu")
@@ -746,7 +464,26 @@ CFLAGS_x86_64_unknown_linux_gnu = None
 HOST_CFLAGS = None
 CFLAGS = None
 DEBUG = Some("true")
-running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/ecp_nistz.o" "crypto/ec/ecp_nistz.c"
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/ecp_nistz256.o" "crypto/ec/ecp_nistz256.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/sha256-x86_64-elf.o" "/home/tandry/.cargo/registry/src/github.com-1ecc6299db9ec823/ring-0.11.0/pregenerated/sha256-x86_64-elf.S"
 OPT_LEVEL = Some("0")
 TARGET = Some("x86_64-unknown-linux-gnu")
 HOST = Some("x86_64-unknown-linux-gnu")
@@ -784,7 +521,273 @@ CFLAGS_x86_64_unknown_linux_gnu = None
 HOST_CFLAGS = None
 CFLAGS = None
 DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/mul.o" "crypto/bn/mul.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/shift.o" "crypto/bn/shift.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/e_aes.o" "crypto/cipher/e_aes.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/mem.o" "crypto/mem.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
 running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/exponentiation.o" "crypto/bn/exponentiation.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/gcm.o" "crypto/modes/gcm.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/crypto.o" "crypto/crypto.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/cpu-intel.o" "crypto/cpu-intel.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/curve25519.o" "crypto/curve25519/curve25519.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/x25519-x86_64.o" "crypto/curve25519/x25519-x86_64.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/x25519-asm-x86_64.o" "crypto/curve25519/asm/x25519-asm-x86_64.S"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/ecp_nistz.o" "crypto/ec/ecp_nistz.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/gfp_p384.o" "crypto/ec/gfp_p384.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/limbs.o" "crypto/limbs/limbs.c"
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-I" "include" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-fdata-sections" "-ffunction-sections" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-fstack-protector" "-g3" "-D_XOPEN_SOURCE=700" "-Wall" "-Wextra" "-c" "-o/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/gfp_p256.o" "crypto/ec/gfp_p256.c"
 running: "ar" "crs" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/libring-core.a" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/aes-x86_64-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/aesni-x86_64-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/bsaes-x86_64-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/vpaes-x86_64-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/x86_64-mont-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/x86_64-mont5-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/chacha-x86_64-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/ecp_nistz256-x86_64-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/p256-x86_64-asm-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/aesni-gcm-x86_64-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/ghash-x86_64-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/poly1305-x86_64-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/sha512-x86_64-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/sha256-x86_64-elf.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/aes.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/bn.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/exponentiation.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/generic.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/montgomery.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/montgomery_inv.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/mul.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/shift.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/e_aes.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/crypto.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/curve25519.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/ecp_nistz.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/ecp_nistz256.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/gfp_p256.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/gfp_p384.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/limbs.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/mem.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/gcm.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/cpu-intel.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/x25519-x86_64.o" "/home/tandry/mb-api/target/debug/build/ring-b6841a0f043aa90f/out/x25519-asm-x86_64.o"
 exit code: 0
 cargo:rustc-link-lib=static=ring-core
