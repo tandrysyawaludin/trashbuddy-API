@@ -21,12 +21,12 @@ CREATE TABLE suppliers (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE packages_of_partner (
+CREATE TABLE packages_of_supplier (
     id SERIAL PRIMARY KEY,
     category_of_trash_id integer NOT NULL,
     min_weight integer NOT NULL,
     price integer NOT NULL,
-    partner_id INTEGER NOT NULL,
+    supplier_id INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -39,3 +39,27 @@ CREATE TABLE partners (
     email CHARACTER(50) NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
+
+CREATE TABLE supplier_review {
+    id SERIAL PRIMARY KEY,
+    score integer NOT NULL,
+    comment CHARACTER(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+}
+
+CREATE TABLE partner_review {
+    id SERIAL PRIMARY KEY,
+    score integer NOT NULL,
+    comment CHARACTER(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+}
+
+CREATE TYPE status_transaction AS ENUM ('pending', 'process', 'success');
+CREATE TABLE transactions {
+    id SERIAL PRIMARY KEY,
+    supplier_id integer NOT NULL,
+    partner_id integer NOT NULL,
+    status status_transaction NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+    
+}
