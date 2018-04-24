@@ -9,7 +9,7 @@ pub struct NewSupplier {
     pub name: String,
     pub email: String,
     pub password: String,
-    pub phone_number: i32
+    pub phone_number: String
 }
 
 #[table_name = "suppliers"]
@@ -19,7 +19,8 @@ pub struct Supplier {
     pub name: String,
     pub email: String,
     pub password: String,
-    pub phone_number: i32
+    pub phone_number: String,
+    pub created_at: i32
 }
 
 impl NewSupplier {
