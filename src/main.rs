@@ -14,6 +14,12 @@ mod schema;
 mod supplier;
 use supplier::{Supplier, NewSupplier};
 
+mod signin_log;
+use signin_log::{User_role};
+
+mod transaction;
+use transaction::{Status_transaction};
+
 #[post("/", data = "<supplier>", format = "application/json")]
 fn create(supplier: Json<NewSupplier>, connection: db::Connection) -> Json<Supplier> {
 

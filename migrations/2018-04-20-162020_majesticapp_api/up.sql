@@ -4,7 +4,7 @@ CREATE TABLE categories_of_trash (
     name CHARACTER(20) NOT NULL
 );
 
-CREATE TYPE user_role AS ENUM ('customer', 'partner');
+CREATE TYPE user_role AS ENUM ('supplier', 'partner');
 CREATE TABLE signin_log (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
@@ -24,9 +24,10 @@ CREATE TABLE suppliers (
 
 CREATE TABLE packages_of_supplier (
     id SERIAL PRIMARY KEY,
-    category_of_trash_id integer NOT NULL,
-    min_weight integer NOT NULL,
+    weight integer NOT NULL,
+    shipping_fee integer NOT NULL,
     price integer NOT NULL,
+    category_of_trash_id integer NOT NULL,
     supplier_id INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
