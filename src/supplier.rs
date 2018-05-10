@@ -2,6 +2,7 @@ use diesel;
 use diesel::prelude::*;
 use diesel::pg::PgConnection;
 use schema::suppliers;
+use std::time::{Duration, SystemTime};
 
 #[table_name = "suppliers"]
 #[derive(Serialize, Deserialize, Insertable)]
@@ -20,7 +21,7 @@ pub struct Supplier {
     pub email: String,
     pub password: String,
     pub phone_number: String,
-    pub created_at: i32
+    pub created_at: Option<SystemTime>
 }
 
 impl NewSupplier {

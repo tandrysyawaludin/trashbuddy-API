@@ -56,7 +56,7 @@ table! {
         email -> Bpchar,
         password -> Bpchar,
         phone_number -> Bpchar,
-        created_at -> Int4,
+        created_at -> Nullable<Timestamp>,        
     }
 }
 
