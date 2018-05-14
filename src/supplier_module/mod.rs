@@ -1,5 +1,3 @@
-extern crate rocket;
-
 use database;
 use rocket_contrib::{Json, Value};
 mod supplier;
@@ -32,10 +30,4 @@ fn delete(id: i32, connection: database::db_setting::Connection) -> Json<Value> 
     Json(json!({
         "success": Supplier::delete(id, &connection)
     }))
-}
-
-fn rocket() -> rocket::Rocket {
-    rocket::ignite()
-        .mount("/supplier", routes![create, update, delete])
-        .mount("/suppliers", routes![read])
 }

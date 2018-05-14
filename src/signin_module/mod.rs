@@ -1,7 +1,7 @@
 use database;
 use rocket_contrib::{Json, Value};
 mod signin_log;
-use self::signin_log::{User_role};
+// use self::signin_log::{User_role};
 use self::signin_log::{SigninLog, NewSigninLog, AlreadySigninLog};
 
 #[post("/", data = "<signin_log>", format = "application/json")]
@@ -9,8 +9,7 @@ fn create(signin_log: Json<NewSigninLog>, connection: database::db_setting::Conn
 
     // Parse the string of data into serde_json::Value.
     let insert = NewSigninLog { ..signin_log.into_inner() };
-    println!("Please call {} at the number", insert.name);
-    Json(NewSigninLog::create(insert, &connection))
+    Json(SigninLog::create(insert, &connection))
 }
 
 #[get("/")]

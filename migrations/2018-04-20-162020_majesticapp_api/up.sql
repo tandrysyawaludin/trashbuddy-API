@@ -9,8 +9,8 @@ CREATE TABLE signin_log (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
     user_group user_role NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW(),
-    optional_data JSON
+    -- optional_data JSON,
+    created_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE suppliers (

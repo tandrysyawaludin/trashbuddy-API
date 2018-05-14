@@ -38,14 +38,11 @@
 // }
 
 table! {
-    use diesel::sql_types::*;
-    use super::User_role;
     signin_log (id) {
         id -> Int4,
         user_id -> Int4,
-        user_group -> User_role,
+        user_group -> Bpchar,
         created_at -> Nullable<Timestamp>,
-        optional_data -> Nullable<Json>,
     }
 }
 
@@ -85,5 +82,4 @@ table! {
 //     transactions,
 // );
 
-use signin_module::signin_log::{User_role};
 // use super::transaction::{Status_transaction};

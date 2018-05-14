@@ -12,15 +12,15 @@ mod database {
 }
 
 mod supplier_module;
-// use supplier_module::static_rocket_route_info_for_create;
-// use supplier_module::static_rocket_route_info_for_update;
-// use supplier_module::static_rocket_route_info_for_delete;
-// use supplier_module::static_rocket_route_info_for_read;
+use supplier_module::static_rocket_route_info_for_create;
+use supplier_module::static_rocket_route_info_for_update;
+use supplier_module::static_rocket_route_info_for_delete;
+use supplier_module::static_rocket_route_info_for_read;
 
-mod signin_module {
-    pub mod signin_log;
-}
-// use signin_module::{User_role};
+// mod signin_module {
+//     pub mod signin_log;
+// }
+mod signin_module;
 // use signin_module::static_rocket_route_info_for_create;
 // use signin_module::static_rocket_route_info_for_update;
 // use signin_module::static_rocket_route_info_for_delete;
@@ -34,7 +34,7 @@ mod signin_module {
 fn main() {
     rocket::ignite()
         .manage(database::db_setting::connect())
-        // .mount("/supplier", routes![create, update, delete])
-        // .mount("/suppliers", routes![read])
+        .mount("/supplier", routes![create, update, delete])
+        .mount("/suppliers", routes![read])
         .launch();
 }
