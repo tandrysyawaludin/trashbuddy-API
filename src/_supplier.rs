@@ -2,7 +2,7 @@ use diesel;
 use diesel::prelude::*;
 use diesel::pg::PgConnection;
 use schema::suppliers;
-use std::time::{Duration, SystemTime};
+use std::time::{SystemTime};
 
 #[table_name = "suppliers"]
 #[derive(Serialize, Deserialize, Insertable)]
@@ -24,6 +24,16 @@ pub struct Supplier {
     pub created_at: Option<SystemTime>
 }
 
+#[table_name = "suppliers"]
+#[derive(Serialize, Deserialize, Queryable, Insertable, AsChangeset)]
+pub struct AlreadySupplier {
+    pub name: String,
+    pub email: String,
+    pub password: String,
+    pub phone_number: String,
+    pub created_at: Option<SystemTime>
+}
+
 impl NewSupplier {
     pub fn create(new_supplier: NewSupplier, connection: &PgConnection) -> Supplier {
         diesel::insert_into(suppliers::table)
@@ -36,15 +46,11 @@ impl NewSupplier {
 }
 
 impl Supplier {
-    // pub fn create(supplier: NewSupplier, connection: &PgConnection) -> NewSupplier {
-    //     diesel::insert_into(suppliers::table).values(&supplier).get_result(connection).expect("Error saving new post")
-    // }
-
     pub fn read(connection: &PgConnection) -> Vec<Supplier> {
         suppliers::table.order(suppliers::id).load::<Supplier>(connection).unwrap()
     }
 
-    pub fn update(id: i32, supplier: Supplier, connection: &PgConnection) -> bool {
+    pub fn update(id: i32, supplier: AlreadySupplier, connection: &PgConnection) -> bool {
         diesel::update(suppliers::table.find(id)).set(&supplier).execute(connection).is_ok()
     }
 

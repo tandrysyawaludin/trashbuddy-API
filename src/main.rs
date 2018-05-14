@@ -6,53 +6,35 @@ extern crate rocket;
 #[macro_use] extern crate serde_derive;
 #[macro_use] extern crate diesel;
 
-use rocket_contrib::{Json, Value};
-
-mod db;
-mod schema;
-
-mod supplier;
-use supplier::{Supplier, NewSupplier};
-
-mod signin_log;
-use signin_log::{User_role};
-
-mod transaction;
-use transaction::{Status_transaction};
-
-#[post("/", data = "<supplier>", format = "application/json")]
-fn create(supplier: Json<NewSupplier>, connection: db::Connection) -> Json<Supplier> {
-
-    // Parse the string of data into serde_json::Value.
-    let insert = NewSupplier { ..supplier.into_inner() };
-    println!("Please call {} at the number", insert.name);
-    Json(NewSupplier::create(insert, &connection))
+mod database {
+    pub mod db_setting;
+    pub mod schema;
 }
 
-#[get("/")]
-fn read(connection: db::Connection) -> Json<Value> {
-    Json(json!(Supplier::read(&connection)))
-}
+mod supplier_module;
+// use supplier_module::static_rocket_route_info_for_create;
+// use supplier_module::static_rocket_route_info_for_update;
+// use supplier_module::static_rocket_route_info_for_delete;
+// use supplier_module::static_rocket_route_info_for_read;
 
-#[put("/<id>", data = "<supplier>", format = "application/json")]
-fn update(id: i32, supplier: Json<Supplier>, connection: db::Connection) -> Json<Value> {
-    let update = Supplier { id: id, ..supplier.into_inner() };
-    Json(json!({
-        "success": Supplier::update(id, update, &connection)
-    }))
+mod signin_module {
+    pub mod signin_log;
 }
+// use signin_module::{User_role};
+// use signin_module::static_rocket_route_info_for_create;
+// use signin_module::static_rocket_route_info_for_update;
+// use signin_module::static_rocket_route_info_for_delete;
+// use signin_module::static_rocket_route_info_for_read;
 
-#[delete("/<id>")]
-fn delete(id: i32, connection: db::Connection) -> Json<Value> {
-    Json(json!({
-        "success": Supplier::delete(id, &connection)
-    }))
-}
+// mod signin_module;
+
+// mod transaction;
+// use transaction::{Status_transaction};
 
 fn main() {
     rocket::ignite()
-        .manage(db::connect())
-        .mount("/supplier", routes![create, update, delete])
-        .mount("/suppliers", routes![read])
+        .manage(database::db_setting::connect())
+        // .mount("/supplier", routes![create, update, delete])
+        // .mount("/suppliers", routes![read])
         .launch();
 }
