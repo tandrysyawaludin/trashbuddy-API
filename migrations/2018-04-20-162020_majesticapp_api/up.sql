@@ -9,7 +9,6 @@ CREATE TABLE signin_log (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
     user_group user_role NOT NULL,
-    -- optional_data JSON,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -42,19 +41,21 @@ CREATE TABLE partners (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
--- CREATE TABLE supplier_review {
---     id SERIAL PRIMARY KEY,
---     score integer NOT NULL,
---     comment CHARACTER(100) NOT NULL,
---     created_at TIMESTAMP DEFAULT NOW()
--- }
+CREATE TABLE supplier_review (
+    id SERIAL PRIMARY KEY,
+    score integer NOT NULL,
+    comment CHARACTER(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    transactions_id integer NOT NULL
+);
 
--- CREATE TABLE partner_review {
---     id SERIAL PRIMARY KEY,
---     score integer NOT NULL,
---     comment CHARACTER(100) NOT NULL,
---     created_at TIMESTAMP DEFAULT NOW()
--- }
+CREATE TABLE partner_review (
+    id SERIAL PRIMARY KEY,
+    score integer NOT NULL,
+    comment CHARACTER(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    transactions_id integer NOT NULL
+);
 
 CREATE TYPE status_transaction AS ENUM ('pending', 'process', 'success');
 CREATE TABLE transactions (
@@ -63,15 +64,7 @@ CREATE TABLE transactions (
     partner_id integer NOT NULL,
     packages_of_supplier_id integer NOT NULL,
     status status_transaction NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW(),
-    supplier_review JSON,
-    partner_review JSON,
-    CONSTRAINT validate_score_supplier CHECK ( length( supplier_review->>'score_supplier') > 0 AND (supplier_review->>'score_supplier') IS NOT NULL ),
-    CONSTRAINT validate_comment_supplier CHECK ( length( supplier_review->>'comment_supplier') > 0  AND (supplier_review->>'comment_supplier') IS NULL ),
-    CONSTRAINT validate_created_at_supplier CHECK ( ( supplier_review->>'created_at_supplier')::time = '23:59:59'::time ),
-    CONSTRAINT validate_score_partner CHECK ( length( partner_review->>'score_partner') > 0 AND ( partner_review->>'score_partner') IS NOT NULL ),
-    CONSTRAINT validate_comment_partner CHECK ( length( partner_review->>'comment_partner') > 0  AND ( partner_review->>'comment_partner') IS NULL ),
-    CONSTRAINT validate_created_at_partner CHECK ( ( partner_review->>'created_at_partner')::time = '23:59:59'::time )
+    created_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE report_to_block (
