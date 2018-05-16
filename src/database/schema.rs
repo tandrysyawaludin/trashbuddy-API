@@ -53,7 +53,8 @@ table! {
         email -> Bpchar,
         password -> Bpchar,
         phone_number -> Bpchar,
-        created_at -> Nullable<Timestamp>,        
+        area -> Bpchar,
+        created_at -> Nullable<Timestamp>,
     }
 }
 

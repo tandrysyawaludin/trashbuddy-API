@@ -18,7 +18,7 @@ CREATE TABLE suppliers (
     email CHARACTER(50) NOT NULL,
     password CHARACTER(20) NOT NULL,
     phone_number CHARACTER(20) NOT NULL,
-    area CHARACTER(20) NOT NULL,    
+    area CHARACTER(100) NOT NULL,    
     profile_pic bytea NULL,
     id_card_pic bytea NULL,
     created_at TIMESTAMP DEFAULT NOW()
