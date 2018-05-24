@@ -17,17 +17,17 @@
 //     }
 // }
 
-// table! {
-//     partners (id) {
-//         id -> Int4,
-//         name -> Bpchar,
-//         password -> Bpchar,
-//         phone_number -> Bpchar,
-//         area -> Bpchar,
-//         email -> Bpchar,
-//         created_at -> Nullable<Timestamp>,
-//     }
-// }
+table! {
+    partners (id) {
+        id -> Int4,
+        name -> Bpchar,
+        password -> Bpchar,
+        phone_number -> Bpchar,
+        area -> Bpchar,
+        email -> Bpchar,
+        created_at -> Nullable<Timestamp>,
+    }
+}
 
 // table! {
 //     report_to_block (id) {

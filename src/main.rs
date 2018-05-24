@@ -27,7 +27,8 @@ fn main() {
       routes![
         supplier_module::create_supplier,
         supplier_module::update_supplier,
-        supplier_module::delete_supplier
+        supplier_module::delete_supplier,
+        supplier_module::read_one_supplier
       ],
     )
     .mount(

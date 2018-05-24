@@ -21,11 +21,6 @@ fn read_all_suppliers(connection: database::db_setting::Connection) -> Json<Valu
   Json(json!(Supplier::read(&connection)))
 }
 
-#[get("/<id>")]
-fn read_one_supplier(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-  Json(json!(Supplier::read_one(id, &connection)))
-}
-
 #[put("/<id>", data = "<supplier>", format = "application/json")]
 fn update_supplier(
   id: i32,
