@@ -16,31 +16,28 @@ mod database {
   pub mod schema;
 }
 
-mod supplier_module;
-use supplier_module::static_rocket_route_info_for_create_supplier;
-use supplier_module::static_rocket_route_info_for_delete_supplier;
-use supplier_module::static_rocket_route_info_for_read_all_suppliers;
-use supplier_module::static_rocket_route_info_for_update_supplier;
-
 mod signin_module;
-use signin_module::static_rocket_route_info_for_create_signin_log;
-use signin_module::static_rocket_route_info_for_read_all_signin_logs;
-use signin_module::static_rocket_route_info_for_update_signin_log;
-
-// mod signin_module;
-
-// mod transaction;
-// use transaction::{Status_transaction};
+mod supplier_module;
 
 fn main() {
   rocket::ignite()
     .manage(database::db_setting::connect())
     .mount(
       "/supplier",
-      routes![create_supplier, update_supplier, delete_supplier],
+      routes![
+        supplier_module::create_supplier,
+        supplier_module::update_supplier,
+        supplier_module::delete_supplier
+      ],
     )
-    .mount("/singin_log", routes![create_signin_log, update_signin_log])
-    .mount("/suppliers", routes![read_all_suppliers])
-    .mount("/singin_logs", routes![read_all_signin_logs])
+    .mount(
+      "/singin_log",
+      routes![
+        signin_module::create_signin_log,
+        signin_module::update_signin_log
+      ],
+    )
+    .mount("/suppliers", routes![supplier_module::read_all_suppliers])
+    .mount("/singin_logs", routes![signin_module::read_all_signin_logs])
     .launch();
 }
