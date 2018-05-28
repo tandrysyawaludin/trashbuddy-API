@@ -19,8 +19,11 @@ mod database {
 mod category_of_trash_module;
 mod package_of_supplier_module;
 mod partner_module;
+mod report_to_block_module;
 mod signin_module;
 mod supplier_module;
+mod supplier_review_module;
+mod transaction_module;
 
 fn main() {
   rocket::ignite()
@@ -69,12 +72,51 @@ fn main() {
       ],
     )
     .mount(
+      "/transaction",
+      routes![
+        transaction_module::create_transaction,
+        transaction_module::update_transaction,
+        transaction_module::delete_transaction,
+        transaction_module::read_one_transaction
+      ],
+    )
+    .mount(
+      "/report_to_block",
+      routes![
+        report_to_block_module::create_report_to_block,
+        report_to_block_module::update_report_to_block,
+        report_to_block_module::delete_report_to_block,
+        report_to_block_module::read_one_report_to_block
+      ],
+    )
+    .mount(
+      "/supplier_review",
+      routes![
+        supplier_review_module::create_supplier_review,
+        supplier_review_module::update_supplier_review,
+        supplier_review_module::delete_supplier_review,
+        supplier_review_module::read_one_supplier_review
+      ],
+    )
+    .mount(
+      "/supplier_reviews",
+      routes![supplier_review_module::read_all_supplier_reviews],
+    )
+    .mount(
       "/packages_of_supplier",
       routes![package_of_supplier_module::read_all_packages_of_supplier],
     )
     .mount(
+      "/reports_to_block",
+      routes![report_to_block_module::read_all_reports_to_block],
+    )
+    .mount(
       "/categories_of_trash",
       routes![category_of_trash_module::read_all_categories],
+    )
+    .mount(
+      "/transactions",
+      routes![transaction_module::read_all_transactions],
     )
     .mount("/suppliers", routes![supplier_module::read_all_suppliers])
     .mount("/partners", routes![partner_module::read_all_partners])

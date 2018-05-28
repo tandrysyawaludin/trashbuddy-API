@@ -47,7 +47,7 @@ CREATE TABLE partners (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE supplier_review (
+CREATE TABLE supplier_reviews (
     id SERIAL PRIMARY KEY,
     score integer NOT NULL,
     comment CHARACTER(100) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE supplier_review (
     transactions_id integer NOT NULL
 );
 
-CREATE TABLE partner_review (
+CREATE TABLE partner_reviews (
     id SERIAL PRIMARY KEY,
     score integer NOT NULL,
     comment CHARACTER(100) NOT NULL,
@@ -68,30 +68,31 @@ CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
     supplier_id integer NOT NULL,
     partner_id integer NOT NULL,
-    packages_of_supplier_id integer NOT NULL,
+    id_package_of_supplier integer NOT NULL,
     status status_transaction NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE report_to_block (
+CREATE TABLE reports_to_block (
     id SERIAL PRIMARY KEY,
     target_user integer NOT NULL,
-    comment CHARACTER(100) NOT NULL
+    comment CHARACTER(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()    
 );
 
-CREATE TABLE province (
+CREATE TABLE provinces (
     id SERIAL PRIMARY KEY,
     name CHARACTER(20) NOT NULL
 );
 
-CREATE TABLE district (
+CREATE TABLE districts (
     id SERIAL PRIMARY KEY,
     name CHARACTER(20) NOT NULL,
-    province integer NOT NULL
+    province_id integer NOT NULL
 );
 
-CREATE TABLE sub_district (
+CREATE TABLE sub_districts (
     id SERIAL PRIMARY KEY,
     name CHARACTER(20) NOT NULL,
-    district integer NOT NULL
+    district_id integer NOT NULL
 );

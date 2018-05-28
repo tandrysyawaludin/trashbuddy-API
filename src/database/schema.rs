@@ -30,13 +30,14 @@ table! {
     }
 }
 
-// table! {
-//     report_to_block (id) {
-//         id -> Int4,
-//         target_user -> Int4,
-//         comment -> Bpchar,
-//     }
-// }
+table! {
+    reports_to_block (id) {
+        id -> Int4,
+        target_user -> Int4,
+        comment -> Bpchar,
+        created_at -> Nullable<Timestamp>,
+    }
+}
 
 table! {
     signin_log (id) {
@@ -59,29 +60,71 @@ table! {
     }
 }
 
+table! {
+    transactions (id) {
+        id -> Int4,
+        supplier_id -> Int4,
+        partner_id -> Int4,
+        id_package_of_supplier -> Int4,
+        status -> Bpchar,
+        created_at -> Nullable<Timestamp>,
+    }
+}
+
+table! {
+    supplier_reviews (id) {
+        id -> Int4,
+        score -> Int4,
+        comment -> Bpchar,
+        transactions_id -> Int4,
+        created_at -> Nullable<Timestamp>,
+    }
+}
+
+table! {
+    partner_reviews (id) {
+        id -> Int4,
+        score -> Int4,
+        comment -> Bpchar,
+        created_at -> Nullable<Timestamp>,
+        transactions_id -> Int4,
+    }
+}
+
 // table! {
-//     use diesel::sql_types::*;
-//     use super::Status_transaction;
-//     transactions (id) {
+//     province (id) {
 //         id -> Int4,
-//         supplier_id -> Int4,
-//         partner_id -> Int4,
-//         packages_of_supplier_id -> Int4,
-//         status -> Status_transaction,
-//         created_at -> Nullable<Timestamp>,
-//         supplier_review -> Nullable<Json>,
-//         partner_review -> Nullable<Json>,
+//         name -> Bpchar,
+//     }
+// }
+
+// table! {
+//     district (id) {
+//         id -> Int4,
+//         name -> Bpchar,
+//         province -> Int4,
+//     }
+// }
+
+// table! {
+//     sub_district (id) {
+//         id -> Int4,
+//         name -> Bpchar,
+//         district -> Int4,
 //     }
 // }
 
 // allow_tables_to_appear_in_same_query!(
 //     categories_of_trash,
+//     district,
 //     packages_of_supplier,
+//     partner_review,
 //     partners,
+//     province,
 //     report_to_block,
 //     signin_log,
+//     sub_district,
+//     supplier_review,
 //     suppliers,
 //     transactions,
 // );
-
-// use super::transaction::{Status_transaction};
