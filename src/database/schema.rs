@@ -1,21 +1,21 @@
-// table! {
-//     categories_of_trash (id) {
-//         id -> Int4,
-//         name -> Bpchar,
-//     }
-// }
+table! {
+    categories_of_trash (id) {
+        id -> Int4,
+        name -> Bpchar,
+    }
+}
 
-// table! {
-//     packages_of_supplier (id) {
-//         id -> Int4,
-//         weight -> Int4,
-//         shipping_fee -> Int4,
-//         price -> Int4,
-//         category_of_trash_id -> Int4,
-//         supplier_id -> Int4,
-//         created_at -> Nullable<Timestamp>,
-//     }
-// }
+table! {
+    packages_of_supplier (id) {
+        id -> Int4,
+        weight -> Int4,
+        shipping_fee -> Int4,
+        price -> Int4,
+        category_of_trash_id -> Int4,
+        supplier_id -> Int4,
+        created_at -> Nullable<Timestamp>,
+    }
+}
 
 table! {
     partners (id) {
@@ -24,6 +24,7 @@ table! {
         password -> Bpchar,
         phone_number -> Bpchar,
         area -> Bpchar,
+        machine_code -> Bpchar,
         email -> Bpchar,
         created_at -> Nullable<Timestamp>,
     }

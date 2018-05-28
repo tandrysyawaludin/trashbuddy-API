@@ -1,41 +1,46 @@
 use database;
 use rocket_contrib::{Json, Value};
-mod supplier;
-use self::supplier::{AlreadySupplier, NewSupplier, Supplier};
+mod partner;
+use self::partner::{AlreadyPartner, NewPartner, Partner};
 
-#[post("/", data = "<supplier>", format = "application/json")]
-fn create_supplier(
-  supplier: Json<NewSupplier>,
+#[post("/", data = "<partner>", format = "application/json")]
+fn create_partner(
+  partner: Json<NewPartner>,
   connection: database::db_setting::Connection,
-) -> Json<Supplier> {
+) -> Json<Partner> {
   // Parse the string of data into serde_json::Value.
-  let insert = NewSupplier {
-    ..supplier.into_inner()
+  let insert = NewPartner {
+    ..partner.into_inner()
   };
   println!("Please call {} at the number", insert.name);
-  Json(Supplier::create(insert, &connection))
+  Json(Partner::create(insert, &connection))
 }
 
 #[get("/")]
-fn read_all_suppliers(connection: database::db_setting::Connection) -> Json<Value> {
-  Json(json!(Supplier::read(&connection)))
+fn read_all_partners(connection: database::db_setting::Connection) -> Json<Value> {
+  Json(json!(Partner::read(&connection)))
 }
 
-#[put("/<id>", data = "<supplier>", format = "application/json")]
-fn update_supplier(
+#[get("/<id>")]
+fn read_one_partner(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
+  Json(json!(Partner::read_one(id, &connection)))
+}
+
+#[put("/<id>", data = "<partner>", format = "application/json")]
+fn update_partner(
   id: i32,
-  supplier: Json<AlreadySupplier>,
+  partner: Json<AlreadyPartner>,
   connection: database::db_setting::Connection,
 ) -> Json<Value> {
-  let update = AlreadySupplier {
-    ..supplier.into_inner()
+  let update = AlreadyPartner {
+    ..partner.into_inner()
   };
   Json(json!({
-    "success": Supplier::update(id, update, &connection)
+    "success": Partner::update(id, update, &connection)
   }))
 }
 
 #[delete("/<id>")]
-fn delete_supplier(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-  Json(json!({ "success": Supplier::delete(id, &connection) }))
+fn delete_partner(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
+  Json(json!({ "success": Partner::delete(id, &connection) }))
 }

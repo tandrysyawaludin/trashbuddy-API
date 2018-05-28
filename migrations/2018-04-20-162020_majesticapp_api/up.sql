@@ -40,9 +40,10 @@ CREATE TABLE partners (
     email CHARACTER(50) NOT NULL,
     password CHARACTER(20) NOT NULL,
     phone_number CHARACTER(20) NOT NULL,
-    area CHARACTER(20) NOT NULL,
+    area CHARACTER(100) NOT NULL,
     profile_pic bytea NULL,
     id_card_pic bytea NULL,
+    machine_code CHARACTER (10),
     created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -76,4 +77,21 @@ CREATE TABLE report_to_block (
     id SERIAL PRIMARY KEY,
     target_user integer NOT NULL,
     comment CHARACTER(100) NOT NULL
+);
+
+CREATE TABLE province (
+    id SERIAL PRIMARY KEY,
+    name CHARACTER(20) NOT NULL
+);
+
+CREATE TABLE district (
+    id SERIAL PRIMARY KEY,
+    name CHARACTER(20) NOT NULL,
+    province integer NOT NULL
+);
+
+CREATE TABLE sub_district (
+    id SERIAL PRIMARY KEY,
+    name CHARACTER(20) NOT NULL,
+    district integer NOT NULL
 );

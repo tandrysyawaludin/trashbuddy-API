@@ -12,6 +12,7 @@ pub struct NewPartner {
   pub password: String,
   pub phone_number: String,
   pub area: String,
+  pub machine_code: String,
 }
 
 #[table_name = "partners"]
@@ -23,6 +24,7 @@ pub struct Partner {
   pub password: String,
   pub phone_number: String,
   pub area: String,
+  pub machine_code: String,
   pub created_at: Option<SystemTime>,
 }
 
@@ -34,15 +36,16 @@ pub struct AlreadyPartner {
   pub password: String,
   pub phone_number: String,
   pub area: String,
+  pub machine_code: String,
   pub created_at: Option<SystemTime>,
 }
 
 impl Partner {
-  pub fn create(new_supplier: NewPartner, connection: &PgConnection) -> Partner {
+  pub fn create(new_partner: NewPartner, connection: &PgConnection) -> Partner {
     diesel::insert_into(partners::table)
-      .values(&new_supplier)
+      .values(&new_partner)
       .execute(connection)
-      .expect("Error creating new supplier");
+      .expect("Error creating new partner");
 
     partners::table
       .order(partners::id.desc())
@@ -57,9 +60,16 @@ impl Partner {
       .unwrap()
   }
 
-  pub fn update(id: i32, supplier: AlreadyPartner, connection: &PgConnection) -> bool {
+  pub fn read_one(id: i32, connection: &PgConnection) -> Vec<Partner> {
+    partners::table
+      .find(id)
+      .load::<Partner>(connection)
+      .unwrap()
+  }
+
+  pub fn update(id: i32, partner: AlreadyPartner, connection: &PgConnection) -> bool {
     diesel::update(partners::table.find(id))
-      .set(&supplier)
+      .set(&partner)
       .execute(connection)
       .is_ok()
   }

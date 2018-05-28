@@ -1,7 +1,6 @@
 use database;
 use rocket_contrib::{Json, Value};
 mod signin_log;
-// use self::signin_log::{User_role};
 use self::signin_log::{AlreadySigninLog, NewSigninLog, SigninLog};
 
 #[post("/", data = "<signin_log>", format = "application/json")]
