@@ -13,3 +13,4 @@ DROP TABLE IF EXISTS reports_to_block;
 DROP TABLE IF EXISTS provinces;
 DROP TABLE IF EXISTS districts;
 DROP TABLE IF EXISTS sub_districts;
+DROP TABLE IF EXISTS villages;
