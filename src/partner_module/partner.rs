@@ -68,10 +68,14 @@ impl Partner {
   }
 
   pub fn update(id: i32, partner: AlreadyPartner, connection: &PgConnection) -> bool {
-    diesel::update(partners::table.find(id))
-      .set(&partner)
-      .execute(connection)
-      .is_ok()
+    let exists = partners::table.find(id).execute(connection);
+    match exists {
+      Ok(1) => diesel::update(partners::table.find(id))
+        .set(&partner)
+        .execute(connection)
+        .is_ok(),
+      _ => return false,
+    }
   }
 
   pub fn delete(id: i32, connection: &PgConnection) -> bool {

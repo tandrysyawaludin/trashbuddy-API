@@ -71,11 +71,16 @@ impl PackageOfSupplier {
     id: i32,
     packages_of_supplier: AlreadyPackageOfSupplier,
     connection: &PgConnection,
-  ) -> bool {
+  ) -> Vec<PackageOfSupplier> {
     diesel::update(packages_of_supplier::table.find(id))
       .set(&packages_of_supplier)
       .execute(connection)
-      .is_ok()
+      .is_ok();
+
+    packages_of_supplier::table
+      .find(id)
+      .load::<PackageOfSupplier>(connection)
+      .unwrap()
   }
 
   pub fn delete(id: i32, connection: &PgConnection) -> bool {

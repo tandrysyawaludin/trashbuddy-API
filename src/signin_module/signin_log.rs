@@ -48,11 +48,20 @@ impl SigninLog {
       .unwrap()
   }
 
-  pub fn update(id: i32, signin_log: AlreadySigninLog, connection: &PgConnection) -> bool {
+  pub fn update(
+    id: i32,
+    signin_log: AlreadySigninLog,
+    connection: &PgConnection,
+  ) -> Vec<SigninLog> {
     diesel::update(signin_log::table.find(id))
       .set(&signin_log)
       .execute(connection)
-      .is_ok()
+      .is_ok();
+
+    signin_log::table
+      .order(signin_log::id)
+      .load::<SigninLog>(connection)
+      .unwrap()
   }
 
   pub fn delete(id: i32, connection: &PgConnection) -> bool {

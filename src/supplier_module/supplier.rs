@@ -64,11 +64,16 @@ impl Supplier {
       .unwrap()
   }
 
-  pub fn update(id: i32, supplier: AlreadySupplier, connection: &PgConnection) -> bool {
+  pub fn update(id: i32, supplier: AlreadySupplier, connection: &PgConnection) -> Vec<Supplier> {
     diesel::update(suppliers::table.find(id))
       .set(&supplier)
       .execute(connection)
-      .is_ok()
+      .is_ok();
+
+    suppliers::table
+      .find(id)
+      .load::<Supplier>(connection)
+      .unwrap()
   }
 
   pub fn delete(id: i32, connection: &PgConnection) -> bool {

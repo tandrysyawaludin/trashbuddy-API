@@ -17,6 +17,7 @@ mod database {
 }
 
 mod category_of_trash_module;
+mod error_handler_module;
 mod package_of_supplier_module;
 mod partner_module;
 mod report_to_block_module;
@@ -121,5 +122,10 @@ fn main() {
     .mount("/suppliers", routes![supplier_module::read_all_suppliers])
     .mount("/partners", routes![partner_module::read_all_partners])
     .mount("/singin_logs", routes![signin_module::read_all_signin_logs])
+    .catch(errors![
+      error_handler_module::internal_error,
+      error_handler_module::not_found,
+      error_handler_module::unmatch_request
+    ])
     .launch();
 }

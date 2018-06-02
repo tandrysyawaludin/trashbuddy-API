@@ -62,11 +62,16 @@ impl ReportToBlock {
     id: i32,
     reports_to_block: AlreadyReportToBlock,
     connection: &PgConnection,
-  ) -> bool {
+  ) -> Vec<ReportToBlock> {
     diesel::update(reports_to_block::table.find(id))
       .set(&reports_to_block)
       .execute(connection)
-      .is_ok()
+      .is_ok();
+
+    reports_to_block::table
+      .find(id)
+      .load::<ReportToBlock>(connection)
+      .unwrap()
   }
 
   pub fn delete(id: i32, connection: &PgConnection) -> bool {

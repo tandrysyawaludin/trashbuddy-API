@@ -61,11 +61,20 @@ impl Transaction {
       .unwrap()
   }
 
-  pub fn update(id: i32, transactions: AlreadyTransaction, connection: &PgConnection) -> bool {
+  pub fn update(
+    id: i32,
+    transactions: AlreadyTransaction,
+    connection: &PgConnection,
+  ) -> Vec<Transaction> {
     diesel::update(transactions::table.find(id))
       .set(&transactions)
       .execute(connection)
-      .is_ok()
+      .is_ok();
+
+    transactions::table
+      .find(id)
+      .load::<Transaction>(connection)
+      .unwrap()
   }
 
   pub fn delete(id: i32, connection: &PgConnection) -> bool {

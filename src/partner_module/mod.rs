@@ -12,7 +12,6 @@ fn create_partner(
   let insert = NewPartner {
     ..partner.into_inner()
   };
-  println!("Please call {} at the number", insert.name);
   Json(Partner::create(insert, &connection))
 }
 
@@ -35,9 +34,12 @@ fn update_partner(
   let update = AlreadyPartner {
     ..partner.into_inner()
   };
-  Json(json!({
-    "success": Partner::update(id, update, &connection)
-  }))
+  Json(json!(
+    {
+      "success": Partner::update(id, update, &connection),
+      "data": Partner::read_one(id, &connection)
+    }
+  ))
 }
 
 #[delete("/<id>")]

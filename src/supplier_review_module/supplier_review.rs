@@ -65,11 +65,16 @@ impl SupplierReview {
     id: i32,
     supplier_reviews: AlreadySupplierReview,
     connection: &PgConnection,
-  ) -> bool {
+  ) -> Vec<SupplierReview> {
     diesel::update(supplier_reviews::table.find(id))
       .set(&supplier_reviews)
       .execute(connection)
-      .is_ok()
+      .is_ok();
+
+    supplier_reviews::table
+      .find(id)
+      .load::<SupplierReview>(connection)
+      .unwrap()
   }
 
   pub fn delete(id: i32, connection: &PgConnection) -> bool {
