@@ -17,7 +17,12 @@ fn create_partner(
 
 #[get("/")]
 fn read_all_partners(connection: database::db_setting::Connection) -> Json<Value> {
-  Json(json!(Partner::read(&connection)))
+  Json(json!(
+    {
+      "total": Partner::count_all(&connection),
+      "data": Partner::read(&connection)
+    }
+  ))
 }
 
 #[get("/<id>")]

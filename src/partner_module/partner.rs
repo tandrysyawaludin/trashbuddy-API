@@ -1,8 +1,12 @@
 use database::schema::partners;
 use diesel;
+use diesel::dsl::count;
 use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use std::time::SystemTime;
+
+use diesel::expression::count;
+use diesel::prelude::*;
 
 #[table_name = "partners"]
 #[derive(Serialize, Deserialize, Insertable)]
@@ -56,19 +60,31 @@ impl Partner {
   pub fn read(connection: &PgConnection) -> Vec<Partner> {
     partners::table
       .order(partners::id)
+      .limit(10)
       .load::<Partner>(connection)
       .unwrap()
+  }
+
+  pub fn count_all(connection: &PgConnection) -> i64 {
+    let total = partners::table
+      .select(count(partners::id))
+      .first::<i64>(connection);
+    match total {
+      Ok(v) => return v,
+      Err(e) => return 0,
+    }
   }
 
   pub fn read_one(id: i32, connection: &PgConnection) -> Vec<Partner> {
     partners::table
       .find(id)
+      .limit(1)
       .load::<Partner>(connection)
       .unwrap()
   }
 
   pub fn update(id: i32, partner: AlreadyPartner, connection: &PgConnection) -> bool {
-    let exists = partners::table.find(id).execute(connection);
+    let exists = partners::table.find(id).limit(1).execute(connection);
     match exists {
       Ok(1) => diesel::update(partners::table.find(id))
         .set(&partner)
