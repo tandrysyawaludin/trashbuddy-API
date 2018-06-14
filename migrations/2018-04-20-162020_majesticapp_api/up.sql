@@ -15,9 +15,9 @@ CREATE TABLE signin_log (
 CREATE TABLE suppliers (
     id SERIAL PRIMARY KEY,
     name CHARACTER(50) NOT NULL,
-    email CHARACTER(50) NOT NULL,
+    email CHARACTER(50) UNIQUE NOT NULL,
     password CHARACTER(20) NOT NULL,
-    phone_number CHARACTER(20) NOT NULL,
+    phone_number CHARACTER(20) UNIQUE NOT NULL,
     area CHARACTER(100) NOT NULL,    
     profile_pic bytea NULL,
     id_card_pic bytea NULL,
@@ -37,9 +37,9 @@ CREATE TABLE packages_of_supplier (
 CREATE TABLE partners (
     id SERIAL PRIMARY KEY,
     name CHARACTER(50) NOT NULL,
-    email CHARACTER(50) NOT NULL,
+    email CHARACTER(50) UNIQUE NOT NULL,
     password CHARACTER(20) NOT NULL,
-    phone_number CHARACTER(20) NOT NULL,
+    phone_number CHARACTER(20) UNIQUE NOT NULL,
     area CHARACTER(100) NOT NULL,
     profile_pic bytea NULL,
     id_card_pic bytea NULL,

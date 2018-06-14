@@ -5,9 +5,6 @@ use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use std::time::SystemTime;
 
-use diesel::expression::count;
-use diesel::prelude::*;
-
 #[table_name = "partners"]
 #[derive(Serialize, Deserialize, Insertable)]
 pub struct NewPartner {
@@ -45,16 +42,39 @@ pub struct AlreadyPartner {
 }
 
 impl Partner {
-  pub fn create(new_partner: NewPartner, connection: &PgConnection) -> Partner {
+  pub fn create(new_partner: NewPartner, connection: &PgConnection) -> bool {
     diesel::insert_into(partners::table)
       .values(&new_partner)
       .execute(connection)
-      .expect("Error creating new partner");
+      .is_ok()
+  }
 
+  pub fn read_after_create(connection: &PgConnection) -> Partner {
     partners::table
       .order(partners::id.desc())
       .first(connection)
       .unwrap()
+  }
+
+  pub fn update(id: i32, partner: AlreadyPartner, connection: &PgConnection) -> bool {
+    let exists = partners::table.find(id).limit(1).execute(connection);
+    match exists {
+      Ok(1) => diesel::update(partners::table.find(id))
+        .set(&partner)
+        .execute(connection)
+        .is_ok(),
+      _ => return false,
+    }
+  }
+
+  pub fn delete(id: i32, connection: &PgConnection) -> bool {
+    let exists = partners::table.find(id).limit(1).execute(connection);
+    match exists {
+      Ok(1) => diesel::delete(partners::table.find(id))
+        .execute(connection)
+        .is_ok(),
+      _ => return false,
+    }
   }
 
   pub fn read(connection: &PgConnection) -> Vec<Partner> {
@@ -71,7 +91,7 @@ impl Partner {
       .first::<i64>(connection);
     match total {
       Ok(v) => return v,
-      Err(e) => return 0,
+      Err(_e) => return 0,
     }
   }
 
@@ -81,22 +101,5 @@ impl Partner {
       .limit(1)
       .load::<Partner>(connection)
       .unwrap()
-  }
-
-  pub fn update(id: i32, partner: AlreadyPartner, connection: &PgConnection) -> bool {
-    let exists = partners::table.find(id).limit(1).execute(connection);
-    match exists {
-      Ok(1) => diesel::update(partners::table.find(id))
-        .set(&partner)
-        .execute(connection)
-        .is_ok(),
-      _ => return false,
-    }
-  }
-
-  pub fn delete(id: i32, connection: &PgConnection) -> bool {
-    diesel::delete(partners::table.find(id))
-      .execute(connection)
-      .is_ok()
   }
 }
