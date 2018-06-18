@@ -5,7 +5,7 @@ CREATE TABLE categories_of_trash (
 );
 
 CREATE TYPE user_role AS ENUM ('supplier', 'partner');
-CREATE TABLE signin_log (
+CREATE TABLE signin_logs (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
     user_group user_role NOT NULL,

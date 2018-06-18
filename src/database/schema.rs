@@ -23,9 +23,9 @@ table! {
         name -> Bpchar,
         password -> Bpchar,
         phone_number -> Bpchar,
+        email -> Bpchar,
         area -> Bpchar,
         machine_code -> Bpchar,
-        email -> Bpchar,
         created_at -> Nullable<Timestamp>,
     }
 }
@@ -40,7 +40,7 @@ table! {
 }
 
 table! {
-    signin_log (id) {
+    signin_logs (id) {
         id -> Int4,
         user_id -> Int4,
         user_group -> Bpchar,
@@ -86,8 +86,8 @@ table! {
         id -> Int4,
         score -> Int4,
         comment -> Bpchar,
-        created_at -> Nullable<Timestamp>,
         transactions_id -> Int4,
+        created_at -> Nullable<Timestamp>,
     }
 }
 

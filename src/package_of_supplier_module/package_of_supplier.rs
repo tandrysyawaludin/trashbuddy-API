@@ -1,5 +1,6 @@
 use database::schema::packages_of_supplier;
 use diesel;
+use diesel::dsl::count;
 use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use std::time::SystemTime;
@@ -38,54 +39,75 @@ pub struct AlreadyPackageOfSupplier {
 }
 
 impl PackageOfSupplier {
-  pub fn create(
-    new_packages_of_supplier: NewPackageOfSupplier,
-    connection: &PgConnection,
-  ) -> PackageOfSupplier {
+  pub fn create(new_package_of_supplier: NewPackageOfSupplier, connection: &PgConnection) -> bool {
     diesel::insert_into(packages_of_supplier::table)
-      .values(&new_packages_of_supplier)
+      .values(&new_package_of_supplier)
       .execute(connection)
-      .expect("Error creating new packages_of_supplier");
+      .is_ok()
+  }
 
+  pub fn read_after_create(connection: &PgConnection) -> PackageOfSupplier {
     packages_of_supplier::table
       .order(packages_of_supplier::id.desc())
       .first(connection)
       .unwrap()
   }
 
-  pub fn read(connection: &PgConnection) -> Vec<PackageOfSupplier> {
+  pub fn update(
+    id: i32,
+    package_of_supplier: AlreadyPackageOfSupplier,
+    connection: &PgConnection,
+  ) -> bool {
+    let exists = packages_of_supplier::table
+      .find(id)
+      .limit(1)
+      .execute(connection);
+    match exists {
+      Ok(1) => diesel::update(packages_of_supplier::table.find(id))
+        .set(&package_of_supplier)
+        .execute(connection)
+        .is_ok(),
+      _ => return false,
+    }
+  }
+
+  pub fn delete(id: i32, connection: &PgConnection) -> bool {
+    let exists = packages_of_supplier::table
+      .find(id)
+      .limit(1)
+      .execute(connection);
+    match exists {
+      Ok(1) => diesel::delete(packages_of_supplier::table.find(id))
+        .execute(connection)
+        .is_ok(),
+      _ => return false,
+    }
+  }
+
+  pub fn read(page: i64, connection: &PgConnection) -> Vec<PackageOfSupplier> {
     packages_of_supplier::table
       .order(packages_of_supplier::id)
+      .limit(10)
+      .offset(page * 10)
       .load::<PackageOfSupplier>(connection)
       .unwrap()
+  }
+
+  pub fn count_all(connection: &PgConnection) -> i64 {
+    let total = packages_of_supplier::table
+      .select(count(packages_of_supplier::id))
+      .first::<i64>(connection);
+    match total {
+      Ok(v) => return v,
+      Err(_e) => return 0,
+    }
   }
 
   pub fn read_one(id: i32, connection: &PgConnection) -> Vec<PackageOfSupplier> {
     packages_of_supplier::table
       .find(id)
+      .limit(1)
       .load::<PackageOfSupplier>(connection)
       .unwrap()
-  }
-
-  pub fn update(
-    id: i32,
-    packages_of_supplier: AlreadyPackageOfSupplier,
-    connection: &PgConnection,
-  ) -> Vec<PackageOfSupplier> {
-    diesel::update(packages_of_supplier::table.find(id))
-      .set(&packages_of_supplier)
-      .execute(connection)
-      .is_ok();
-
-    packages_of_supplier::table
-      .find(id)
-      .load::<PackageOfSupplier>(connection)
-      .unwrap()
-  }
-
-  pub fn delete(id: i32, connection: &PgConnection) -> bool {
-    diesel::delete(packages_of_supplier::table.find(id))
-      .execute(connection)
-      .is_ok()
   }
 }

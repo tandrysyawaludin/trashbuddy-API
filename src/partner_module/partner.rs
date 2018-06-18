@@ -9,9 +9,9 @@ use std::time::SystemTime;
 #[derive(Serialize, Deserialize, Insertable)]
 pub struct NewPartner {
   pub name: String,
-  pub email: String,
   pub password: String,
   pub phone_number: String,
+  pub email: String,
   pub area: String,
   pub machine_code: String,
 }
@@ -21,9 +21,9 @@ pub struct NewPartner {
 pub struct Partner {
   pub id: i32,
   pub name: String,
-  pub email: String,
   pub password: String,
   pub phone_number: String,
+  pub email: String,
   pub area: String,
   pub machine_code: String,
   pub created_at: Option<SystemTime>,
@@ -33,9 +33,9 @@ pub struct Partner {
 #[derive(Serialize, Deserialize, Queryable, Insertable, AsChangeset)]
 pub struct AlreadyPartner {
   pub name: String,
-  pub email: String,
   pub password: String,
   pub phone_number: String,
+  pub email: String,
   pub area: String,
   pub machine_code: String,
   pub created_at: Option<SystemTime>,
@@ -77,10 +77,11 @@ impl Partner {
     }
   }
 
-  pub fn read(connection: &PgConnection) -> Vec<Partner> {
+  pub fn read(page: i64, connection: &PgConnection) -> Vec<Partner> {
     partners::table
       .order(partners::id)
       .limit(10)
+      .offset(page * 10)
       .load::<Partner>(connection)
       .unwrap()
   }

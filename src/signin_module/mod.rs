@@ -7,17 +7,44 @@ use self::signin_log::{AlreadySigninLog, NewSigninLog, SigninLog};
 fn create_signin_log(
     signin_log: Json<NewSigninLog>,
     connection: database::db_setting::Connection,
-) -> Json<SigninLog> {
-    // Parse the string of data into serde_json::Value.
+) -> Json<Value> {
     let insert = NewSigninLog {
         ..signin_log.into_inner()
     };
-    Json(SigninLog::create(insert, &connection))
+    let success_status = SigninLog::create(insert, &connection);
+    match success_status {
+        true => {
+            return Json(json!(
+        { 
+          "success": success_status, 
+          "data": SigninLog::read_after_create(&connection)
+        }
+      ))
+        }
+        _ => {
+            return Json(json!(
+        {
+          "success": success_status,
+          "data": []
+        }
+      ))
+        }
+    }
 }
 
-#[get("/")]
-fn read_all_signin_logs(connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!(SigninLog::read(&connection)))
+#[get("/<page>")]
+fn read_all_signin_logs(page: i64, connection: database::db_setting::Connection) -> Json<Value> {
+    Json(json!(
+    {
+      "total": SigninLog::count_all(&connection),
+      "data": SigninLog::read(page, &connection)
+    }
+  ))
+}
+
+#[get("/<id>")]
+fn read_one_singin_log(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
+    Json(json!({ "data": SigninLog::read_one(id, &connection) }))
 }
 
 #[put("/<id>", data = "<signin_log>", format = "application/json")]
@@ -29,9 +56,12 @@ fn update_signin_log(
     let update = AlreadySigninLog {
         ..signin_log.into_inner()
     };
-    Json(json!({
-        "success": SigninLog::update(id, update, &connection)
-    }))
+    Json(json!(
+    {
+      "success": SigninLog::update(id, update, &connection),
+      "data": SigninLog::read_one(id, &connection)
+    }
+  ))
 }
 
 #[delete("/<id>")]

@@ -32,12 +32,12 @@ fn create_partner(
   }
 }
 
-#[get("/")]
-fn read_all_partners(connection: database::db_setting::Connection) -> Json<Value> {
+#[get("/<page>")]
+fn read_all_partners(page: i64, connection: database::db_setting::Connection) -> Json<Value> {
   Json(json!(
     {
       "total": Partner::count_all(&connection),
-      "data": Partner::read(&connection)
+      "data": Partner::read(page, &connection)
     }
   ))
 }

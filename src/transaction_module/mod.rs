@@ -3,40 +3,65 @@ use rocket_contrib::{Json, Value};
 mod transaction;
 use self::transaction::{AlreadyTransaction, NewTransaction, Transaction};
 
-#[post("/", data = "<transactions>", format = "application/json")]
+#[post("/", data = "<transaction>", format = "application/json")]
 fn create_transaction(
-    transactions: Json<NewTransaction>,
+    transaction: Json<NewTransaction>,
     connection: database::db_setting::Connection,
-) -> Json<Transaction> {
-    // Parse the string of data into serde_json::Value.
+) -> Json<Value> {
     let insert = NewTransaction {
-        ..transactions.into_inner()
+        ..transaction.into_inner()
     };
-    Json(Transaction::create(insert, &connection))
+    let success_status = Transaction::create(insert, &connection);
+    match success_status {
+        true => {
+            return Json(json!(
+        { 
+          "success": success_status, 
+          "data": Transaction::read_after_create(&connection)
+        }
+      ))
+        }
+        _ => {
+            return Json(json!(
+        {
+          "success": success_status,
+          "data": []
+        }
+      ))
+        }
+    }
 }
 
-#[get("/")]
-fn read_all_transactions(connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!(Transaction::read(&connection)))
+#[get("/<page>")]
+fn read_all_transactions(page: i64, connection: database::db_setting::Connection) -> Json<Value> {
+    Json(json!(
+    {
+      "total": Transaction::count_all(&connection),
+      "data": Transaction::read(page, &connection)
+    }
+  ))
 }
 
 #[get("/<id>")]
 fn read_one_transaction(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!(Transaction::read_one(id, &connection)))
+    Json(json!({ "data": Transaction::read_one(id, &connection) }))
 }
 
-#[put("/<id>", data = "<transactions>", format = "application/json")]
+#[put("/<id>", data = "<transaction>", format = "application/json")]
 fn update_transaction(
     id: i32,
-    transactions: Json<AlreadyTransaction>,
+    transaction: Json<AlreadyTransaction>,
     connection: database::db_setting::Connection,
 ) -> Json<Value> {
     let update = AlreadyTransaction {
-        ..transactions.into_inner()
+        ..transaction.into_inner()
     };
-    Json(json!({
-        "success": Transaction::update(id, update, &connection)
-    }))
+    Json(json!(
+    {
+      "success": Transaction::update(id, update, &connection),
+      "data": Transaction::read_one(id, &connection)
+    }
+  ))
 }
 
 #[delete("/<id>")]

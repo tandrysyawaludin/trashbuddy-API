@@ -7,23 +7,45 @@ use self::supplier::{AlreadySupplier, NewSupplier, Supplier};
 fn create_supplier(
   supplier: Json<NewSupplier>,
   connection: database::db_setting::Connection,
-) -> Json<Supplier> {
+) -> Json<Value> {
   // Parse the string of data into serde_json::Value.
   let insert = NewSupplier {
     ..supplier.into_inner()
   };
-  println!("Please call {} at the number", insert.name);
-  Json(Supplier::create(insert, &connection))
+  let success_status = Supplier::create(insert, &connection);
+  match success_status {
+    true => {
+      return Json(json!(
+        { 
+          "success": success_status, 
+          "data": Supplier::read_after_create(&connection)
+        }
+      ))
+    }
+    _ => {
+      return Json(json!(
+        {
+          "success": success_status,
+          "data": []
+        }
+      ))
+    }
+  }
 }
 
-#[get("/")]
-fn read_all_suppliers(connection: database::db_setting::Connection) -> Json<Value> {
-  Json(json!(Supplier::read(&connection)))
+#[get("/<page>")]
+fn read_all_suppliers(page: i64, connection: database::db_setting::Connection) -> Json<Value> {
+  Json(json!(
+    {
+      "total": Supplier::count_all(&connection),
+      "data": Supplier::read(page, &connection)
+    }
+  ))
 }
 
 #[get("/<id>")]
 fn read_one_supplier(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-  Json(json!(Supplier::read_one(id, &connection)))
+  Json(json!({ "data": Supplier::read_one(id, &connection) }))
 }
 
 #[put("/<id>", data = "<supplier>", format = "application/json")]
@@ -35,9 +57,12 @@ fn update_supplier(
   let update = AlreadySupplier {
     ..supplier.into_inner()
   };
-  Json(json!({
-    "success": Supplier::update(id, update, &connection)
-  }))
+  Json(json!(
+    {
+      "success": Supplier::update(id, update, &connection),
+      "data": Supplier::read_one(id, &connection)
+    }
+  ))
 }
 
 #[delete("/<id>")]

@@ -20,6 +20,7 @@ mod category_of_trash_module;
 mod error_handler_module;
 mod package_of_supplier_module;
 mod partner_module;
+mod partner_review_module;
 mod report_to_block_module;
 mod signin_module;
 mod supplier_module;
@@ -100,8 +101,21 @@ fn main() {
       ],
     )
     .mount(
+      "/partner_review",
+      routes![
+        partner_review_module::create_partner_review,
+        partner_review_module::update_partner_review,
+        partner_review_module::delete_partner_review,
+        partner_review_module::read_one_partner_review
+      ],
+    )
+    .mount(
       "/supplier_reviews",
       routes![supplier_review_module::read_all_supplier_reviews],
+    )
+    .mount(
+      "/partner_reviews",
+      routes![partner_review_module::read_all_partner_reviews],
     )
     .mount(
       "/packages_of_supplier",
