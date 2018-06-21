@@ -11,6 +11,9 @@ extern crate diesel;
 #[macro_use]
 extern crate dotenv_codegen;
 
+use std::io;
+use rocket::response::NamedFile;
+
 mod database {
   pub mod db_setting;
   pub mod schema;
@@ -26,6 +29,11 @@ mod signin_module;
 mod supplier_module;
 mod supplier_review_module;
 mod transaction_module;
+
+#[get("/")]
+fn index() -> io::Result<NamedFile> {
+    NamedFile::open("static/index.html")
+}
 
 fn main() {
   rocket::ignite()
@@ -136,6 +144,7 @@ fn main() {
     .mount("/suppliers", routes![supplier_module::read_all_suppliers])
     .mount("/partners", routes![partner_module::read_all_partners])
     .mount("/singin_logs", routes![signin_module::read_all_signin_logs])
+    .mount("/", routes![index])    
     .catch(errors![
       error_handler_module::internal_error,
       error_handler_module::not_found,
