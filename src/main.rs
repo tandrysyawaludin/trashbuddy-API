@@ -11,8 +11,9 @@ extern crate diesel;
 #[macro_use]
 extern crate dotenv_codegen;
 
-use std::io;
 use rocket::response::NamedFile;
+use std::io;
+use std::path::{Path, PathBuf};
 
 mod database {
   pub mod db_setting;
@@ -32,7 +33,17 @@ mod transaction_module;
 
 #[get("/")]
 fn index() -> io::Result<NamedFile> {
-    NamedFile::open("static/index.html")
+  NamedFile::open("client_app/build/index.html")
+}
+
+#[get("/css/<file..>")]
+fn css(file: PathBuf) -> Option<NamedFile> {
+  NamedFile::open(Path::new("client_app/build/static/css/").join(file)).ok()
+}
+
+#[get("/js/<file..>")]
+fn js(file: PathBuf) -> Option<NamedFile> {
+  NamedFile::open(Path::new("client_app/build/static/js/").join(file)).ok()
 }
 
 fn main() {
@@ -53,7 +64,8 @@ fn main() {
         partner_module::create_partner,
         partner_module::update_partner,
         partner_module::delete_partner,
-        partner_module::read_one_partner
+        partner_module::read_one_partner,
+        partner_module::sign_in_partner
       ],
     )
     .mount(
@@ -144,7 +156,8 @@ fn main() {
     .mount("/suppliers", routes![supplier_module::read_all_suppliers])
     .mount("/partners", routes![partner_module::read_all_partners])
     .mount("/singin_logs", routes![signin_module::read_all_signin_logs])
-    .mount("/", routes![index])    
+    .mount("/", routes![index])
+    .mount("/static", routes![css, js])
     .catch(errors![
       error_handler_module::internal_error,
       error_handler_module::not_found,

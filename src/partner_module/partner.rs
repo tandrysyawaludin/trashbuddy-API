@@ -17,7 +17,7 @@ pub struct NewPartner {
 }
 
 #[table_name = "partners"]
-#[derive(Serialize, Deserialize, Queryable, Insertable, AsChangeset)]
+#[derive(Debug, Serialize, Deserialize, Queryable, Insertable, AsChangeset)]
 pub struct Partner {
   pub id: i32,
   pub name: String,
@@ -27,6 +27,13 @@ pub struct Partner {
   pub area: String,
   pub machine_code: String,
   pub created_at: Option<SystemTime>,
+}
+
+#[table_name = "partners"]
+#[derive(Serialize, Deserialize, Insertable)]
+pub struct SignInPartner {
+  pub email: String,
+  pub password: String,
 }
 
 #[table_name = "partners"]
@@ -99,6 +106,15 @@ impl Partner {
   pub fn read_one(id: i32, connection: &PgConnection) -> Vec<Partner> {
     partners::table
       .find(id)
+      .limit(1)
+      .load::<Partner>(connection)
+      .unwrap()
+  }
+
+  pub fn sign_in(email: String, password: String, connection: &PgConnection) -> Vec<Partner> {
+    partners::table
+      .filter(partners::email.eq(&email))
+      .filter(partners::password.eq(&password))
       .limit(1)
       .load::<Partner>(connection)
       .unwrap()

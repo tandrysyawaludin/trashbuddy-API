@@ -1,7 +1,7 @@
 use database;
 use rocket_contrib::{Json, Value};
 mod partner;
-use self::partner::{AlreadyPartner, NewPartner, Partner};
+use self::partner::{AlreadyPartner, NewPartner, Partner, SignInPartner};
 
 #[post("/", data = "<partner>", format = "application/json")]
 fn create_partner(
@@ -67,4 +67,18 @@ fn update_partner(
 #[delete("/<id>")]
 fn delete_partner(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
   Json(json!({ "success": Partner::delete(id, &connection) }))
+}
+
+#[post("/sign_in", data = "<partner>", format = "application/json")]
+fn sign_in_partner(partner: Json<SignInPartner>, connection: database::db_setting::Connection) -> Json<Value> {
+  let data = SignInPartner {
+    ..partner.into_inner()
+  };
+  let success_status = Partner::sign_in(data.email, data.password, &connection);
+  return Json(json!(
+    { 
+      "success": success_status, 
+      "data": []
+    }
+  ))
 }
