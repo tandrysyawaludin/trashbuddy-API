@@ -2,3 +2,6 @@ target/
 rls/
 start.sh
 start.bat
+
+\.vscode/
+client_app/.sass-cache

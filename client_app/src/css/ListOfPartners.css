@@ -1,0 +1,13 @@
+.card-subtitle.trash-category {
+  margin-bottom: 10px; }
+  .card-subtitle.trash-category span {
+    border: 1px solid #b3b3b3;
+    padding: 5px;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 14px; }
+
+.card-text {
+  font-size: 14px; }
+
+/*# sourceMappingURL=ListOfPartners.css.map */

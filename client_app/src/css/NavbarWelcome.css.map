@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,eAAgB;EACd,UAAU,EAAE,OAAO;EACnB,aAAa,EAAE,iBAAiB",
+"sources": ["../scss/NavbarWelcome.scss"],
+"names": [],
+"file": "NavbarWelcome.css"
+}

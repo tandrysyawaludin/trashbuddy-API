@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
   Collapse,
   Navbar,
@@ -8,6 +8,9 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
+
+import '../css/NavbarWelcome.css';
 class NavbarWelcome extends Component {
   constructor(props) {
     super(props);
@@ -24,17 +27,22 @@ class NavbarWelcome extends Component {
   }
   render() {
     return (
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Trashbuddy</NavbarBrand>
-        <NavbarToggler onClick={this.toggle} />
-        <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink href="/components/">Sign Up</NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
+      <Fragment>
+        <Navbar light expand="md" className="navbar-welcome navbar-default">
+          <NavbarBrand className="text-center" href="/">Trashbuddy</NavbarBrand>
+          <NavbarToggler className="navbar-toggler-main" onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                {this.props.atSignUpPage ?
+                  <Link to="/" className="nav-link">Sign In</Link> :
+                  <Link to="/sign_up" className="nav-link">Sign Up</Link>
+                }
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </Fragment>
     )
   }
 }

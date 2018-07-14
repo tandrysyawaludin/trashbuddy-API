@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import SignIn from './pages/SignIn';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Routers from './utils/Routers'
 
 class App extends Component {
   render() {
     return (
-      <SignIn />
+      <Routers />
     )
   }
 }

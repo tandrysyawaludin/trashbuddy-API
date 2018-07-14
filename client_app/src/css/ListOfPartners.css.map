@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,6BAA8B;EAC5B,aAAa,EAAE,IAAI;EACnB,kCAAK;IACH,MAAM,EAAE,iBAAiB;IACzB,OAAO,EAAE,GAAG;IACZ,OAAO,EAAE,YAAY;IACrB,SAAS,EAAE,IAAI;IACf,aAAa,EAAE,IAAI;;AAGvB,UAAW;EACT,SAAS,EAAE,IAAI",
+"sources": ["../scss/ListOfPartners.scss"],
+"names": [],
+"file": "ListOfPartners.css"
+}
