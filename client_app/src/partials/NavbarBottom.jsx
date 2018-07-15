@@ -46,7 +46,7 @@ class NavbarBottom extends Component {
               <NavLink href="#"><MdAddCircle /><span>Post</span></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#"><MdAssignment /><span>Order</span></NavLink>
+              <NavLink href="#"><MdAssignment /><span>Offer</span></NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="#"><MdSettings /><span>Account</span></NavLink>

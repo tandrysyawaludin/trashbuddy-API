@@ -1,0 +1,9 @@
+.singin-form-container {
+  padding-top: 30px;
+  .btn {
+    float: right;
+    &.btn-main {
+      margin-left: 8px;
+    }
+  }
+}

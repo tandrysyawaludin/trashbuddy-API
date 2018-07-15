@@ -1,7 +1,10 @@
 .btn-main {
-  background-color: #74af1f;
-  border-color: #74af1f;
+  background-color: #699e1b;
+  border-color: #699e1b;
   color: #fff;
+  &:hover {
+    background-color: #74af1f;
+  }
 }
 
 button:focus {

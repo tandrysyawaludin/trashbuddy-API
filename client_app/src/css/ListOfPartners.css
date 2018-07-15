@@ -10,5 +10,9 @@
       border-radius: 14px; }
   .row .card-text {
     font-size: 14px; }
+  .row .card-link svg {
+    font-size: 24px; }
+  .row .card-link span {
+    vertical-align: middle; }
 
 /*# sourceMappingURL=ListOfPartners.css.map */

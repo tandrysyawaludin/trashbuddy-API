@@ -13,4 +13,12 @@
   .card-text {
     font-size: 14px;
   }
+  .card-link {
+    svg {
+      font-size: 24px;
+    }
+    span {
+      vertical-align: middle;
+    }
+  }
 }

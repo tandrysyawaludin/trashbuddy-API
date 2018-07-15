@@ -5,3 +5,4 @@ start.bat
 
 \.vscode/
 client_app/.sass-cache
+\.DS_Store
