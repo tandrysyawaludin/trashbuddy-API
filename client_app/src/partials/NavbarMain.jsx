@@ -13,6 +13,7 @@ import {
   DropdownItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import MdKeyboardArrowLeft from 'react-icons/lib/md/keyboard-arrow-left';
 
 import '../css/NavbarMain.css';
 class NavbarMain extends Component {
@@ -33,31 +34,10 @@ class NavbarMain extends Component {
     return (
       <Fragment>
         <Navbar fixed="top" light expand="md" className="navbar-main navbar-default">
-          <NavbarBrand href="/">Trashbuddy</NavbarBrand>
-          <NavbarToggler className="navbar-toggler-main" onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Link className="nav-link" to="/components/">Components</Link>
-              </NavItem>
-              <NavItem>
-                <Link className="nav-link" to="">Transaction</Link>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Account
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Setting
-                  </DropdownItem>
-                  <DropdownItem>
-                    Sign Out
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Nav>
-          </Collapse>
+          <NavbarBrand href="/">
+            <MdKeyboardArrowLeft />
+            <span>Trashbuddy</span>
+          </NavbarBrand>
         </Navbar>
       </Fragment>
     )

@@ -1,4 +1,9 @@
 .navbar-welcome {
   background: #fdfdfd;
   border-bottom: 1px solid #adadad;
+  height: 35px;
+  padding: 0;
+  .navbar-brand {
+    margin: 0 auto;
+  }
 }

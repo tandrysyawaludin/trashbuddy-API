@@ -9,14 +9,11 @@ button:focus {
 }
 
 .navbar.navbar-default {
-  padding-bottom: 0;
-  padding-top: 0;
   .navbar-toggler.navbar-toggler-main {
     border: none;
     padding: 0;
   }
   .nav-item {
-    line-height: 45px;
     .nav-link {
       padding-bottom: 0;
       padding-top: 0;

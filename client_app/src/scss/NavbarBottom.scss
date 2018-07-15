@@ -1,4 +1,23 @@
-.navbar-bottom {
+.navbar.navbar-bottom {
   background: #fdfdfd;
   border-top: 1px solid #adadad;
+  height: 42px;
+  padding: 0;
+  ul {
+    margin: auto;
+    .nav-item {
+      line-height: 12px;
+      width: 82px;
+      svg {
+        display: block;
+        margin: auto;
+        font-size: 25px;
+      }
+      span {
+        font-size: 12px;
+        text-align: center;
+        display: block;
+      }
+    }
+  }
 }

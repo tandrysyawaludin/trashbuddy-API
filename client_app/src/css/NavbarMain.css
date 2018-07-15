@@ -1,5 +1,15 @@
-.navbar-main {
+.navbar.navbar-main {
   background: #fdfdfd;
-  border-bottom: 1px solid #adadad; }
+  border-bottom: 1px solid #adadad;
+  height: 35px;
+  padding: 0; }
+  .navbar.navbar-main svg {
+    vertical-align: middle;
+    font-size: 28px;
+    height: 34px;
+    display: inline-block; }
+  .navbar.navbar-main span {
+    vertical-align: middle;
+    margin-left: 10px; }
 
 /*# sourceMappingURL=NavbarMain.css.map */

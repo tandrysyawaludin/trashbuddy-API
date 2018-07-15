@@ -19,6 +19,10 @@ import NavbarWelcome from '../partials/NavbarWelcome';
 
 import '../css/SignIn.css';
 class SignIn extends Component {
+  submitToLogin = () => {
+    this.props.history.push(`/home`)
+  }
+
   render() {
     return (
       <Fragment>
@@ -32,7 +36,7 @@ class SignIn extends Component {
                   <Form>
                     <FormGroup>
                       <Label for="exampleEmail">Email</Label>
-                      <Input type="email" name="email" placeholder="please input valid email" />
+                      <Input type="email" name="email" placeholder="please input valid email" autocomplete={false} />
                     </FormGroup>
                     <FormGroup>
                       <Label for="exampleEmail">Password</Label>
@@ -42,7 +46,7 @@ class SignIn extends Component {
                       <small className="text-muted">Click Sign In button is accept our <CardLink href="#">Terms and Privacy</CardLink></small>
                     </CardText>
                     <FormGroup>
-                      <Button color="main" size="md" block>Sign In</Button>
+                      <Button color="main" size="md" block onClick={this.submitToLogin}>Sign In</Button>
                     </FormGroup>
                   </Form>
                   <CardText>

@@ -31,7 +31,6 @@ class SignIn extends Component {
   }
 
   submitToSearch = (category, area) => {
-    console.log(this.state.area, this.state.category), 
     this.props.history.push(`/search?category=${this.state.category}&area=${this.state.area}&page=1`)
   }
 

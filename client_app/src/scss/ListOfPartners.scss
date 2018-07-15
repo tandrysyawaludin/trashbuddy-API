@@ -1,13 +1,16 @@
-.card-subtitle.trash-category {
+.row {
   margin-bottom: 10px;
-  span {
-    border: 1px solid #b3b3b3;
-    padding: 5px;
-    display: inline-block;
-    font-size: 12px;
-    border-radius: 14px;
+  .card-subtitle.trash-category {
+    margin-bottom: 10px;
+    span {
+      border: 1px solid #b3b3b3;
+      padding: 5px;
+      display: inline-block;
+      font-size: 12px;
+      border-radius: 14px;
+    }
   }
-}
-.card-text {
-  font-size: 14px;
+  .card-text {
+    font-size: 14px;
+  }
 }

@@ -1,5 +1,20 @@
-.navbar-bottom {
+.navbar.navbar-bottom {
   background: #fdfdfd;
-  border-top: 1px solid #adadad; }
+  border-top: 1px solid #adadad;
+  height: 42px;
+  padding: 0; }
+  .navbar.navbar-bottom ul {
+    margin: auto; }
+    .navbar.navbar-bottom ul .nav-item {
+      line-height: 12px;
+      width: 82px; }
+      .navbar.navbar-bottom ul .nav-item svg {
+        display: block;
+        margin: auto;
+        font-size: 25px; }
+      .navbar.navbar-bottom ul .nav-item span {
+        font-size: 12px;
+        text-align: center;
+        display: block; }
 
 /*# sourceMappingURL=NavbarBottom.css.map */
