@@ -18,8 +18,9 @@ import TiHome from 'react-icons/lib/ti/home';
 import MdAddCircle from 'react-icons/lib/md/add-circle';
 import MdSettings from 'react-icons/lib/md/settings';
 import MdAssignment from 'react-icons/lib/md/assignment';
+import CssModules from 'react-css-modules';
 
-import '../css/NavbarBottom.css';
+import styles from '../css/NavbarBottom.css';
 class NavbarBottom extends Component {
   constructor(props) {
     super(props);
@@ -36,26 +37,24 @@ class NavbarBottom extends Component {
   }
   render() {
     return (
-      <Fragment>
-        <Navbar fixed="bottom" light expand="md" className="navbar-bottom navbar-default">
-          <Nav>
-            <NavItem>
-              <NavLink href="#"><TiHome /><span>Home</span></NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="#"><MdAddCircle /><span>Post</span></NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="#"><MdAssignment /><span>Offer</span></NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="#"><MdSettings /><span>Account</span></NavLink>
-            </NavItem>
-          </Nav>
-        </Navbar>
-      </Fragment>
+      <Navbar fixed="bottom" light expand="md" styleName="NavbarBottom">
+        <Nav>
+          <NavItem styleName="nav-item">
+            <NavLink href="#"><TiHome /><span>Home</span></NavLink>
+          </NavItem>
+          <NavItem styleName="nav-item">
+            <NavLink href="#"><MdAddCircle /><span>Post</span></NavLink>
+          </NavItem>
+          <NavItem styleName="nav-item">
+            <NavLink href="#"><MdAssignment /><span>Offer</span></NavLink>
+          </NavItem>
+          <NavItem styleName="nav-item">
+            <NavLink href="#"><MdSettings /><span>Account</span></NavLink>
+          </NavItem>
+        </Nav>
+      </Navbar>
     )
   }
 }
 
-export default NavbarBottom
+export default CssModules(NavbarBottom, styles, { allowMultiple: true });

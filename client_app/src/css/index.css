@@ -11,12 +11,5 @@ button:focus {
 .navbar.navbar-default .navbar-toggler.navbar-toggler-main {
   border: none;
   padding: 0; }
-.navbar.navbar-default .nav-item .nav-link {
-  padding-bottom: 0;
-  padding-top: 0;
-  color: #65757f; }
-  .navbar.navbar-default .nav-item .nav-link:hover {
-    color: #74af1f;
-    text-decoration: none; }
 
 /*# sourceMappingURL=index.css.map */

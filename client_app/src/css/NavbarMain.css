@@ -1,20 +1,22 @@
-.navbar.navbar-main {
-  background: #fdfdfd;
-  border-bottom: 1px solid #adadad;
-  height: 35px;
-  padding: 0; }
-  .navbar.navbar-main svg {
-    font-size: 28px;
-    position: absolute; }
-  .navbar.navbar-main .navbar-brand {
-    vertical-align: middle;
-    margin: 0 auto; }
-    .navbar.navbar-main .navbar-brand img {
-      margin-right: 6px;
-      height: 34px; }
-    .navbar.navbar-main .navbar-brand span {
+:local .NavbarMain {
+  background: red; }
+  :local .NavbarMain .navbar-main {
+    background: #fdfdfd;
+    border-bottom: 1px solid #adadad;
+    height: 35px;
+    padding: 0; }
+    :local .NavbarMain .navbar-main svg {
+      font-size: 28px;
+      position: absolute; }
+    :local .NavbarMain .navbar-main .navbar-brand {
       vertical-align: middle;
-      font-weight: 700;
-      color: #74af1f; }
+      margin: 0 auto; }
+      :local .NavbarMain .navbar-main .navbar-brand img {
+        margin-right: 6px;
+        height: 34px; }
+      :local .NavbarMain .navbar-main .navbar-brand span {
+        vertical-align: middle;
+        font-weight: 700;
+        color: #74af1f; }
 
 /*# sourceMappingURL=NavbarMain.css.map */

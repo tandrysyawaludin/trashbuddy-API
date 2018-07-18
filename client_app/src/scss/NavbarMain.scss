@@ -1,23 +1,26 @@
-.navbar.navbar-main {
-  background: #fdfdfd;
-  border-bottom: 1px solid #adadad;
-  height: 35px;
-  padding: 0;
-  svg {
-    font-size: 28px;
-    position: absolute;
-  }
-  .navbar-brand {
-    vertical-align: middle;
-    margin: 0 auto;
-    img {
-      margin-right: 6px;
-      height: 34px;
+:local .NavbarMain {
+  background: red;
+  .navbar-main {
+    background: #fdfdfd;
+    border-bottom: 1px solid #adadad;
+    height: 35px;
+    padding: 0;
+    svg {
+      font-size: 28px;
+      position: absolute;
     }
-    span {
+    .navbar-brand {
       vertical-align: middle;
-      font-weight: 700;
-      color: #74af1f;
+      margin: 0 auto;
+      img {
+        margin-right: 6px;
+        height: 34px;
+      }
+      span {
+        vertical-align: middle;
+        font-weight: 700;
+        color: #74af1f;
+      }
     }
   }
 }

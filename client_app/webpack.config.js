@@ -8,7 +8,7 @@ var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
-
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 var publicPath = '/';
@@ -68,11 +68,12 @@ module.exports = {
       {
         test: /\.scss$/,
         include: paths.appSrc,
-        loaders: ['style', 'css', 'scss']
+        loaders: ['style', 'css', 'scss']                    
       },
       {
         test: /\.css$/,
-        loader: 'style!css?importLoaders=1!postcss'
+        // loader: 'style!css?importLoaders=1!postcss'
+        loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')      
       },
       {
         test: /\.json$/,
@@ -100,7 +101,7 @@ module.exports = {
       }),
     ];
   },
-  plugins: [
+  plugins: [   
     new InterpolateHtmlPlugin(env.raw),
     new HtmlWebpackPlugin({
       inject: true,

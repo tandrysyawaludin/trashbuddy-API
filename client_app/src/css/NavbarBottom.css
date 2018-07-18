@@ -1,18 +1,26 @@
-.navbar.navbar-bottom {
+:local .NavbarBottom {
   background: #fdfdfd;
   border-top: 1px solid #adadad;
-  height: 42px;
-  padding: 0; }
-  .navbar.navbar-bottom ul {
+  height: 42px; }
+  :local .NavbarBottom .navbar {
+    padding: 0; }
+  :local .NavbarBottom ul {
     margin: auto; }
-    .navbar.navbar-bottom ul .nav-item {
+    :local .NavbarBottom ul .nav-item {
       line-height: 12px;
       width: 82px; }
-      .navbar.navbar-bottom ul .nav-item svg {
+      :local .NavbarBottom ul .nav-item a {
+        padding-bottom: 0;
+        padding-top: 0;
+        color: #65757f; }
+        :local .NavbarBottom ul .nav-item a:hover {
+          color: #74af1f;
+          text-decoration: none; }
+      :local .NavbarBottom ul .nav-item svg {
         display: block;
         margin: auto;
         font-size: 25px; }
-      .navbar.navbar-bottom ul .nav-item span {
+      :local .NavbarBottom ul .nav-item span {
         font-size: 12px;
         text-align: center;
         display: block; }

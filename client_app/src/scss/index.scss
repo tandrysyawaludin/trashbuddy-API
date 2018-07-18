@@ -16,15 +16,4 @@ button:focus {
     border: none;
     padding: 0;
   }
-  .nav-item {
-    .nav-link {
-      padding-bottom: 0;
-      padding-top: 0;
-      color: #65757f;
-      &:hover {
-        color: #74af1f;
-        text-decoration: none;
-      }
-    }
-  }
 }

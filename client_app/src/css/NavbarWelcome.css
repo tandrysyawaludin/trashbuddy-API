@@ -1,15 +1,15 @@
-.navbar-welcome {
+:local .NavbarWelcome {
   background: #fdfdfd;
   border-bottom: 1px solid #adadad;
   height: 35px;
   padding: 0; }
-  .navbar-welcome .navbar-brand {
+  :local .NavbarWelcome .navbar-brand {
     vertical-align: middle;
     margin: 0 auto; }
-    .navbar-welcome .navbar-brand img {
+    :local .NavbarWelcome .navbar-brand img {
       margin-right: 6px;
       height: 34px; }
-    .navbar-welcome .navbar-brand span {
+    :local .NavbarWelcome .navbar-brand span {
       vertical-align: middle;
       font-weight: 700;
       color: #74af1f; }

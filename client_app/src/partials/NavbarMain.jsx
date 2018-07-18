@@ -9,25 +9,27 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import MdKeyboardArrowLeft from 'react-icons/lib/md/keyboard-arrow-left';
+import CssModules from 'react-css-modules';
 
-import '../css/NavbarMain.css';
+import styles from '../css/NavbarMain.css';
 import mainLogo from '../img/logo.png'
+
 class NavbarMain extends Component {
   constructor(props) {
     super(props)
   }
   render() {
     return (
-      <Fragment>
-        <Navbar fixed="top" light expand="md" className="navbar-main navbar-default">
+      <div styleName="NavbarMain">
+        <Navbar fixed="top" light expand="md" className="navbar-default" styleName="navbar-main">
           <MdKeyboardArrowLeft />
-          <NavbarBrand href="/">
+          <NavbarBrand href="/" styleName="navbar-brand">
             <img src={mainLogo} /><span>Trashbuddy</span>
           </NavbarBrand>
         </Navbar>
-      </Fragment>
+      </div>
     )
   }
 }
 
-export default NavbarMain
+export default CssModules(NavbarMain, styles, { allowMultiple: true });
