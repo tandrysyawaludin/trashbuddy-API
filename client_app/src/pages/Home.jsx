@@ -9,11 +9,13 @@ import {
   Input
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import CssModules from 'react-css-modules';
+
+import NavbarBottom from '../partials/NavbarBottom';
 import NavbarMain from '../partials/NavbarMain';
+import styles from '../css/Home.css';
 
-import '../css/Home.css';
-
-class SignIn extends Component {
+class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -39,30 +41,34 @@ class SignIn extends Component {
       return { label: fruit, value: fruit }
     });
     return (
-      <Fragment>
+      <div styleName="Home">
         <NavbarMain />
-        <Container className="home-container">
+        <Container className="basic-container">
           <Row>
             <Col md={{ size: 6, offset: 3 }}>
               <FormGroup>
                 <Label for="exampleSelect">Category</Label>
-                <Input type="select" name="select" id="exampleSelect" onChange={this.changeCategory}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </Input>
+                <div className="select-wrapper ">
+                  <Input type="select" name="select" id="exampleSelect" onChange={this.changeArea}>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </Input>
+                </div>
               </FormGroup>
               <FormGroup>
                 <Label for="exampleSelect">Area</Label>
-                <Input type="select" name="select" id="exampleSelect" onChange={this.changeArea}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </Input>
+                <div className="select-wrapper ">
+                  <Input type="select" name="select" id="exampleSelect" onChange={this.changeArea}>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </Input>
+                </div>
               </FormGroup>
               <FormGroup>
                 <Button color="main" size="md" block onClick={this.submitToSearch}>Find</Button>
@@ -70,9 +76,10 @@ class SignIn extends Component {
             </Col>
           </Row>
         </Container>
-      </Fragment>
+        <NavbarBottom currentRoute={this.props.location.pathname} />  
+      </div>
     )
   }
 }
 
-export default SignIn
+export default CssModules(Home, styles, { allowMultiple: true });

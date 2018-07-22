@@ -1,18 +1,16 @@
-.row {
+:local .ListOfPartners .box {
   margin-bottom: 10px; }
-  .row .card-subtitle.trash-category {
+  :local .ListOfPartners .box .trash-category {
     margin-bottom: 10px; }
-    .row .card-subtitle.trash-category span {
-      border: 1px solid #b3b3b3;
-      padding: 5px;
-      display: inline-block;
+    :local .ListOfPartners .box .trash-category span {
       font-size: 12px;
-      border-radius: 14px; }
-  .row .card-text {
+      font-weight: 500;
+      color: #8c8c8c; }
+  :local .ListOfPartners .box .caption {
     font-size: 14px; }
-  .row .card-link svg {
+  :local .ListOfPartners .box .action-menu svg {
     font-size: 24px; }
-  .row .card-link span {
+  :local .ListOfPartners .box .action-menu span {
     vertical-align: middle; }
 
 /*# sourceMappingURL=ListOfPartners.css.map */

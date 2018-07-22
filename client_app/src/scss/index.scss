@@ -1,3 +1,10 @@
+body {
+  font-family: 'Helvetica';
+  .basic-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
 .btn-main {
   background-color: #699e1b;
   border-color: #699e1b;
@@ -6,14 +13,29 @@
     background-color: #74af1f;
   }
 }
-
-button:focus {
-  outline: none !important;
+.form-control {
+  border-radius: 20px;
+  &:focus {
+    border-color: #ced4db;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
 }
-
-.navbar.navbar-default {
-  .navbar-toggler.navbar-toggler-main {
+.btn {
+  min-width: 70px;
+  border-radius: 20px;
+  &:focus,
+  &:active,
+  &:not(:disabled):not(.disabled):active:focus {
+    outline: none !important;
+    box-shadow: none;
+  }
+}
+.select-wrapper {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #ced4db;
+  .form-control {
     border: none;
-    padding: 0;
   }
 }

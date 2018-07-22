@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import SignIn from '../pages/SignIn'
 import SignUp from '../pages/SignUp'
 import Home from '../pages/Home'
-import ListOfPartner from '../pages/ListOfPartners'
+import ListOfPartners from '../pages/ListOfPartners'
+import MyAdd from '../pages/MyAdd'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Routers extends Component {
   render() {
@@ -14,7 +14,8 @@ class Routers extends Component {
           <Route exact path="/" component={SignIn} />
           <Route path="/sign_up" component={SignUp} />
           <Route path="/home" component={Home} />
-          <Route path={"/search"} component={ListOfPartner} />
+          <Route path="/search" component={ListOfPartners} />
+          <Route path="/my_add" component={MyAdd} />
         </Switch>
       </Router>
     )

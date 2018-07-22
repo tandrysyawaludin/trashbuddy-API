@@ -5,7 +5,7 @@
   :local .NavbarBottom .navbar {
     padding: 0; }
   :local .NavbarBottom ul {
-    margin: auto; }
+    margin: 0 auto; }
     :local .NavbarBottom ul .nav-item {
       line-height: 12px;
       width: 82px; }
@@ -16,6 +16,8 @@
         :local .NavbarBottom ul .nav-item a:hover {
           color: #74af1f;
           text-decoration: none; }
+        :local .NavbarBottom ul .nav-item a.active-menu {
+          color: #74af1f; }
       :local .NavbarBottom ul .nav-item svg {
         display: block;
         margin: auto;

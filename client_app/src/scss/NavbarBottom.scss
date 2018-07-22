@@ -1,3 +1,5 @@
+@import './Colors.scss';
+
 :local .NavbarBottom {
   background: #fdfdfd;
   border-top: 1px solid #adadad;
@@ -6,17 +8,20 @@
     padding: 0;
   }
   ul {
-    margin: auto;
+    margin: 0 auto;
     .nav-item {
       line-height: 12px;
       width: 82px;
       a {
         padding-bottom: 0;
         padding-top: 0;
-        color: #65757f;
+        color: $grey-menu;
         &:hover {
-          color: #74af1f;
+          color: $green-hover;
           text-decoration: none;
+        }
+        &.active-menu {
+          color: $green-hover;
         }
       }
       svg {

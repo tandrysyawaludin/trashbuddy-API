@@ -44,7 +44,7 @@ class OfferForm extends Component {
             <Col md={{ size: 6, offset: 3 }}>
               <Card>
                 <CardBody>
-                  <CardTitle className="text-center">Sign In</CardTitle>
+                  <CardTitle className="text-center">Offer Form</CardTitle>
                   <Form>
                     <FormGroup>
                       <Label for="exampleEmail">Weight (kg)</Label>
@@ -60,18 +60,20 @@ class OfferForm extends Component {
                     </FormGroup>
                     <FormGroup>
                       <Label for="exampleSelect">Category</Label>
-                      <Input type="select" name="select" id="exampleSelect" onChange={this.changeCategory}>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                      </Input>
+                      <div className="select-wrapper ">
+                        <Input type="select" name="select" id="exampleSelect" onChange={this.changeCategory}>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                        </Input>
+                      </div>
                     </FormGroup>
                     <CardText>
-                      <small className="text-muted">After click "Offer" you have to wait until get a response</small>
+                      <small className="text-muted">Please make sure your data is correct before you click "Offer"</small>
                     </CardText>
                     <FormGroup>
-                      <Button color="main" size="md" onClick={this.submitToOffer}>Offer</Button>
-                      <Button color="secondary" size="md" onClick={this.props.toggleOfferForm}>Cancel</Button>                      
+                      <Button color="main" size="sm" onClick={this.submitToOffer}>Offer</Button>
+                      <Button outline size="sm" onClick={this.props.toggleOfferForm}>Cancel</Button>                      
                     </FormGroup>
                   </Form>
                 </CardBody>

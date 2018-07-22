@@ -8,7 +8,8 @@ import {
   NavItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import MdKeyboardArrowLeft from 'react-icons/lib/md/keyboard-arrow-left';
+import IoAndroidArrowBack from 'react-icons/lib/io/android-arrow-back';
+import IoAndroidClose from 'react-icons/lib/io/android-close';
 import CssModules from 'react-css-modules';
 
 import styles from '../css/NavbarMain.css';
@@ -22,8 +23,9 @@ class NavbarMain extends Component {
     return (
       <div styleName="NavbarMain">
         <Navbar fixed="top" light expand="md" className="navbar-default" styleName="navbar-main">
-          <MdKeyboardArrowLeft />
-          <NavbarBrand href="/" styleName="navbar-brand">
+          <IoAndroidArrowBack onClick={this.props.prevRoute} />
+          {/* <Link to="/" styleName="undo-navigation"><IoAndroidClose /></Link> */}
+          <NavbarBrand href="#" styleName="navbar-brand">
             <img src={mainLogo} /><span>Trashbuddy</span>
           </NavbarBrand>
         </Navbar>

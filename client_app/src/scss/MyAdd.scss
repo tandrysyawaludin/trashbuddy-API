@@ -1,7 +1,7 @@
-:local .ListOfPartners {
-  .box {
+:local .MyAdd {
+  .row {
     margin-bottom: 10px;
-    .trash-category {
+    .card-subtitle.trash-category {
       margin-bottom: 10px;
       span {
         font-size: 12px;
@@ -9,10 +9,10 @@
         color: #8c8c8c;
       }
     }
-    .caption {
+    .card-text {
       font-size: 14px;
     }
-    .action-menu {
+    .card-link {
       svg {
         font-size: 24px;
       }
