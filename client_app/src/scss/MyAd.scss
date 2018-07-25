@@ -1,0 +1,40 @@
+@import './Colors.scss';
+
+:local .MyAd {
+  .box {
+    margin-bottom: 10px;
+    .trash-category {
+      margin-bottom: 10px;
+      span {
+        font-size: 12px;
+        font-weight: 500;
+        color: #8c8c8c;
+      }
+    }
+    .caption {
+      font-size: 14px;
+    }
+    .action-menu {
+      svg {
+        font-size: 24px;
+      }
+      span {
+        vertical-align: middle;
+      }
+    }
+    .ad-status {
+      padding: 3px;
+      color: black;
+      text-align: center;
+      font-size: 14px;
+      &.active {
+        background: $main-color;
+        color: white;
+      }
+    }
+  }
+  .toggle-box {
+    text-align: center;
+    margin-top: 20px;
+  }
+}

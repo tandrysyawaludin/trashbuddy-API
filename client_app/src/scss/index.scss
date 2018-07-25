@@ -1,3 +1,6 @@
+@import './Colors.scss';
+@import './Colors.scss';
+
 body {
   font-family: 'Helvetica';
   .basic-container {
@@ -6,8 +9,8 @@ body {
   }
 }
 .btn-main {
-  background-color: #699e1b;
-  border-color: #699e1b;
+  background-color: $main-color;
+  border-color: $main-color;
   color: #fff;
   &:hover {
     background-color: #74af1f;

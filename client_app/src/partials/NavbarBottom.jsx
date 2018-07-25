@@ -19,9 +19,9 @@ class NavbarBottom extends Component {
 
     this.state = {
       homePage: "",
-      homeLink: "",
-      postPage: "",
-      postLink: "",
+      homeLink: "/search",
+      myAdPage: "",
+      myAdLink: "/my_ad",
       offerPage: "",
       offerLink: "",
       settingPage: "",
@@ -30,17 +30,15 @@ class NavbarBottom extends Component {
   }
 
   componentDidMount() { 
-    if (this.props.currentRoute == "/home" || this.props.currentRoute == "/search") {
-      this.setState(this.state)
+    if (this.props.currentRoute == "/search") {
       this.setState({
         homePage: "active-menu",
         homeLink: this.props.currentRoute
       })
     }
-    else if (this.props.currentRoute == "/post") {
-      this.setState(this.state)
+    else if (this.props.currentRoute == "/my_ad") {
       this.setState({
-        postPage: "active-menu",
+        myAdPage: "active-menu",
         postLink: this.props.currentRoute
       })
     }
@@ -54,7 +52,7 @@ class NavbarBottom extends Component {
             <Link to={this.state.homeLink} styleName={this.state.homePage}><TiHome /><span>Home</span></Link>
           </NavItem>
           <NavItem styleName="nav-item">
-            <Link to="#" styleName={this.state.postPage}><IoRadioWaves /><span>My Ad</span></Link>
+            <Link to={this.state.myAdLink} styleName={this.state.myAdPage}><IoRadioWaves /><span>My Ad</span></Link>
           </NavItem>
           <NavItem styleName="nav-item">
             <Link to="#" styleName={this.state.offerPage}><MdAssignment /><span>Offer</span></Link>

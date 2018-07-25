@@ -76,7 +76,6 @@ class Home extends Component {
             </Col>
           </Row>
         </Container>
-        <NavbarBottom currentRoute={this.props.location.pathname} />  
       </div>
     )
   }

@@ -1,0 +1,27 @@
+:local .MyAd .box {
+  margin-bottom: 10px; }
+  :local .MyAd .box .trash-category {
+    margin-bottom: 10px; }
+    :local .MyAd .box .trash-category span {
+      font-size: 12px;
+      font-weight: 500;
+      color: #8c8c8c; }
+  :local .MyAd .box .caption {
+    font-size: 14px; }
+  :local .MyAd .box .action-menu svg {
+    font-size: 24px; }
+  :local .MyAd .box .action-menu span {
+    vertical-align: middle; }
+  :local .MyAd .box .ad-status {
+    padding: 3px;
+    color: black;
+    text-align: center;
+    font-size: 14px; }
+    :local .MyAd .box .ad-status.active {
+      background: #699e1b;
+      color: white; }
+:local .MyAd .toggle-box {
+  text-align: center;
+  margin-top: 20px; }
+
+/*# sourceMappingURL=MyAd.css.map */
