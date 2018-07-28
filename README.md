@@ -5,5 +5,6 @@ Trashbuddy is a prototype application which support go-green-living-style. It is
 Command:
 export DATABASE_URL=postgres://tandrysyawaludin:Soedijant0@localhost/majesticapp_api
 diesel migration redo
+rustup update
 cargo watch -x 'run'
-    
+ROCKET_ENV=stage cargo run

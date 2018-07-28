@@ -2,6 +2,7 @@
 #![plugin(rocket_codegen)]
 
 extern crate rocket;
+extern crate frank_jwt;
 #[macro_use]
 extern crate rocket_contrib;
 #[macro_use]
@@ -14,6 +15,7 @@ extern crate dotenv_codegen;
 use rocket::response::NamedFile;
 use std::io;
 use std::path::{Path, PathBuf};
+extern crate regex;
 
 mod database {
   pub mod db_setting;
@@ -26,7 +28,7 @@ mod package_of_supplier_module;
 mod partner_module;
 mod partner_review_module;
 mod report_to_block_module;
-mod signin_module;
+mod signin_log_module;
 mod supplier_module;
 mod supplier_review_module;
 mod transaction_module;
@@ -55,7 +57,8 @@ fn main() {
         supplier_module::create_supplier,
         supplier_module::update_supplier,
         supplier_module::delete_supplier,
-        supplier_module::read_one_supplier
+        supplier_module::read_one_supplier,
+        supplier_module::auth_supplier
       ],
     )
     .mount(
@@ -69,10 +72,10 @@ fn main() {
       ],
     )
     .mount(
-      "/singin_log",
+      "/signin_log",
       routes![
-        signin_module::create_signin_log,
-        signin_module::update_signin_log
+        signin_log_module::create_signin_log,
+        signin_log_module::update_signin_log
       ],
     )
     .mount(
@@ -155,10 +158,10 @@ fn main() {
     )
     .mount("/suppliers", routes![supplier_module::read_all_suppliers])
     .mount("/partners", routes![partner_module::read_all_partners])
-    .mount("/singin_logs", routes![signin_module::read_all_signin_logs])
+    .mount("/signin_logs", routes![signin_log_module::read_all_signin_logs])
     .mount("/", routes![index])
     .mount("/static", routes![css, js])
-    .catch(errors![
+    .catch(catchers![
       error_handler_module::internal_error,
       error_handler_module::not_found,
       error_handler_module::unmatch_request
