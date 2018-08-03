@@ -1,10 +1,10 @@
 -- Your SQL goes here
 CREATE TABLE categories_of_trash (
     id SERIAL PRIMARY KEY,
-    name CHARACTER(20) NOT NULL
+    name VARCHAR(20) NOT NULL
 );
 
-CREATE TYPE user_role AS ENUM ('supplier', 'partner');
+-- CREATE TYPE user_role AS ENUM ('supplier', 'partner');
 CREATE TABLE signin_logs (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
@@ -14,11 +14,11 @@ CREATE TABLE signin_logs (
 
 CREATE TABLE suppliers (
     id SERIAL PRIMARY KEY,
-    name CHARACTER(50) NOT NULL,
-    email CHARACTER(50) UNIQUE NOT NULL,
-    password CHARACTER(20) NOT NULL,
-    phone_number CHARACTER(20) UNIQUE NOT NULL,
-    area CHARACTER(100) NOT NULL,    
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(20) NOT NULL,
+    phone_number VARCHAR(20) UNIQUE NOT NULL,
+    area VARCHAR(100) NOT NULL,    
     profile_pic bytea NULL,
     id_card_pic bytea NULL,
     created_at TIMESTAMP DEFAULT NOW()
@@ -36,21 +36,21 @@ CREATE TABLE packages_of_supplier (
 
 CREATE TABLE partners (
     id SERIAL PRIMARY KEY,
-    name CHARACTER(50) NOT NULL,
-    email CHARACTER(50) UNIQUE NOT NULL,
-    password CHARACTER(20) NOT NULL,
-    phone_number CHARACTER(20) UNIQUE NOT NULL,
-    area CHARACTER(100) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(20) NOT NULL,
+    phone_number VARCHAR(20) UNIQUE NOT NULL,
+    area VARCHAR(100) NOT NULL,
     profile_pic bytea NULL,
     id_card_pic bytea NULL,
-    machine_code CHARACTER (10),
+    machine_code VARCHAR (10),
     created_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE supplier_reviews (
     id SERIAL PRIMARY KEY,
     score integer NOT NULL,
-    comment CHARACTER(100) NOT NULL,
+    comment VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
     transactions_id integer NOT NULL
 );
@@ -58,12 +58,12 @@ CREATE TABLE supplier_reviews (
 CREATE TABLE partner_reviews (
     id SERIAL PRIMARY KEY,
     score integer NOT NULL,
-    comment CHARACTER(100) NOT NULL,
+    comment VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
     transactions_id integer NOT NULL
 );
 
-CREATE TYPE status_transaction AS ENUM ('pending', 'process', 'success');
+-- CREATE TYPE status_transaction AS ENUM ('pending', 'process', 'success');
 CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
     supplier_id integer NOT NULL,
@@ -76,29 +76,29 @@ CREATE TABLE transactions (
 CREATE TABLE reports_to_block (
     id SERIAL PRIMARY KEY,
     target_user integer NOT NULL,
-    comment CHARACTER(100) NOT NULL,
+    comment VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()    
 );
 
 CREATE TABLE provinces (
-    id CHARACTER(2) NOT NULL,
-    name CHARACTER(50) NOT NULL
+    id VARCHAR(2) NOT NULL,
+    name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE districts (
-    id CHARACTER(4) PRIMARY KEY,    
-    name CHARACTER(50) NOT NULL,
+    id VARCHAR(4) PRIMARY KEY,    
+    name VARCHAR(50) NOT NULL,
     province_id integer NOT NULL
 );
 
 CREATE TABLE sub_districts (
-    id CHARACTER(6) PRIMARY KEY,    
-    name CHARACTER(50) NOT NULL,
+    id VARCHAR(6) PRIMARY KEY,    
+    name VARCHAR(50) NOT NULL,
     district_id integer NOT NULL
 );
 
 CREATE TABLE villages (
-    id CHARACTER(10) PRIMARY KEY,
-    name CHARACTER(50) NOT NULL,
+    id VARCHAR(10) PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
     sub_district_id integer NOT NULL
 );

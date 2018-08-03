@@ -8,3 +8,6 @@ diesel migration redo
 rustup update
 cargo watch -x 'run'
 ROCKET_ENV=stage cargo run
+brew services start nginx
+brew services start supervisor
+cargo build --release
