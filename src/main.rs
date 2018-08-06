@@ -3,6 +3,7 @@
 
 extern crate rocket;
 extern crate frank_jwt;
+
 #[macro_use]
 extern crate rocket_contrib;
 #[macro_use]

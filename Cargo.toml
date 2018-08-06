@@ -16,6 +16,11 @@ serde = "1.0"
 diesel = { version = "1.0.0", features = ["postgres", "r2d2", "chrono"] }
 diesel-derive-enum = { version = "0.4", features = ["postgres"] }
 
+jwt = "*"
+hyper = "*"
+rust-crypto = "*"
+nickel = "*"
+
 [development]
 address = "localhost"
 port = 8000

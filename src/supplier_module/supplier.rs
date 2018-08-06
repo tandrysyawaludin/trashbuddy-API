@@ -5,7 +5,6 @@ use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use std::time::SystemTime;
 use frank_jwt::{Algorithm, encode, decode};
-use regex::Regex;
 
 #[table_name = "suppliers"]
 #[derive(Serialize, Deserialize, Insertable, Debug)]
@@ -117,11 +116,11 @@ impl Supplier {
       .unwrap()
   }
 
-  pub fn auth(email: String, password: String, connection: &PgConnection) -> bool {
+  pub fn auth(data: AuthSupplier, connection: &PgConnection) -> bool {
     let exists = suppliers::table
       .select((suppliers::id, suppliers::email))
-      .filter(suppliers::email.is_not_distinct_from(email))
-      .filter(suppliers::password.is_not_distinct_from(password))
+      .filter(suppliers::email.is_not_distinct_from(data.email))
+      .filter(suppliers::password.is_not_distinct_from(data.password))
       .limit(1)
       .execute(connection);
     match exists {
@@ -155,11 +154,8 @@ impl Supplier {
     match jwt {
       Ok((header, payload)) => {
         let id: i32 = payload[0]["id"].to_string().parse().unwrap();
-        let re = Regex::new(r"[^a-zA-Z0-9_.+-@]").unwrap();
-        let email = payload[0]["email"].to_string();
-        let after_regex = re.replace_all(&email, "");
-        println!("{}", after_regex);
-        let decode_jwt = vec![JWTContentSupplier{id: id, email: after_regex.to_string()}];
+        let email = payload[0]["email"].to_string().trim_matches('\"').to_string();
+        let decode_jwt = vec![JWTContentSupplier{id: id, email: email}];
         return decode_jwt
       },
       Err(e) => return Vec::new()

@@ -4,11 +4,13 @@ CREATE TABLE categories_of_trash (
     name VARCHAR(20) NOT NULL
 );
 
--- CREATE TYPE user_role AS ENUM ('supplier', 'partner');
+CREATE TYPE user_role AS ENUM ('supplier', 'partner');
 CREATE TABLE signin_logs (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
+    token TEXT NOT NULL,
     user_group user_role NOT NULL,
+    expired_at TIMESTAMP NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -24,13 +26,11 @@ CREATE TABLE suppliers (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE packages_of_supplier (
+CREATE TABLE messages (
     id SERIAL PRIMARY KEY,
-    weight integer NOT NULL,
-    shipping_fee integer NOT NULL,
-    price integer NOT NULL,
-    category_of_trash_id integer NOT NULL,
-    supplier_id INTEGER NOT NULL,
+    sender INTEGER NOT NULL,
+    receiver INTEGER NOT NULL,
+    content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -44,6 +44,7 @@ CREATE TABLE partners (
     profile_pic bytea NULL,
     id_card_pic bytea NULL,
     machine_code VARCHAR (10),
+    is_live BOOLEAN NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -63,7 +64,17 @@ CREATE TABLE partner_reviews (
     transactions_id integer NOT NULL
 );
 
--- CREATE TYPE status_transaction AS ENUM ('pending', 'process', 'success');
+CREATE TABLE packages_of_supplier (
+    id SERIAL PRIMARY KEY,
+    weight integer NOT NULL,
+    shipping_fee integer NOT NULL,
+    price integer NOT NULL,
+    category_of_trash_id integer NOT NULL,
+    supplier_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TYPE status_transaction AS ENUM ('pending', 'process', 'success');
 CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
     supplier_id integer NOT NULL,

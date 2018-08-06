@@ -1,6 +1,7 @@
 -- This file should undo anything in `up.sql`
 DROP TABLE IF EXISTS categories_of_trash;
 DROP TABLE IF EXISTS signin_logs;
+DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS packages_of_supplier;
 DROP TABLE IF EXISTS suppliers;
 DROP TABLE IF EXISTS supplier_reviews;
@@ -13,5 +14,5 @@ DROP TABLE IF EXISTS districts;
 DROP TABLE IF EXISTS sub_districts;
 DROP TABLE IF EXISTS villages;
 
--- DROP TYPE IF EXISTS status_transaction;
--- DROP TYPE IF EXISTS user_role;
+DROP TYPE IF EXISTS status_transaction;
+DROP TYPE IF EXISTS user_role;

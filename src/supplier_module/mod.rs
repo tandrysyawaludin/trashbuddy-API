@@ -1,7 +1,12 @@
 use database;
 use rocket_contrib::{Json, Value};
-mod supplier;
 use self::supplier::{AlreadySupplier, NewSupplier, Supplier, AuthSupplier};
+mod supplier;
+
+use rocket::Outcome;
+use rocket::http::Status;
+use rocket::request::{self, Request, FromRequest};
+use rocket::http::{Cookie, Cookies};
 
 #[post("/", data = "<supplier>", format = "application/json")]
 fn create_supplier(
@@ -34,7 +39,8 @@ fn create_supplier(
 }
 
 #[get("/<page>")]
-fn read_all_suppliers(page: i64, connection: database::db_setting::Connection) -> Json<Value> {
+fn read_all_suppliers(page: i64, token: Authorization, connection: database::db_setting::Connection) -> Json<Value> {
+  println!("{:?}", token);
   Json(json!(
     {
       "total": Supplier::count_all(&connection),
@@ -74,19 +80,27 @@ fn delete_supplier(id: i32, connection: database::db_setting::Connection) -> Jso
 fn auth_supplier(
   supplier: Json<AuthSupplier>,
   connection: database::db_setting::Connection,
+  mut cookies: Cookies
 ) -> Json<Value> {
-  // Parse the string of data into serde_json::Value.
   let auth = AuthSupplier {
     ..supplier.into_inner()
   };
-  let success_status = Supplier::auth(auth.email.clone(), auth.password, &connection);
+  let email = auth.email.clone();
+  let success_status = Supplier::auth(auth, &connection);
+  
   match success_status {
     true => {
-      let response_for_jwt = Supplier::read_jwt(auth.email, &connection);
+      let response_for_jwt = Supplier::read_jwt(email, &connection);
+      let encode_jwt = Supplier::encode_jwt(response_for_jwt, &connection);
+      cookies.add(Cookie::new("auth_token", encode_jwt.clone()));
+      let a = cookies.get("auth_token");
+      println!("{:?}", a);
+
       Json(json!(
         {
           "success": success_status,
-          "jwt": Supplier::decode_jwt("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.W3siZW1haWwiOiIyYWFALmEiLCJpZCI6MX1d.pePih6txMLPJi_jhu4mQH76RqWYZ5_ivcwsPcysBfq0".to_string(), &connection)
+          "jwt": encode_jwt,
+          "decode_jwt": Supplier::decode_jwt("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.W3siZW1haWwiOiIyYWFALmEiLCJpZCI6MX1d.pePih6txMLPJi_jhu4mQH76RqWYZ5_ivcwsPcysBfq0=".to_string(), &connection)[0]
         }
       ))
     }
@@ -99,4 +113,32 @@ fn auth_supplier(
       ))
     }
   }
+}
+
+// Get Headers from Client-Request
+#[derive(Debug)]
+struct Authorization(String);
+
+fn token_is_valid(key: &str) -> bool {
+  return true
+}
+
+impl<'a, 'r> FromRequest<'a, 'r> for Authorization {
+    type Error = ();
+
+    fn from_request(request: &'a Request<'r>) -> request::Outcome<Authorization, ()> {
+        let keys: Vec<_> = request.headers().get("Authorization").collect();
+        if keys.len() != 1 {
+          return Outcome::Failure((Status::BadRequest, ()));
+        }
+
+        let key = keys[0];
+        
+        if !token_is_valid(keys[0]) {
+          println!("masuk");
+          return Outcome::Forward(());
+        }
+
+        return Outcome::Success(Authorization(key.to_string()));
+    }
 }

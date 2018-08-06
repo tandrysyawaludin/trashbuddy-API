@@ -11,3 +11,9 @@ ROCKET_ENV=stage cargo run
 brew services start nginx
 brew services start supervisor
 cargo build --release
+psql postgres
+
+Code:
+use regex::Regex;
+let re = Regex::new(r"[^a-zA-Z0-9_.+-@]").unwrap();
+let email_after_regex = re.replace_all(&email, "").to_string();
