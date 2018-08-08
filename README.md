@@ -9,8 +9,18 @@ rustup update
 cargo watch -x 'run'
 ROCKET_ENV=stage cargo run
 
+Server:
 brew services start nginx
+sudo nginx -s stop
+sudo nginx
+
+Supervisor:
+easy_install supervisor
+/usr/local/bin/echo_supervisord_conf > /usr/local/etc/supervisord.conf
 brew services start supervisor
+sudo unlink /tmp/supervisor.sock
+supervisord -c /usr/local/etc/supervisord.conf
+supervisorctl -c /usr/local/etc/supervisord.conf
 
 cargo build --release
 psql postgres

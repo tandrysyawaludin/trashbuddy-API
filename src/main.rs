@@ -49,6 +49,11 @@ fn js(file: PathBuf) -> Option<NamedFile> {
   NamedFile::open(Path::new("client_app/build/static/js/").join(file)).ok()
 }
 
+#[get("/media/<file..>")]
+fn media(file: PathBuf) -> Option<NamedFile> {
+  NamedFile::open(Path::new("client_app/build/static/media/").join(file)).ok()
+}
+
 fn main() {
   rocket::ignite()
     .manage(database::db_setting::connect())
@@ -161,7 +166,7 @@ fn main() {
     .mount("/partners", routes![partner_module::read_all_partners])
     .mount("/signin_logs", routes![signin_log_module::read_all_signin_logs])
     .mount("/", routes![index])
-    .mount("/static", routes![css, js])
+    .mount("/static", routes![css, js, media])
     .catch(catchers![
       error_handler_module::internal_error,
       error_handler_module::not_found,
