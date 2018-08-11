@@ -8,8 +8,10 @@ diesel migration redo
 rustup update
 cargo watch -x 'run'
 ROCKET_ENV=stage cargo run
+https://github.com/sfackler/rust-openssl
 
 Server:
+/usr/local/etc/nginx/nginx.conf
 brew services start nginx
 sudo nginx -s stop
 sudo nginx
@@ -21,6 +23,11 @@ brew services start supervisor
 sudo unlink /tmp/supervisor.sock
 supervisord -c /usr/local/etc/supervisord.conf
 supervisorctl -c /usr/local/etc/supervisord.conf
+
+Shutdown Supervisord:
+ps -ef | grep supervisord
+kill -s SIGTERM 29646 <== nomor
+sudo pkill supervisord
 
 cargo build --release
 psql postgres

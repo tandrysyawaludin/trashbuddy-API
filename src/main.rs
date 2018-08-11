@@ -3,6 +3,8 @@
 
 extern crate rocket;
 extern crate frank_jwt;
+extern crate regex;
+extern crate rocket_cors;
 
 #[macro_use]
 extern crate rocket_contrib;
@@ -16,7 +18,6 @@ extern crate dotenv_codegen;
 use rocket::response::NamedFile;
 use std::io;
 use std::path::{Path, PathBuf};
-extern crate regex;
 
 mod database {
   pub mod db_setting;
@@ -33,6 +34,9 @@ mod signin_log_module;
 mod supplier_module;
 mod supplier_review_module;
 mod transaction_module;
+
+use rocket::http::Method;
+use rocket_cors::{AllowedOrigins, AllowedHeaders};
 
 #[get("/")]
 fn index() -> io::Result<NamedFile> {
@@ -55,6 +59,20 @@ fn media(file: PathBuf) -> Option<NamedFile> {
 }
 
 fn main() {
+  let (allowed_origins, failed_origins) = AllowedOrigins::some(&["http://localhost:3000"]);
+    assert!(failed_origins.is_empty());
+
+    let options = rocket_cors::Cors {
+        allowed_origins: allowed_origins,
+        allowed_methods: vec![Method::Get, Method::Put, Method::Post, Method::Delete]
+            .into_iter()
+            .map(From::from)
+            .collect(),
+        allowed_headers: AllowedHeaders::some(&["Authorization", "Accept", "Content-Type"]),
+        allow_credentials: true,
+        ..Default::default()
+    };
+
   rocket::ignite()
     .manage(database::db_setting::connect())
     .mount(
@@ -172,5 +190,6 @@ fn main() {
       error_handler_module::not_found,
       error_handler_module::unmatch_request
     ])
+    .attach(options)
     .launch();
 }

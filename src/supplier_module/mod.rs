@@ -128,6 +128,7 @@ impl<'a, 'r> FromRequest<'a, 'r> for Authorization {
 
     fn from_request(request: &'a Request<'r>) -> request::Outcome<Authorization, ()> {
         let keys: Vec<_> = request.headers().get("Authorization").collect();
+        println!("{:?}", keys);
         if keys.len() != 1 {
           return Outcome::Failure((Status::BadRequest, ()));
         }

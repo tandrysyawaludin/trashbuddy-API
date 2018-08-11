@@ -10,7 +10,7 @@ CREATE TABLE signin_logs (
     user_id INTEGER NOT NULL,
     token TEXT NOT NULL,
     user_group user_role NOT NULL,
-    expired_at TIMESTAMP NOT NULL,
+    is_valid BOOLEAN NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
