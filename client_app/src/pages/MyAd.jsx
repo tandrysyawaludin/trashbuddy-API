@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 import NavbarMain from '../partials/NavbarMain';
 import NavbarBottom from '../partials/NavbarBottom';
 import CssModules from 'react-css-modules';
-import TiFlashOutline from 'react-icons/lib/ti/flash-outline'
 
 import dummyImg from '../img/dummy-img.png'
 import styles from '../css/MyAd.css';

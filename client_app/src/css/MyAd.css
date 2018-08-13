@@ -11,7 +11,9 @@
   :local .MyAd .box .action-menu svg {
     font-size: 24px; }
   :local .MyAd .box .action-menu span {
-    vertical-align: middle; }
+    position: relative;
+    left: 4px;
+    bottom: 6px; }
   :local .MyAd .box .ad-status {
     padding: 3px;
     color: black;

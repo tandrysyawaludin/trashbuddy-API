@@ -7,11 +7,11 @@ import {
 } from 'reactstrap';
 import CssModules from 'react-css-modules';
 import { Link } from 'react-router-dom';
+import { FiZap } from "react-icons/fi";
+
 import NavbarMain from '../partials/NavbarMain';
 import NavbarBottom from '../partials/NavbarBottom';
 import OfferForm from '../partials/OfferForm';
-import TiFlashOutline from 'react-icons/lib/ti/flash-outline'
-
 import dummyImg from '../img/dummy-img.png'
 import styles from '../css/ListOfPartners.css';
 
@@ -43,7 +43,7 @@ class ListOfPartners extends Component {
                   <CardTitle>Tandry Syawaludin Soedijanto</CardTitle>
                   <CardSubtitle styleName="trash-category"><span>Sampah Plastik PVC</span></CardSubtitle>
                   <CardText styleName="caption">Jalan Duku 1 Blok C2/25 Pondok Sejahtera, Kelurahan Kutabaru, Kecamatan Pasar Kemis, Kabupaten Tangerang, Banten, 11561</CardText>
-                  <CardLink href="#" onClick={() => this.toggleOfferForm()} styleName="action-menu"><TiFlashOutline /><span>Offer</span></CardLink>
+                  <CardLink href="#" onClick={() => this.toggleOfferForm()} styleName="action-menu"><FiZap /><span>Offer</span></CardLink>
                 </CardBody>
               </Card>
             </Col>
@@ -61,7 +61,7 @@ class ListOfPartners extends Component {
   render() {
     return (
       <div styleName="ListOfPartners">
-        <NavbarMain prevRoute={this.props.history.goBack} />
+        <NavbarMain prevRoute={this.props.history.goBack} currentRoute={this.props.location.pathname} />
         {this.state.showOfferForm ? this.renderOfferForm() : this.renderPartners()}
         <NavbarBottom currentRoute={this.props.location.pathname} />  
       </div>

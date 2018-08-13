@@ -8,23 +8,47 @@ import {
   NavItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import IoAndroidArrowBack from 'react-icons/lib/io/android-arrow-back';
-import IoAndroidClose from 'react-icons/lib/io/android-close';
 import CssModules from 'react-css-modules';
+import { FiArrowLeft, FiX, FiSearch } from "react-icons/fi";
 
 import styles from '../css/NavbarMain.css';
 import mainLogo from '../img/logo.png'
 
 class NavbarMain extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+
+    this.state = {
+      searchOnNav: false,
+      backOnNav: false,
+      closeOnNav: false,
+    }
   }
+
+  componentDidMount() {
+    if (this.props.currentRoute == "/search") {
+      this.setState({
+        searchOnNav: true,
+        backOnNav: false,
+        closeOnNav: false
+      })
+    }
+    else {
+      this.setState({
+        searchOnNav: false,
+        backOnNav: true,
+        closeOnNav: false
+      })
+    }
+  }
+
   render() {
     return (
       <div styleName="NavbarMain">
         <Navbar fixed="top" light expand="md" className="navbar-default" styleName="navbar-main">
-          <IoAndroidArrowBack onClick={this.props.prevRoute} />
-          {/* <Link to="/" styleName="undo-navigation"><IoAndroidClose /></Link> */}
+          {this.state.backOnNav && <FiArrowLeft onClick={this.props.prevRoute} />}
+          {/* {this.state.searchOnNav && <Link to="/" styleName="undo-navigation"><FiX /></Link>} */}
+          {this.state.searchOnNav && <Link to="/home" styleName="link-left-icon"><FiSearch /></Link>}
           <NavbarBrand href="#" styleName="navbar-brand">
             <img src={mainLogo} /><span>Trashbuddy</span>
           </NavbarBrand>

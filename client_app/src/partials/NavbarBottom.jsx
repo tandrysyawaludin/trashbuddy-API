@@ -6,11 +6,8 @@ import {
   NavItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import TiHome from 'react-icons/lib/ti/home';
-import MdSettings from 'react-icons/lib/md/settings';
-import MdAssignment from 'react-icons/lib/md/assignment';
-import IoRadioWaves from 'react-icons/lib/io/radio-waves';
 import CssModules from 'react-css-modules';
+import { FiHome, FiSettings, FiMail, FiRadio } from "react-icons/fi";
 
 import styles from '../css/NavbarBottom.css';
 class NavbarBottom extends Component {
@@ -49,16 +46,16 @@ class NavbarBottom extends Component {
       <Navbar fixed="bottom" light expand="md" styleName="NavbarBottom">
         <Nav>
           <NavItem styleName="nav-item">
-            <Link to={this.state.homeLink} styleName={this.state.homePage}><TiHome /><span>Home</span></Link>
+            <Link to={this.state.homeLink} styleName={this.state.homePage}><FiHome /><span>Home</span></Link>
           </NavItem>
           <NavItem styleName="nav-item">
-            <Link to={this.state.myAdLink} styleName={this.state.myAdPage}><IoRadioWaves /><span>My Ad</span></Link>
+            <Link to={this.state.myAdLink} styleName={this.state.myAdPage}><FiRadio /><span>My Ad</span></Link>
           </NavItem>
           <NavItem styleName="nav-item">
-            <Link to="#" styleName={this.state.offerPage}><MdAssignment /><span>Offer</span></Link>
+            <Link to="#" styleName={this.state.offerPage}><FiMail /><span>Offer</span></Link>
           </NavItem>
           <NavItem styleName="nav-item">
-            <Link to="#" styleName={this.state.settingPage}><MdSettings /><span>Account</span></Link>
+            <Link to="#" styleName={this.state.settingPage}><FiSettings /><span>Account</span></Link>
           </NavItem>
         </Nav>
       </Navbar>

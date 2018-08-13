@@ -11,6 +11,8 @@
   :local .ListOfPartners .box .action-menu svg {
     font-size: 24px; }
   :local .ListOfPartners .box .action-menu span {
-    vertical-align: middle; }
+    position: relative;
+    left: 4px;
+    bottom: 6px; }
 
 /*# sourceMappingURL=ListOfPartners.css.map */

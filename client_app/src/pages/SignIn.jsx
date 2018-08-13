@@ -12,7 +12,8 @@ import {
   FormGroup,
   Label,
   Input,
-  Button
+  Button,
+  Alert
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -24,11 +25,14 @@ class SignIn extends Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      errorSignIn: false,
+      errorSignInMessage: ""
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
   }
 
   handleInputChange(event) {
@@ -40,10 +44,10 @@ class SignIn extends Component {
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit(event) { 
     event.preventDefault();
     event.stopPropagation();
-    console.log('aaa')
+
     let data = {
       email: this.state.email,
       password: this.state.password
@@ -60,37 +64,48 @@ class SignIn extends Component {
       headers: headers,
       data: data
     })
-    .then(function (response) {
-      // handle success
-    console.log(response);
+    .then(response => {
+      if (response.data.success === true) {
+        this.props.history.push(`/home`);
+      }
+      else {
+        this.setState({ errorSignIn: true, errorSignInMessage: "Email and password do not match" });  
+        console.log('salah')    
+      }
+      console.log('sukses', response);
     })
-    .catch(function (error) {
+    .catch(error => {
       // handle error
-      console.log(error);
+      this.setState({ errorSignIn: true, errorSignInMessage: "Sorry, our system is busy now :(" });
+      console.log('gagal', error);
     })
-    .then(function () {
+    .then(() => {
       // always executed
+      console.log('selalu');      
     });
-    
-    // this.props.history.push(`/home`)
+  }
+
+  onDismiss() {
+    this.setState({ errorSignIn: false });
   }
 
   render() {
-    console.log('masuk')
     return (
       <Fragment>
         <NavbarWelcome />
         <Container className="singin-form-container">
           <Row>
             <Col md={{ size: 6, offset: 3 }}>
+              <Alert color="danger" isOpen={this.state.errorSignIn} toggle={this.onDismiss}>
+                {this.state.errorSignInMessage}
+              </Alert>
               <Card>
                 <CardBody>
                   <CardTitle className="text-center">Sign In</CardTitle>
                   <Form>
                     <FormGroup>
                       <Label for="exampleEmail">Email</Label>
-                      <Input type="email" name="email" placeholder="please input valid email" 
-                        autoComplete="false" onChange={this.handleInputChange} />
+                      <Input type="email" name="email" placeholder="please input valid email" onChange={this.handleInputChange} />
                     </FormGroup>
                     <FormGroup>
                       <Label for="exampleEmail">Password</Label>
@@ -101,7 +116,7 @@ class SignIn extends Component {
                       <small className="text-muted">Click Sign In button is accept our <CardLink href="#">Terms and Privacy</CardLink></small>
                     </CardText>
                     <FormGroup>
-                      <Button color="main" size="md" block onClick={this.handleSubmit}>Sign In</Button>
+                      <Button color="main" size="md" block onClick={this.handleSubmit} type="submit">Sign In</Button>
                     </FormGroup>
                   </Form>
                   <CardText>

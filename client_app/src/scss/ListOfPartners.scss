@@ -17,7 +17,9 @@
         font-size: 24px;
       }
       span {
-        vertical-align: middle;
+        position: relative;
+        left: 4px;
+        bottom: 6px;
       }
     }
   }

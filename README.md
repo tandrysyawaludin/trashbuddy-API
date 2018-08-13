@@ -25,8 +25,8 @@ supervisord -c /usr/local/etc/supervisord.conf
 supervisorctl -c /usr/local/etc/supervisord.conf
 
 Shutdown Supervisord:
-ps -ef | grep supervisord
-kill -s SIGTERM 29646 <== nomor
+sudo ps -ef | grep supervisord
+sudo kill -s SIGTERM 29646 <== nomor
 sudo pkill supervisord
 
 cargo build --release

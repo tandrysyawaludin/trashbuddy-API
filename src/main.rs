@@ -36,7 +36,7 @@ mod supplier_review_module;
 mod transaction_module;
 
 use rocket::http::Method;
-use rocket_cors::{AllowedOrigins, AllowedHeaders};
+use rocket_cors::{Guard, AllowedOrigins, AllowedHeaders, Responder};
 
 #[get("/")]
 fn index() -> io::Result<NamedFile> {
@@ -58,6 +58,11 @@ fn media(file: PathBuf) -> Option<NamedFile> {
   NamedFile::open(Path::new("client_app/build/static/media/").join(file)).ok()
 }
 
+#[options("/manual")]
+fn manual_options(cors: Guard) -> Responder<&str> {
+    cors.responder("Manual OPTIONS preflight handling")
+}
+
 fn main() {
   let (allowed_origins, failed_origins) = AllowedOrigins::some(&["http://localhost:3000"]);
     assert!(failed_origins.is_empty());
@@ -72,6 +77,8 @@ fn main() {
         allow_credentials: true,
         ..Default::default()
     };
+
+    println!("halo {:?}", Method::Options);
 
   rocket::ignite()
     .manage(database::db_setting::connect())
@@ -183,7 +190,7 @@ fn main() {
     .mount("/suppliers", routes![supplier_module::read_all_suppliers])
     .mount("/partners", routes![partner_module::read_all_partners])
     .mount("/signin_logs", routes![signin_log_module::read_all_signin_logs])
-    .mount("/", routes![index])
+    .mount("/", routes![index, manual_options])
     .mount("/static", routes![css, js, media])
     .catch(catchers![
       error_handler_module::internal_error,

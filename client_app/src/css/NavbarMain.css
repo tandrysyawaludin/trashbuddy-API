@@ -5,6 +5,9 @@
     border-bottom: 1px solid #adadad;
     height: 35px;
     padding: 0 5px; }
+    :local .NavbarMain .navbar-main .link-left-icon {
+      position: absolute;
+      top: 5px; }
     :local .NavbarMain .navbar-main svg {
       font-size: 24px;
       cursor: pointer;
