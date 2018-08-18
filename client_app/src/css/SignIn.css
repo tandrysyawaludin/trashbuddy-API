@@ -1,4 +1,2 @@
-.singin-form-container {
+:local(.SignIn) .singin-form-container {
   padding-top: 30px; }
-
-/*# sourceMappingURL=SignIn.css.map */

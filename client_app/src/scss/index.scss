@@ -17,7 +17,7 @@ body {
   }
 }
 .form-control {
-  border-radius: 20px;
+  border-radius: 6px;
   &:focus {
     border-color: #ced4db;
     -webkit-box-shadow: none;
@@ -26,7 +26,7 @@ body {
 }
 .btn {
   min-width: 70px;
-  border-radius: 20px;
+  border-radius: 6px;
   &:focus,
   &:active,
   &:not(:disabled):not(.disabled):active:focus {
@@ -35,7 +35,7 @@ body {
   }
 }
 .select-wrapper {
-  border-radius: 20px;
+  border-radius: 6px;
   overflow: hidden;
   border: 1px solid #ced4db;
   .form-control {

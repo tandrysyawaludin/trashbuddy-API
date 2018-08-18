@@ -68,12 +68,12 @@ module.exports = {
       {
         test: /\.scss$/,
         include: paths.appSrc,
-        loaders: ['style', 'css', 'scss']                    
+        loader: ExtractTextPlugin.extract('style', 'css?importLoaders=1&-autoprefixer!postcss!scss')
       },
       {
-        test: /\.css$/,
-        // loader: 'style!css?importLoaders=1!postcss'
-        loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')      
+        test:/\.(s*)css$/,
+        use:['style-loader','css-loader', 'sass-loader'],
+        loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')          
       },
       {
         test: /\.json$/,

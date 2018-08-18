@@ -22,8 +22,7 @@
     :local .MyAd .box .ad-status.active {
       background: #699e1b;
       color: white; }
+
 :local .MyAd .toggle-box {
   text-align: center;
   margin-top: 20px; }
-
-/*# sourceMappingURL=MyAd.css.map */

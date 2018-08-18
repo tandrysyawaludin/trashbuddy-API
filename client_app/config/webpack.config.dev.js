@@ -107,20 +107,35 @@ module.exports = {
 
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
-      {
-        test: /\.(js|jsx|mjs)$/,
-        enforce: 'pre',
-        use: [
-          {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
+      // {
+      //   test: /\.(js|jsx|mjs)$/,
+      //   enforce: 'pre',
+      //   use: [
+      //     {
+      //       options: {
+      //         formatter: eslintFormatter,
+      //         eslintPath: require.resolve('eslint'),
               
-            },
-            loader: require.resolve('eslint-loader'),
-          },
-        ],
+      //       },
+      //       loader: require.resolve('eslint-loader'),
+      //     },
+      //   ],
+      //   include: paths.appSrc,
+      // },
+      {
+        test: /\.js$/,
         include: paths.appSrc,
+        exclude: /node_modules\/(?!(stardust))/,
+        loader: 'babel',
+        query: {
+          cacheDirectory: true,
+          plugins: [
+            'transform-runtime',
+            'add-module-exports',
+            'transform-decorators-legacy',
+          ],
+          presets: ['es2015', 'react', 'stage-1'],
+        },
       },
       {
         // "oneOf" will traverse all following loaders until one will

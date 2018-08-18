@@ -12,7 +12,7 @@ body {
     background-color: #74af1f; }
 
 .form-control {
-  border-radius: 20px; }
+  border-radius: 6px; }
   .form-control:focus {
     border-color: #ced4db;
     -webkit-box-shadow: none;
@@ -20,16 +20,14 @@ body {
 
 .btn {
   min-width: 70px;
-  border-radius: 20px; }
+  border-radius: 6px; }
   .btn:focus, .btn:active, .btn:not(:disabled):not(.disabled):active:focus {
     outline: none !important;
     box-shadow: none; }
 
 .select-wrapper {
-  border-radius: 20px;
+  border-radius: 6px;
   overflow: hidden;
   border: 1px solid #ced4db; }
   .select-wrapper .form-control {
     border: none; }
-
-/*# sourceMappingURL=index.css.map */
