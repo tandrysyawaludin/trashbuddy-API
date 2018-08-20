@@ -15,7 +15,7 @@ fn create_supplier_review(
     let success_status = SupplierReview::create(insert, &connection);
     match success_status {
         true => {
-            return Json(json!(
+            return Json(json_internal!(
         { 
           "success": success_status, 
           "data": SupplierReview::read_after_create(&connection)
@@ -23,12 +23,13 @@ fn create_supplier_review(
       ))
         }
         _ => {
-            return Json(json!(
-        {
-          "success": success_status,
-          "data": []
-        }
-      ))
+            let array: [i32; 0] = [];
+            return Json(json_internal!(
+                {
+                "success": success_status,
+                "data": array
+                }
+            ))
         }
     }
 }
@@ -38,7 +39,7 @@ fn read_all_supplier_reviews(
     page: i64,
     connection: database::db_setting::Connection,
 ) -> Json<Value> {
-    Json(json!(
+    Json(json_internal!(
     {
       "total": SupplierReview::count_all(&connection),
       "data": SupplierReview::read(page, &connection)
@@ -48,7 +49,7 @@ fn read_all_supplier_reviews(
 
 #[get("/<id>")]
 fn read_one_supplier_review(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!({ "data": SupplierReview::read_one(id, &connection) }))
+    Json(json_internal!({ "data": SupplierReview::read_one(id, &connection) }))
 }
 
 #[put("/<id>", data = "<supplier_reviews>", format = "application/json")]
@@ -60,7 +61,7 @@ fn update_supplier_review(
     let update = AlreadySupplierReview {
         ..supplier_reviews.into_inner()
     };
-    Json(json!({
+    Json(json_internal!({
         "success": SupplierReview::update(id, update, &connection),
         "data": SupplierReview::read_one(id, &connection)        
     }))
@@ -68,7 +69,7 @@ fn update_supplier_review(
 
 #[delete("/<id>")]
 fn delete_supplier_review(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!({
+    Json(json_internal!({
         "success": SupplierReview::delete(id, &connection)
     }))
 }

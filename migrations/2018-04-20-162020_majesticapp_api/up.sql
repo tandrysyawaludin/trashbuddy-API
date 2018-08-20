@@ -1,7 +1,8 @@
 -- Your SQL goes here
 CREATE TABLE categories_of_trash (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(20) NOT NULL
+    name VARCHAR(50) NOT NULL,
+    description TEXT NOT NULL
 );
 
 CREATE TYPE user_role AS ENUM ('supplier', 'partner');
@@ -92,24 +93,24 @@ CREATE TABLE reports_to_block (
 );
 
 CREATE TABLE provinces (
-    id VARCHAR(2) NOT NULL,
+    id VARCHAR(2) PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE districts (
     id VARCHAR(4) PRIMARY KEY,    
     name VARCHAR(50) NOT NULL,
-    province_id integer NOT NULL
+    province_id VARCHAR(2) NOT NULL
 );
 
 CREATE TABLE sub_districts (
     id VARCHAR(6) PRIMARY KEY,    
     name VARCHAR(50) NOT NULL,
-    district_id integer NOT NULL
+    district_id VARCHAR(4) NOT NULL
 );
 
 CREATE TABLE villages (
     id VARCHAR(10) PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    sub_district_id integer NOT NULL
+    sub_district_id VARCHAR(6) NOT NULL
 );

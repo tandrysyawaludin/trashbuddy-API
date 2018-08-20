@@ -34,6 +34,7 @@ mod signin_log_module;
 mod supplier_module;
 mod supplier_review_module;
 mod transaction_module;
+mod areas_module;
 
 use rocket::http::Method;
 use rocket_cors::{Guard, AllowedOrigins, AllowedHeaders, Responder};
@@ -65,20 +66,18 @@ fn manual_options(cors: Guard) -> Responder<&str> {
 
 fn main() {
   let (allowed_origins, failed_origins) = AllowedOrigins::some(&["http://localhost:3000"]);
-    assert!(failed_origins.is_empty());
+  assert!(failed_origins.is_empty());
 
-    let options = rocket_cors::Cors {
-        allowed_origins: allowed_origins,
-        allowed_methods: vec![Method::Get, Method::Put, Method::Post, Method::Delete]
-            .into_iter()
-            .map(From::from)
-            .collect(),
-        allowed_headers: AllowedHeaders::some(&["Authorization", "Accept", "Content-Type"]),
-        allow_credentials: true,
-        ..Default::default()
-    };
-
-    println!("halo {:?}", Method::Options);
+  let options = rocket_cors::Cors {
+      allowed_origins: allowed_origins,
+      allowed_methods: vec![Method::Get, Method::Put, Method::Post, Method::Delete]
+          .into_iter()
+          .map(From::from)
+          .collect(),
+      allowed_headers: AllowedHeaders::some(&["Authorization", "Accept", "Content-Type"]),
+      allow_credentials: true,
+      ..Default::default()
+  };
 
   rocket::ignite()
     .manage(database::db_setting::connect())
@@ -187,6 +186,7 @@ fn main() {
       "/transactions",
       routes![transaction_module::read_all_transactions],
     )
+    .mount("/areas", routes![areas_module::read_all_areas])
     .mount("/suppliers", routes![supplier_module::read_all_suppliers])
     .mount("/partners", routes![partner_module::read_all_partners])
     .mount("/signin_logs", routes![signin_log_module::read_all_signin_logs])

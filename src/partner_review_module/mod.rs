@@ -15,7 +15,7 @@ fn create_partner_review(
     let success_status = PartnerReview::create(insert, &connection);
     match success_status {
         true => {
-            return Json(json!(
+            return Json(json_internal!(
         { 
           "success": success_status, 
           "data": PartnerReview::read_after_create(&connection)
@@ -23,12 +23,13 @@ fn create_partner_review(
       ))
         }
         _ => {
-            return Json(json!(
-        {
-          "success": success_status,
-          "data": []
-        }
-      ))
+            let array: [i32; 0] = [];
+            return Json(json_internal!(
+                {
+                "success": success_status,
+                "data": array
+                }
+            ))
         }
     }
 }
@@ -38,7 +39,7 @@ fn read_all_partner_reviews(
     page: i64,
     connection: database::db_setting::Connection,
 ) -> Json<Value> {
-    Json(json!(
+    Json(json_internal!(
     {
       "total": PartnerReview::count_all(&connection),
       "data": PartnerReview::read(page, &connection)
@@ -48,7 +49,7 @@ fn read_all_partner_reviews(
 
 #[get("/<id>")]
 fn read_one_partner_review(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!({ "data": PartnerReview::read_one(id, &connection) }))
+    Json(json_internal!({ "data": PartnerReview::read_one(id, &connection) }))
 }
 
 #[put("/<id>", data = "<partner_reviews>", format = "application/json")]
@@ -60,7 +61,7 @@ fn update_partner_review(
     let update = AlreadyPartnerReview {
         ..partner_reviews.into_inner()
     };
-    Json(json!({
+    Json(json_internal!({
         "success": PartnerReview::update(id, update, &connection),
         "data": PartnerReview::read_one(id, &connection)        
     }))
@@ -68,5 +69,5 @@ fn update_partner_review(
 
 #[delete("/<id>")]
 fn delete_partner_review(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!({ "success": PartnerReview::delete(id, &connection) }))
+    Json(json_internal!({ "success": PartnerReview::delete(id, &connection) }))
 }

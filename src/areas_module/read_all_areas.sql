@@ -1,0 +1,1 @@
+SELECT provinces.name as province_name, districts.name as district_name, sub_districts.name as sub_district_name, sub_districts.id as sub_district_id FROM provinces LEFT JOIN districts ON provinces.id = districts.province_id LEFT JOIN sub_districts ON districts.id = sub_districts.district_id where provinces.id = '36'

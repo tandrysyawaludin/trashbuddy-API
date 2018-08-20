@@ -138,8 +138,8 @@ impl Supplier {
   }
 
   pub fn encode_jwt(supplier: Vec<JWTContentSupplier>, connection: &PgConnection) -> String {
-    let payload = json!(supplier);
-    let header = json!({});
+    let payload = json_internal!(supplier);
+    let header = json_internal!({});
     let secret = "secret123";
     let jwt = encode(header, &secret.to_string(), &payload, Algorithm::HS256);
     match jwt {
@@ -158,7 +158,9 @@ impl Supplier {
         let decode_jwt = vec![JWTContentSupplier{id: id, email: email}];
         return decode_jwt
       },
-      Err(e) => return Vec::new()
+      Err(e) => {
+        return Vec::new()
+      }
     }
   }
 }

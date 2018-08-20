@@ -91,28 +91,31 @@ table! {
     }
 }
 
-// table! {
-//     province (id) {
-//         id -> Int4,
-//         name -> Bpchar,
-//     }
-// }
+joinable!(districts -> provinces(province_id));
+table! {
+    provinces (id) {
+        id -> Bpchar,
+        name -> Bpchar,
+    }
+}
 
-// table! {
-//     district (id) {
-//         id -> Int4,
-//         name -> Bpchar,
-//         province -> Int4,
-//     }
-// }
+joinable!(sub_districts -> districts(district_id));
+table! {
+    districts (id) {
+        id -> Bpchar,
+        name -> Bpchar,
+        province_id -> Bpchar,
+    }
+}
 
-// table! {
-//     sub_district (id) {
-//         id -> Int4,
-//         name -> Bpchar,
-//         district -> Int4,
-//     }
-// }
+allow_tables_to_appear_in_same_query!(provinces, districts, sub_districts);
+table! {
+    sub_districts (id) {
+        id -> Bpchar,
+        name -> Bpchar,
+        district_id -> Bpchar,
+    }
+}
 
 // allow_tables_to_appear_in_same_query!(
 //     categories_of_trash,

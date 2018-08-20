@@ -14,7 +14,7 @@ fn create_transaction(
     let success_status = Transaction::create(insert, &connection);
     match success_status {
         true => {
-            return Json(json!(
+            return Json(json_internal!(
         { 
           "success": success_status, 
           "data": Transaction::read_after_create(&connection)
@@ -22,19 +22,20 @@ fn create_transaction(
       ))
         }
         _ => {
-            return Json(json!(
-        {
-          "success": success_status,
-          "data": []
-        }
-      ))
+            let array: [i32; 0] = [];
+            return Json(json_internal!(
+                {
+                "success": success_status,
+                "data": array
+                }
+            ))
         }
     }
 }
 
 #[get("/<page>")]
 fn read_all_transactions(page: i64, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!(
+    Json(json_internal!(
     {
       "total": Transaction::count_all(&connection),
       "data": Transaction::read(page, &connection)
@@ -44,7 +45,7 @@ fn read_all_transactions(page: i64, connection: database::db_setting::Connection
 
 #[get("/<id>")]
 fn read_one_transaction(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!({ "data": Transaction::read_one(id, &connection) }))
+    Json(json_internal!({ "data": Transaction::read_one(id, &connection) }))
 }
 
 #[put("/<id>", data = "<transaction>", format = "application/json")]
@@ -56,7 +57,7 @@ fn update_transaction(
     let update = AlreadyTransaction {
         ..transaction.into_inner()
     };
-    Json(json!(
+    Json(json_internal!(
     {
       "success": Transaction::update(id, update, &connection),
       "data": Transaction::read_one(id, &connection)
@@ -66,5 +67,5 @@ fn update_transaction(
 
 #[delete("/<id>")]
 fn delete_transaction(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!({ "success": Transaction::delete(id, &connection) }))
+    Json(json_internal!({ "success": Transaction::delete(id, &connection) }))
 }

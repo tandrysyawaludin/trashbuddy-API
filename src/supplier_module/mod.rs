@@ -20,7 +20,7 @@ fn create_supplier(
   let success_status = Supplier::create(insert, &connection);
   match success_status {
     true => {
-      return Json(json!(
+      return Json(json_internal!(
         { 
           "success": success_status, 
           "data": Supplier::read_after_create(&connection)
@@ -28,10 +28,11 @@ fn create_supplier(
       ))
     }
     _ => {
-      return Json(json!(
+      let array: [i32; 0] = [];
+      return Json(json_internal!(
         {
           "success": success_status,
-          "data": []
+          "data": array
         }
       ))
     }
@@ -41,7 +42,7 @@ fn create_supplier(
 #[get("/<page>")]
 fn read_all_suppliers(page: i64, token: Authorization, connection: database::db_setting::Connection) -> Json<Value> {
   println!("{:?}", token);
-  Json(json!(
+  Json(json_internal!(
     {
       "total": Supplier::count_all(&connection),
       "data": Supplier::read(page, &connection)
@@ -51,7 +52,7 @@ fn read_all_suppliers(page: i64, token: Authorization, connection: database::db_
 
 #[get("/<id>")]
 fn read_one_supplier(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-  Json(json!({ "data": Supplier::read_one(id, &connection) }))
+  Json(json_internal!({ "data": Supplier::read_one(id, &connection) }))
 }
 
 #[put("/<id>", data = "<supplier>", format = "application/json")]
@@ -63,7 +64,7 @@ fn update_supplier(
   let update = AlreadySupplier {
     ..supplier.into_inner()
   };
-  Json(json!(
+  Json(json_internal!(
     {
       "success": Supplier::update(id, update, &connection),
       "data": Supplier::read_one(id, &connection)
@@ -73,7 +74,7 @@ fn update_supplier(
 
 #[delete("/<id>")]
 fn delete_supplier(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-  Json(json!({ "success": Supplier::delete(id, &connection) }))
+  Json(json_internal!({ "success": Supplier::delete(id, &connection) }))
 }
 
 #[post("/auth", data = "<supplier>", format = "application/json")]
@@ -96,7 +97,7 @@ fn auth_supplier(
       let a = cookies.get("auth_token");
       println!("{:?}", a);
 
-      Json(json!(
+      Json(json_internal!(
         {
           "success": success_status,
           "jwt": encode_jwt,
@@ -105,7 +106,7 @@ fn auth_supplier(
       ))
     }
     _ => {
-      Json(json!(
+      Json(json_internal!(
         {
           "success": success_status,
           "jwt": ""

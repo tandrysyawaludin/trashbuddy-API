@@ -14,7 +14,7 @@ fn create_signin_log(
     let success_status = SigninLog::create(insert, &connection);
     match success_status {
         true => {
-            return Json(json!(
+            return Json(json_internal!(
         { 
           "success": success_status, 
           "data": SigninLog::read_after_create(&connection)
@@ -22,19 +22,20 @@ fn create_signin_log(
       ))
         }
         _ => {
-            return Json(json!(
-        {
-          "success": success_status,
-          "data": []
-        }
-      ))
+            let array: [i32; 0] = [];
+            return Json(json_internal!(
+                {
+                "success": success_status,
+                "data": array
+                }
+            ))
         }
     }
 }
 
 #[get("/<page>")]
 fn read_all_signin_logs(page: i64, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!(
+    Json(json_internal!(
     {
       "total": SigninLog::count_all(&connection),
       "data": SigninLog::read(page, &connection)
@@ -44,7 +45,7 @@ fn read_all_signin_logs(page: i64, connection: database::db_setting::Connection)
 
 #[get("/<id>")]
 fn read_one_singin_log(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!({ "data": SigninLog::read_one(id, &connection) }))
+    Json(json_internal!({ "data": SigninLog::read_one(id, &connection) }))
 }
 
 #[put("/<id>", data = "<signin_log>", format = "application/json")]
@@ -56,7 +57,7 @@ fn update_signin_log(
     let update = AlreadySigninLog {
         ..signin_log.into_inner()
     };
-    Json(json!(
+    Json(json_internal!(
     {
       "success": SigninLog::update(id, update, &connection),
       "data": SigninLog::read_one(id, &connection)
@@ -66,5 +67,5 @@ fn update_signin_log(
 
 #[delete("/<id>")]
 fn delete_signin_log(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!({ "success": SigninLog::delete(id, &connection) }))
+    Json(json_internal!({ "success": SigninLog::delete(id, &connection) }))
 }

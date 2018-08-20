@@ -14,7 +14,7 @@ fn create_partner(
   let success_status = Partner::create(insert, &connection);
   match success_status {
     true => {
-      return Json(json!(
+      return Json(json_internal!(
         { 
           "success": success_status, 
           "data": Partner::read_after_create(&connection)
@@ -22,10 +22,11 @@ fn create_partner(
       ))
     }
     _ => {
-      return Json(json!(
+      let array: [i32; 0] = [];
+      return Json(json_internal!(
         {
           "success": success_status,
-          "data": []
+          "data": array
         }
       ))
     }
@@ -34,7 +35,7 @@ fn create_partner(
 
 #[get("/<page>")]
 fn read_all_partners(page: i64, connection: database::db_setting::Connection) -> Json<Value> {
-  Json(json!(
+  Json(json_internal!(
     {
       "total": Partner::count_all(&connection),
       "data": Partner::read(page, &connection)
@@ -44,7 +45,7 @@ fn read_all_partners(page: i64, connection: database::db_setting::Connection) ->
 
 #[get("/<id>")]
 fn read_one_partner(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-  Json(json!({ "data": Partner::read_one(id, &connection) }))
+  Json(json_internal!({ "data": Partner::read_one(id, &connection) }))
 }
 
 #[put("/<id>", data = "<partner>", format = "application/json")]
@@ -56,7 +57,7 @@ fn update_partner(
   let update = AlreadyPartner {
     ..partner.into_inner()
   };
-  Json(json!(
+  Json(json_internal!(
     {
       "success": Partner::update(id, update, &connection),
       "data": Partner::read_one(id, &connection)
@@ -66,7 +67,7 @@ fn update_partner(
 
 #[delete("/<id>")]
 fn delete_partner(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-  Json(json!({ "success": Partner::delete(id, &connection) }))
+  Json(json_internal!({ "success": Partner::delete(id, &connection) }))
 }
 
 #[post("/sign_in", data = "<partner>", format = "application/json")]
@@ -75,10 +76,11 @@ fn sign_in_partner(partner: Json<SignInPartner>, connection: database::db_settin
     ..partner.into_inner()
   };
   let success_status = Partner::sign_in(data.email, data.password, &connection);
-  return Json(json!(
+  let array: [i32; 0] = [];
+  return Json(json_internal!(
     { 
       "success": success_status, 
-      "data": []
+      "data": array
     }
   ))
 }

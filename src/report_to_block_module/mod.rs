@@ -15,7 +15,7 @@ fn create_report_to_block(
     let success_status = ReportToBlock::create(insert, &connection);
     match success_status {
         true => {
-            return Json(json!(
+            return Json(json_internal!(
         { 
           "success": success_status, 
           "data": ReportToBlock::read_after_create(&connection)
@@ -23,12 +23,13 @@ fn create_report_to_block(
       ))
         }
         _ => {
-            return Json(json!(
-        {
-          "success": success_status,
-          "data": []
-        }
-      ))
+            let array: [i32; 0] = [];
+            return Json(json_internal!(
+                {
+                "success": success_status,
+                "data": array
+                }
+            ))
         }
     }
 }
@@ -38,7 +39,7 @@ fn read_all_reports_to_block(
     page: i64,
     connection: database::db_setting::Connection,
 ) -> Json<Value> {
-    Json(json!(
+    Json(json_internal!(
     {
       "total": ReportToBlock::count_all(&connection),
       "data": ReportToBlock::read(page, &connection)
@@ -48,7 +49,7 @@ fn read_all_reports_to_block(
 
 #[get("/<id>")]
 fn read_one_report_to_block(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!({ "data": ReportToBlock::read_one(id, &connection) }))
+    Json(json_internal!({ "data": ReportToBlock::read_one(id, &connection) }))
 }
 
 #[put("/<id>", data = "<reports_to_block>", format = "application/json")]
@@ -60,7 +61,7 @@ fn update_report_to_block(
     let update = AlreadyReportToBlock {
         ..reports_to_block.into_inner()
     };
-    Json(json!(
+    Json(json_internal!(
     {
       "success": ReportToBlock::update(id, update, &connection),
       "data": ReportToBlock::read_one(id, &connection)
@@ -70,5 +71,5 @@ fn update_report_to_block(
 
 #[delete("/<id>")]
 fn delete_report_to_block(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!({ "success": ReportToBlock::delete(id, &connection) }))
+    Json(json_internal!({ "success": ReportToBlock::delete(id, &connection) }))
 }

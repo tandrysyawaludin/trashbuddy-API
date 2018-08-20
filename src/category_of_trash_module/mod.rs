@@ -17,12 +17,12 @@ fn create_category(
 
 #[get("/")]
 fn read_all_categories(connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!(CategoryOfTrash::read(&connection)))
+    Json(json_internal!(CategoryOfTrash::read(&connection)))
 }
 
 #[get("/<id>")]
 fn read_one_category(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!(CategoryOfTrash::read_one(id, &connection)))
+    Json(json_internal!(CategoryOfTrash::read_one(id, &connection)))
 }
 
 #[put("/<id>", data = "<categories_of_trash>", format = "application/json")]
@@ -34,14 +34,14 @@ fn update_category(
     let update = AlreadyCategoryOfTrash {
         ..categories_of_trash.into_inner()
     };
-    Json(json!({
+    Json(json_internal!({
         "success": CategoryOfTrash::update(id, update, &connection)
     }))
 }
 
 #[delete("/<id>")]
 fn delete_category(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json!({
+    Json(json_internal!({
         "success": CategoryOfTrash::delete(id, &connection)
     }))
 }

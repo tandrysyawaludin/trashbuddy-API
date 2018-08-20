@@ -74,35 +74,27 @@ class Home extends Component {
   }
 
   getOptionsCategory() {
-    // axios({
-    //   method: 'GET',
-    //   url: 'http://localhost:8000/areas'
-    // })
-    // .then(response => {
-    //   let DATA = []
-    //   _.map(response.data, (val) => {
-    //     DATA.push({
-    //       "value": val.sub_district_id,
-    //       "label": val.province_name + ", " + val.district_name + ", " + val.sub_district_name
-    //     });
-    //   });
-    //   this.setState({ optionsArea: DATA });
-    // })
-    // .catch(error => {
-    //   console.log(error);
-    // })
-    // .then(() => {
-
-    // });
-
-    this.setState({
-      optionsCategory: [
-        { "value": "abcd", "label": "abcd" },
-        { "value": "abcd", "label": "abcd" },
-        { "value": "abcd", "label": "abcd" },
-        { "value": "abcd", "label": "abcd"}
-      ]
+    axios({
+      method: 'GET',
+      url: 'http://localhost:8000/categories_of_trash'
     })
+    .then(response => {
+      let DATA = []
+      _.map(response.data, (val) => {
+        DATA.push({
+          "value": val.id,
+          "label": val.name,
+          "description": val.description
+        });
+      });
+      this.setState({ optionsCategory: DATA });
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    .then(() => {
+
+    });
   }
 
   loadOptionsArea = (input, callback) => {
@@ -133,10 +125,12 @@ class Home extends Component {
                 <FormGroup>
                   <Label for="exampleSelect">Category</Label>
                   <Select
+                    classNamePrefix="select-input"                                        
                     defaultValue={this.state.optionsCategory[0]}
                     options={this.state.optionsCategory}
                     onInputChange={this.handleChangeCategory}
                   />
+                  <small></small>
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleSelect">Area</Label>
