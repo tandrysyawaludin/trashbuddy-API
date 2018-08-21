@@ -7,6 +7,7 @@ use diesel::prelude::*;
 #[table_name = "categories_of_trash"]
 pub struct NewCategoryOfTrash {
   pub name: String,
+  pub description: String  
 }
 
 #[derive(Serialize, Deserialize, Queryable, Insertable, AsChangeset)]
@@ -14,12 +15,14 @@ pub struct NewCategoryOfTrash {
 pub struct CategoryOfTrash {
   pub id: i32,
   pub name: String,
+  pub description: String,
 }
 
 #[derive(Serialize, Deserialize, Queryable, Insertable, AsChangeset)]
 #[table_name = "categories_of_trash"]
 pub struct AlreadyCategoryOfTrash {
   pub name: String,
+  pub description: String  
 }
 
 impl CategoryOfTrash {

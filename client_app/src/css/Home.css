@@ -11,3 +11,12 @@
 :local(.Home) .select-input__value-container {
   border-color: #ccc;
   box-shadow: none; }
+
+:local(.Home) .category-description {
+  padding: 10px;
+  text-align: justify;
+  font-size: 12px;
+  background: #699e1b26;
+  margin-top: 10px;
+  border-radius: 10px;
+  border-width: 8px; }

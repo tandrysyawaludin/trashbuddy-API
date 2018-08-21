@@ -23,9 +23,10 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      category: null,
+      category: "",
+      categoryDescription: "",
       optionsCategory: [],
-      area: null,
+      area: "",
       optionsArea: [],
     }
 
@@ -38,16 +39,13 @@ class Home extends Component {
     this.getOptionsCategory();
   }
 
-  handleChangeArea(newValue: string) {
-    const area = newValue.replace(/\W/g, '');
-    this.setState({ area });
-    return area;
+  handleChangeArea(area) {
+    this.setState({ area: area.value });
   }
 
-  handleChangeCategory(newValue: string) {
-    const category = newValue.replace(/\W/g, '');
-    this.setState({ category });
-    return category;
+  handleChangeCategory(category) {
+    this.setState({ category: category.value });
+    this.setState({ categoryDescription: category.description });
   }
 
   getOptionsArea() {
@@ -81,6 +79,8 @@ class Home extends Component {
     .then(response => {
       let DATA = []
       _.map(response.data, (val) => {
+        console.log(val);
+        
         DATA.push({
           "value": val.id,
           "label": val.name,
@@ -128,9 +128,10 @@ class Home extends Component {
                     classNamePrefix="select-input"                                        
                     defaultValue={this.state.optionsCategory[0]}
                     options={this.state.optionsCategory}
-                    onInputChange={this.handleChangeCategory}
+                    onChange={this.handleChangeCategory}
                   />
-                  <small></small>
+                  {this.state.categoryDescription &&
+                    <div className="category-description">{this.state.categoryDescription}</div>}
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleSelect">Area</Label>
@@ -141,7 +142,7 @@ class Home extends Component {
                     defaultOptions
                     loadingMessage={() => "minimal 3 character"}
                     noOptionsMessage={() => "area is not found"}
-                    onInputChange={this.handleChangeArea}
+                    onChange={this.handleChangeArea}
                   />
                 </FormGroup>
                 <FormGroup>

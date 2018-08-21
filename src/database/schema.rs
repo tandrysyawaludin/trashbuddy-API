@@ -2,6 +2,7 @@ table! {
     categories_of_trash (id) {
         id -> Int4,
         name -> Bpchar,
+        description -> Bpchar,
     }
 }
 
