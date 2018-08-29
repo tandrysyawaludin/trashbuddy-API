@@ -13,7 +13,6 @@ pub struct NewCategoryOfTrash {
 #[derive(Serialize, Deserialize, Queryable, Insertable, AsChangeset)]
 #[table_name = "categories_of_trash"]
 pub struct CategoryOfTrash {
-  pub id: i32,
   pub name: String,
   pub description: String,
 }
@@ -36,38 +35,36 @@ impl CategoryOfTrash {
       .expect("Error creating new categories_of_trash");
 
     categories_of_trash::table
-      .order(categories_of_trash::id.desc())
       .first(connection)
       .unwrap()
   }
 
   pub fn read(connection: &PgConnection) -> Vec<CategoryOfTrash> {
     categories_of_trash::table
-      .order(categories_of_trash::id)
       .load::<CategoryOfTrash>(connection)
       .unwrap()
   }
 
-  pub fn read_one(id: i32, connection: &PgConnection) -> Vec<CategoryOfTrash> {
+  pub fn read_one(name: String, connection: &PgConnection) -> Vec<CategoryOfTrash> {
     categories_of_trash::table
-      .find(id)
+      .filter(categories_of_trash::name.eq(&name))
       .load::<CategoryOfTrash>(connection)
       .unwrap()
   }
 
   pub fn update(
-    id: i32,
+    name: String,
     categories_of_trash: AlreadyCategoryOfTrash,
     connection: &PgConnection,
   ) -> bool {
-    diesel::update(categories_of_trash::table.find(id))
+    diesel::update(categories_of_trash::table.filter(categories_of_trash::name.eq(&name)))
       .set(&categories_of_trash)
       .execute(connection)
       .is_ok()
   }
 
-  pub fn delete(id: i32, connection: &PgConnection) -> bool {
-    diesel::delete(categories_of_trash::table.find(id))
+  pub fn delete(name: String, connection: &PgConnection) -> bool {
+    diesel::delete(categories_of_trash::table.filter(categories_of_trash::name.eq(&name)))
       .execute(connection)
       .is_ok()
   }

@@ -1,16 +1,16 @@
-:local .ListOfPartners .box {
+:local(.ListOfPartners) .box {
   margin-bottom: 10px; }
-  :local .ListOfPartners .box .trash-category {
+  :local(.ListOfPartners) .box .trash-category {
     margin-bottom: 10px; }
-    :local .ListOfPartners .box .trash-category span {
+    :local(.ListOfPartners) .box .trash-category span {
       font-size: 12px;
       font-weight: 500;
       color: #8c8c8c; }
-  :local .ListOfPartners .box .caption {
+  :local(.ListOfPartners) .box .caption {
     font-size: 14px; }
-  :local .ListOfPartners .box .action-menu svg {
+  :local(.ListOfPartners) .box .action-menu svg {
     font-size: 24px; }
-  :local .ListOfPartners .box .action-menu span {
+  :local(.ListOfPartners) .box .action-menu span {
     position: relative;
     left: 4px;
     bottom: 6px; }

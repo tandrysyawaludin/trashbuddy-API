@@ -33,12 +33,24 @@ fn create_partner(
   }
 }
 
-#[get("/<page>")]
-fn read_all_partners(page: i64, connection: database::db_setting::Connection) -> Json<Value> {
+#[derive(Debug, FromForm)]
+struct Params {
+  area: String,
+  category: String,
+  page: i64
+}
+
+#[get("/find?<params>")]
+fn read_all_partners(params: Option<Params>, connection: database::db_setting::Connection) -> Json<Value> {
+  let data = params.unwrap();
+  let page = data.page;
+  let area = data.area.clone();
+  let category = data.category.clone();
+
   Json(json_internal!(
     {
       "total": Partner::count_all(&connection),
-      "data": Partner::read(page, &connection)
+      "data": Partner::read(page, area, category, &connection)
     }
   ))
 }

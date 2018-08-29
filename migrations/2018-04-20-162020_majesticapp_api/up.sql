@@ -1,7 +1,6 @@
 -- Your SQL goes here
 CREATE TABLE categories_of_trash (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
+    name VARCHAR(50) PRIMARY KEY,
     description TEXT NOT NULL
 );
 
@@ -44,6 +43,7 @@ CREATE TABLE partners (
     area VARCHAR(100) NOT NULL,
     profile_pic bytea NULL,
     id_card_pic bytea NULL,
+    category_of_trash_id TEXT[],
     machine_code VARCHAR (10),
     is_live BOOLEAN NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()

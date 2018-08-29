@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
 import Select from 'react-select';
 import AsyncSelect from 'react-select/lib/Async';
-import _ from 'lodash';
+import { map, size } from 'lodash';
 import axios from 'axios';
 
 import NavbarBottom from '../partials/NavbarBottom';
@@ -55,7 +55,7 @@ class Home extends Component {
     })
     .then(response => {
       let DATA = []
-      _.map(response.data, (val) => {
+      map(response.data, (val) => {
         DATA.push({
           "value": val.sub_district_id,
           "label": val.province_name + ", " + val.district_name + ", " + val.sub_district_name
@@ -78,7 +78,7 @@ class Home extends Component {
     })
     .then(response => {
       let DATA = []
-      _.map(response.data, (val) => {
+      map(response.data, (val) => {
         console.log(val);
         
         DATA.push({
@@ -99,7 +99,7 @@ class Home extends Component {
 
   loadOptionsArea = (input, callback) => {
     let DATA = this.state.optionsArea;
-    if (_.size(input) > 3) {      
+    if (size(input) > 3) {      
       let optionsArea = DATA.filter(i =>
         i.label.toLowerCase().includes(input.toLowerCase())
       );

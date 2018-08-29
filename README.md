@@ -31,6 +31,8 @@ diesel migration redo
 rustup update
 cargo watch -x 'run'
 ROCKET_ENV=stage cargo run
+diesel print-schema
+diesel print-schema > path/to/schema.rs
 
 Postgres:
 psql postgres

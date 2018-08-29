@@ -1,10 +1,11 @@
-#![feature(plugin)]
+#![feature(plugin, custom_derive)]
 #![plugin(rocket_codegen)]
 
 extern crate rocket;
 extern crate frank_jwt;
 extern crate regex;
 extern crate rocket_cors;
+extern crate rand;
 
 #[macro_use]
 extern crate rocket_contrib;

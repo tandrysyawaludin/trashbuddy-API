@@ -73,7 +73,7 @@ class OfferForm extends Component {
                     </CardText>
                     <FormGroup>
                       <Button color="main" size="sm" onClick={this.submitToOffer}>Offer</Button>
-                      <Button outline size="sm" onClick={this.props.toggleOfferForm}>Cancel</Button>                      
+                      <Button outline size="sm" onClick={this.props.handleCancelOffer}>Cancel</Button>                      
                     </FormGroup>
                   </Form>
                 </CardBody>

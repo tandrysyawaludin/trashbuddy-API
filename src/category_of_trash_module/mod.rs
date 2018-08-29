@@ -20,14 +20,14 @@ fn read_all_categories(connection: database::db_setting::Connection) -> Json<Val
     Json(json_internal!(CategoryOfTrash::read(&connection)))
 }
 
-#[get("/<id>")]
-fn read_one_category(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json_internal!(CategoryOfTrash::read_one(id, &connection)))
+#[get("/<name>")]
+fn read_one_category(name: String, connection: database::db_setting::Connection) -> Json<Value> {
+    Json(json_internal!(CategoryOfTrash::read_one(name, &connection)))
 }
 
-#[put("/<id>", data = "<categories_of_trash>", format = "application/json")]
+#[put("/<name>", data = "<categories_of_trash>", format = "application/json")]
 fn update_category(
-    id: i32,
+    name: String,
     categories_of_trash: Json<AlreadyCategoryOfTrash>,
     connection: database::db_setting::Connection,
 ) -> Json<Value> {
@@ -35,13 +35,13 @@ fn update_category(
         ..categories_of_trash.into_inner()
     };
     Json(json_internal!({
-        "success": CategoryOfTrash::update(id, update, &connection)
+        "success": CategoryOfTrash::update(name, update, &connection)
     }))
 }
 
-#[delete("/<id>")]
-fn delete_category(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
+#[delete("/<name>")]
+fn delete_category(name: String, connection: database::db_setting::Connection) -> Json<Value> {
     Json(json_internal!({
-        "success": CategoryOfTrash::delete(id, &connection)
+        "success": CategoryOfTrash::delete(name, &connection)
     }))
 }

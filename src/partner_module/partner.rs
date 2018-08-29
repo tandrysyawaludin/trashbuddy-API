@@ -4,6 +4,13 @@ use diesel::dsl::count;
 use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use std::time::SystemTime;
+use diesel::expression::dsl::sql;
+use diesel::sql_types::Bool;
+use rand::{ RngCore, Rng, OsRng };
+
+// Crypto
+#[path = "../crypto_module/mod.rs"] mod crypto_module;
+// End Crypto
 
 #[table_name = "partners"]
 #[derive(Serialize, Deserialize, Insertable)]
@@ -21,11 +28,13 @@ pub struct NewPartner {
 pub struct Partner {
   pub id: i32,
   pub name: String,
+  pub email: String,
   pub password: String,
   pub phone_number: String,
-  pub email: String,
   pub area: String,
-  pub machine_code: String,
+  pub category_of_trash_id: Option<Vec<String>>,
+  pub machine_code: Option<String>,
+  pub is_live: bool,
   pub created_at: Option<SystemTime>,
 }
 
@@ -84,8 +93,22 @@ impl Partner {
     }
   }
 
-  pub fn read(page: i64, connection: &PgConnection) -> Vec<Partner> {
+  pub fn read(page: i64, area: String, category: String, connection: &PgConnection) -> Vec<Partner> {
+    let message = "Hello World!";
+    let mut key: [u8; 32] = [0; 32];
+    let mut iv: [u8; 16] = [0; 16];
+    let mut rng = OsRng::new().ok().unwrap();
+    rng.fill_bytes(&mut key);
+    rng.fill_bytes(&mut iv);
+
+    let encrypted_data = crypto_module::encrypt(message.as_bytes(), &key, &iv).ok().unwrap();
+    println!("bajing {:?}", encrypted_data);
+    let decrypted_data = crypto_module::decrypt(&encrypted_data[..], &key, &iv).ok().unwrap();
+    println!("jingtot {:?}", decrypted_data);
+    
     partners::table
+      .filter(partners::area.eq(&area))
+      .filter(sql::<Bool>("category_of_trash_id @> ARRAY['s']::text[]"))
       .order(partners::id)
       .limit(10)
       .offset(page * 10)

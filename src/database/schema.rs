@@ -1,8 +1,7 @@
 table! {
-    categories_of_trash (id) {
-        id -> Int4,
-        name -> Bpchar,
-        description -> Bpchar,
+    categories_of_trash (name) {
+        name -> Varchar,
+        description -> Text,
     }
 }
 
@@ -21,12 +20,14 @@ table! {
 table! {
     partners (id) {
         id -> Int4,
-        name -> Bpchar,
-        password -> Bpchar,
-        phone_number -> Bpchar,
-        email -> Bpchar,
-        area -> Bpchar,
-        machine_code -> Bpchar,
+        name -> Varchar,
+        email -> Varchar,
+        password -> Varchar,
+        phone_number -> Varchar,
+        area -> Varchar,
+        category_of_trash_id -> Nullable<Array<Text>>,
+        machine_code -> Nullable<Varchar>,
+        is_live -> Bool,
         created_at -> Nullable<Timestamp>,
     }
 }
@@ -35,7 +36,7 @@ table! {
     reports_to_block (id) {
         id -> Int4,
         target_user -> Int4,
-        comment -> Bpchar,
+        comment -> Varchar,
         created_at -> Nullable<Timestamp>,
     }
 }
@@ -44,7 +45,7 @@ table! {
     signin_logs (id) {
         id -> Int4,
         user_id -> Int4,
-        user_group -> Bpchar,
+        user_group -> Varchar,
         created_at -> Nullable<Timestamp>,
     }
 }
@@ -52,11 +53,11 @@ table! {
 table! {
     suppliers (id) {
         id -> Int4,
-        name -> Bpchar,
-        email -> Bpchar,
-        password -> Bpchar,
-        phone_number -> Bpchar,
-        area -> Bpchar,
+        name -> Varchar,
+        email -> Varchar,
+        password -> Varchar,
+        phone_number -> Varchar,
+        area -> Varchar,
         created_at -> Nullable<Timestamp>,
     }
 }
@@ -67,7 +68,7 @@ table! {
         supplier_id -> Int4,
         partner_id -> Int4,
         id_package_of_supplier -> Int4,
-        status -> Bpchar,
+        status -> Varchar,
         created_at -> Nullable<Timestamp>,
     }
 }
@@ -76,7 +77,7 @@ table! {
     supplier_reviews (id) {
         id -> Int4,
         score -> Int4,
-        comment -> Bpchar,
+        comment -> Varchar,
         transactions_id -> Int4,
         created_at -> Nullable<Timestamp>,
     }
@@ -86,7 +87,7 @@ table! {
     partner_reviews (id) {
         id -> Int4,
         score -> Int4,
-        comment -> Bpchar,
+        comment -> Varchar,
         transactions_id -> Int4,
         created_at -> Nullable<Timestamp>,
     }
@@ -95,26 +96,26 @@ table! {
 joinable!(districts -> provinces(province_id));
 table! {
     provinces (id) {
-        id -> Bpchar,
-        name -> Bpchar,
+        id -> Varchar,
+        name -> Varchar,
     }
 }
 
 joinable!(sub_districts -> districts(district_id));
 table! {
     districts (id) {
-        id -> Bpchar,
-        name -> Bpchar,
-        province_id -> Bpchar,
+        id -> Varchar,
+        name -> Varchar,
+        province_id -> Varchar,
     }
 }
 
 allow_tables_to_appear_in_same_query!(provinces, districts, sub_districts);
 table! {
     sub_districts (id) {
-        id -> Bpchar,
-        name -> Bpchar,
-        district_id -> Bpchar,
+        id -> Varchar,
+        name -> Varchar,
+        district_id -> Varchar,
     }
 }
 
