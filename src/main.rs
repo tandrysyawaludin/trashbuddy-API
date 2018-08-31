@@ -5,7 +5,7 @@ extern crate rocket;
 extern crate frank_jwt;
 extern crate regex;
 extern crate rocket_cors;
-extern crate rand;
+extern crate djangohashers;
 
 #[macro_use]
 extern crate rocket_contrib;

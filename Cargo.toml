@@ -15,8 +15,7 @@ frank_jwt = "*"
 regex = "1"
 serde_derive = "1.0"
 serde = "1.0"
-rust-crypto = "^0.2"
-rand = "0.5.5"
+djangohashers = "0.3.1"
 diesel = { version = "1.3.2", features = ["postgres", "r2d2", "chrono"] }
 
 [development]
