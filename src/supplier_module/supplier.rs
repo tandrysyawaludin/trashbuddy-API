@@ -5,6 +5,7 @@ use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use std::time::SystemTime;
 use frank_jwt::{Algorithm, encode, decode};
+use djangohashers::{check_password, make_password};
 
 #[table_name = "suppliers"]
 #[derive(Serialize, Deserialize, Insertable, Debug)]
@@ -117,14 +118,16 @@ impl Supplier {
   }
 
   pub fn auth(data: AuthSupplier, connection: &PgConnection) -> bool {
+    let encoded_password = make_password(&data.password); 
     let exists = suppliers::table
-      .select((suppliers::id, suppliers::email))
+      .select(suppliers::password)
       .filter(suppliers::email.is_not_distinct_from(data.email))
-      .filter(suppliers::password.is_not_distinct_from(data.password))
       .limit(1)
       .execute(connection);
     match exists {
-      Ok(1) => return true,
+      Ok(1) => {
+        return check_password(&data.password, &encoded_password).unwrap()
+      },
       _ => return false,
     }
   }

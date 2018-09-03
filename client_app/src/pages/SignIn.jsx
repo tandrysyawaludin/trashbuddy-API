@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import CSSModules from 'react-css-modules';
 import * as Cookies from "js-cookie";
-import _ from 'lodash';
+import { mapKeys } from 'lodash';
 
 import NavbarWelcome from '../partials/NavbarWelcome';
 import styles from '../css/SignIn.css';
@@ -80,7 +80,7 @@ class SignIn extends Component {
       else {
         this.setState({ errorSignIn: true, errorSignInMessage: "Email and password do not match" });  
         let cookies = Cookies.get();
-        _.mapKeys(cookies, (val, key) => {        
+        mapKeys(cookies, (val, key) => {        
           Cookies.remove(key);
         });
       }
@@ -88,7 +88,7 @@ class SignIn extends Component {
     .catch(error => {
       this.setState({ errorSignIn: true, errorSignInMessage: "Sorry, our system is busy now :(" });
       let cookies = Cookies.get();
-      _.mapKeys(cookies, (val, key) => {
+      mapKeys(cookies, (val, key) => {
         Cookies.remove(key);
       });     
     })
