@@ -24,6 +24,7 @@ import { mapKeys } from 'lodash';
 import NavbarWelcome from '../partials/NavbarWelcome';
 import styles from '../css/SignIn.css';
 import loader from '../img/loader.svg';
+import { Auth } from '../helper/CheckAuth';
 
 class SignIn extends Component {
   constructor(props) {
@@ -75,7 +76,7 @@ class SignIn extends Component {
     .then(response => {
       if (response.data.success === true) {
         Cookies.set('auth_trashbuddy', response.data.jwt, { expires: 1 });
-        this.props.history.push('/home');             
+        Auth.authenticate(() => this.props.history.push('/home'));
       }
       else {
         this.setState({ errorSignIn: true, errorSignInMessage: "Email and password do not match" });  

@@ -55,7 +55,9 @@ pub struct JWTContentSupplier {
 }
 
 impl Supplier {
-  pub fn create(new_supplier: NewSupplier, connection: &PgConnection) -> bool {
+  pub fn create(mut new_supplier: NewSupplier, connection: &PgConnection) -> bool {
+    let encoded_password = make_password(&new_supplier.password);
+    new_supplier.password = encoded_password.to_string();
     diesel::insert_into(suppliers::table)
       .values(&new_supplier)
       .execute(connection)
@@ -118,15 +120,14 @@ impl Supplier {
   }
 
   pub fn auth(data: AuthSupplier, connection: &PgConnection) -> bool {
-    let encoded_password = make_password(&data.password); 
     let exists = suppliers::table
-      .select(suppliers::password)
+      .select(suppliers::password)    
       .filter(suppliers::email.is_not_distinct_from(data.email))
       .limit(1)
-      .execute(connection);
+      .first::<String>(connection);
     match exists {
-      Ok(1) => {
-        return check_password(&data.password, &encoded_password).unwrap()
+      Ok(v) => {
+        return check_password(&data.password, &v).unwrap()
       },
       _ => return false,
     }
