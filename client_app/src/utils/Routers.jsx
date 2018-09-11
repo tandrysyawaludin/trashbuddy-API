@@ -9,6 +9,12 @@ import MyAd from '../pages/MyAd';
 import Blank from '../pages/Blank';
 import { Auth } from '../helper/CheckAuth';
 
+const NoMatch = ({ location }) => (
+  <div>
+    Ups! page is not found
+  </div>
+);
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
@@ -18,11 +24,29 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       ) : (
           <Redirect
             to={{
-              pathname: "/sign_in",
+              pathname: "/",
               state: { from: props.location }
             }}
           />
         )
+    }
+  />
+);
+
+const PublicRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      Auth.isAuthenticated ? (
+        <Redirect
+          to={{
+            pathname: "/home",
+            state: { from: props.location }
+          }}
+        />
+      ) : (
+        <Component {...props} />
+      )
     }
   />
 );
@@ -32,12 +56,13 @@ class Routers extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" component={Blank} />
-          <Route path="/sign_in" component={SignIn} />
-          <Route path="/sign_up" component={SignUp} />
+          <PublicRoute exact path="/" component={Blank} />
+          <PublicRoute path="/sign_in" component={SignIn} />
+          <PublicRoute path="/sign_up" component={SignUp} />
           <PrivateRoute path="/home" component={Home} />
           <PrivateRoute path="/search" component={ListOfPartners} />
           <PrivateRoute path="/my_ad" component={MyAd} />
+          <Route component={NoMatch} />
         </Switch>
       </Router>
     )

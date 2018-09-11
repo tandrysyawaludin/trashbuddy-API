@@ -4,10 +4,6 @@ import * as Cookies from "js-cookie";
 import loader from '../img/loader.svg';
 
 class Blank extends Component {
-  componentDidMount() {
-    !Cookies.get('auth_trashbuddy') && this.props.history.push('/sign_in');
-  }
-
   render() {
     let style = {
       div: {

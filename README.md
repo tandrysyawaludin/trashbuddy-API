@@ -37,6 +37,7 @@ diesel print-schema > path/to/schema.rs
 Postgres:
 psql postgres
 http://www.postgresqltutorial.com/postgresql-trim-function/
+UPDATE table_name SET column=lower(column)
 
 Code:
 use regex::Regex;

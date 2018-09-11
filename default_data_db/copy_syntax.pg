@@ -1,0 +1,4 @@
+copy public.provinces (id, name) from stdin;
+copy public.districts (id, name, province_id) from stdin;
+copy public.sub_districts (id, name, district_id) from stdin;
+COPY public.villages (id, name, sub_district_id) FROM stdin;

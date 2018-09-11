@@ -1,4 +1,3 @@
-copy public.districts (id, name, province_id) from stdin;
 1101  kab. aceh selatan                                 	11
 1102	kab. aceh tenggara                                	11
 1103	kab. aceh timur                                   	11

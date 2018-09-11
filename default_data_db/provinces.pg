@@ -1,5 +1,4 @@
-copy public.provinces (id, name) from stdin;
-11  aceh
+11	aceh
 12	sumatera utara
 13	sumatera barat
 14	riau
