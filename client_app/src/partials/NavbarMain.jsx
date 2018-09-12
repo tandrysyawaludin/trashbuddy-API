@@ -42,14 +42,14 @@ class NavbarMain extends Component {
     }
   }
 
-  render() {
+  render() {    
     return (
       <div styleName="NavbarMain">
-        <Navbar fixed="top" light expand="md" className="navbar-default" styleName="navbar-main">
+        <Navbar fixed="top" light expand="md" className="navbar-default navbar-main">
           {this.state.backOnNav && <FiArrowLeft onClick={this.props.prevRoute} />}
           {/* {this.state.searchOnNav && <Link to="/" styleName="undo-navigation"><FiX /></Link>} */}
-          {this.state.searchOnNav && <Link to="/home" styleName="link-left-icon"><FiSearch /></Link>}
-          <NavbarBrand href="#" styleName="navbar-brand">
+          {this.state.searchOnNav && <Link to="/home" className="link-left-icon"><FiSearch /></Link>}
+          <NavbarBrand href="#" className="navbar-brand">
             <img src={mainLogo} /><span>Trashbuddy</span>
           </NavbarBrand>
         </Navbar>

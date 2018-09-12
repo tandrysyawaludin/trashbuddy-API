@@ -1,13 +1,26 @@
 import React, { Component, Fragment } from 'react';
 import {
-  Container, Row, Col,
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, CardLink,
-  Button
+  Container, 
+  Row, 
+  Col,
+  Card, 
+  CardImg, 
+  CardText, 
+  CardBody,
+  CardTitle, 
+  CardSubtitle, 
+  CardLink,
+  Button, 
+  Badge
 } from 'reactstrap';
 import CssModules from 'react-css-modules';
 import { Link } from 'react-router-dom';
-import { map } from 'lodash';
+import { 
+  map,
+  upperCase,
+  isEmpty,
+  size
+} from 'lodash';
 import { FiZap } from "react-icons/fi";
 import axios from 'axios';
 
@@ -22,45 +35,76 @@ class ListOfPartners extends Component {
     super(props)
     this.state = {
       showOfferForm: false,
-      currentPage: 0
+      area: '',
+      category: '',
+      data: '',
+      page: 0,
+      totalData: 0,
+      elmPartner: []
     }
 
     this.handleLoadMore = this.handleLoadMore.bind(this);
     this.handleCancelOffer = this.handleCancelOffer.bind(this);
+    this.toggleOfferForm = this.toggleOfferForm.bind(this);
   }
 
-  componentWillMount() {
-    this.getPartners();
+  componentDidMount() {
+    const params = new URLSearchParams(this.props.location.search);
+
+    this.setState({
+      area: params.get('area'),
+      category: params.get('category'),
+      page: 0
+    }, () => this.getPartners());
   }
 
-  getPartners() {
-    this.setState({ currentPage: this.state.currentPage + 1 });
+  getPartners(page) {    
+    let apiParams = `area=${this.state.area}&category=${this.state.category}&page=${this.state.page}`;
     axios({
       method: 'GET',
-      url: 'http://localhost:8000/partners/' + this.state.currentPage
+      url: `http://localhost:8000/partners/find?${apiParams}`
     })
-    .then(response => {
-      
+    .then(response => {    
+      let elmPartner = this.state.elmPartner;
+      map(response.data.data, (data) => {
+        elmPartner.push(
+          this.renderPartnersCard(
+            data.id,
+            data.name,
+            data.area,
+            data.category_of_trash_id,
+            data.address
+          )
+        )
+      });
+      this.setState({
+        data: response.data.data,
+        totalData: response.data.total,
+        elmPartner: elmPartner
+      })
     })
     .catch(error => {
       console.log(error);
     })
-    .then(() => {
-
-    });
   }
 
-  renderPartners() {
+  renderOfferForm() {
+    return <OfferForm handleCancelOffer={this.handleCancelOffer} />
+  }
+
+  renderPartnersCard(id, name, area, category, address) {    
     return (
-      <Row className="box">
+      <Row className="box" key={id}>
         <Col md={{ size: 4, offset: 4 }}>
           <Card>
             <CardImg top width="100%" src={dummyImg} alt="Card image cap" />
             <CardBody>
-              <CardTitle>Tandry Syawaludin Soedijanto</CardTitle>
-              <CardSubtitle className="trash-category"><span>Sampah Plastik PVC</span></CardSubtitle>
-              <CardText className="caption">Jalan Duku 1 Blok C2/25 Pondok Sejahtera, Kelurahan Kutabaru, Kecamatan Pasar Kemis, Kabupaten Tangerang, Banten, 11561</CardText>
-              <CardLink href="#" onClick={this.toggleOfferForm.bind(this)} className="action-menu"><FiZap /><span>Offer</span></CardLink>
+              <CardTitle>{name}</CardTitle>
+              <CardSubtitle className="trash-category">
+                {map(category, (x) => <Badge color="secondary">{upperCase(x)}</Badge>)}
+              </CardSubtitle>
+              <CardText className="caption">{address}</CardText>
+              <CardLink href="#" onClick={this.toggleOfferForm} className="action-menu"><FiZap /><span>Offer</span></CardLink>
             </CardBody>
           </Card>
         </Col>
@@ -68,34 +112,47 @@ class ListOfPartners extends Component {
     )
   }
 
-  handleLoadMore() {
-    this.getPartners();
+  renderPartners() {
+    return (
+      <div styleName="ListOfPartners">
+        <Container className="basic-container">
+          {isEmpty(this.state.data) ?
+            <Col md={{ size: 4, offset: 4 }} className="not-found">
+              <div className="message">Empty, please search again</div>
+              <Link to="/home">
+                <Button color="main" size="sm">Search</Button>                
+              </Link>
+            </Col>:
+            <Fragment>
+              {this.state.elmPartner}
+              {this.state.totalData > size(this.state.elmPartner) &&
+                <Row>
+                  <Col md={{ size: 4, offset: 4 }}>
+                    <Button outline block size="sm" onClick={() => this.handleLoadMore()}>Load More</Button>
+                  </Col>
+                </Row>}
+            </Fragment>
+          }
+        </Container>
+      </div>
+    )
+  }
+
+  toggleOfferForm() {
+    this.setState({ showOfferForm: !this.state.showOfferForm }) 
+  }
+
+  handleLoadMore(elmPartner) {
+    this.setState({
+      page: this.state.page + 1
+    }, () => this.getPartners());
   }
 
   handleCancelOffer() {
     this.setState({ showOfferForm: !this.state.showOfferForm })
   }
 
-  renderOfferForm() {
-    return <OfferForm handleCancelOffer={this.handleCancelOffer} />
-  }
-
-  renderPartners() { 
-    return (
-      <div styleName="ListOfPartners">      
-        <Container className="basic-container">
-          {this.renderPartners}
-          <Row>
-            <Col md={{ size: 4, offset: 4 }}>
-              <Button outline block size="sm" onClick={this.handleLoadMore}>Load More</Button>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    )
-  }
-
-  render() {
+  render() {    
     return (
       <Fragment>
         <NavbarMain prevRoute={this.props.history.goBack} currentRoute={this.props.location.pathname} />

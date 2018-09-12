@@ -1,28 +1,28 @@
-:local .NavbarBottom {
+:local(.NavbarBottom) {
   background: #fdfdfd;
   border-top: 1px solid #adadad;
   height: 42px; }
-  :local .NavbarBottom .navbar {
+  :local(.NavbarBottom) .navbar {
     padding: 0; }
-  :local .NavbarBottom ul {
+  :local(.NavbarBottom) ul {
     margin: 0 auto; }
-    :local .NavbarBottom ul .nav-item {
+    :local(.NavbarBottom) ul .nav-item {
       line-height: 12px;
       width: 82px; }
-      :local .NavbarBottom ul .nav-item a {
+      :local(.NavbarBottom) ul .nav-item a {
         padding-bottom: 0;
         padding-top: 0;
         color: #65757f; }
-        :local .NavbarBottom ul .nav-item a:hover {
+        :local(.NavbarBottom) ul .nav-item a:hover {
           color: #74af1f;
           text-decoration: none; }
-        :local .NavbarBottom ul .nav-item a.active-menu {
+        :local(.NavbarBottom) ul .nav-item a.active-menu {
           color: #74af1f; }
-      :local .NavbarBottom ul .nav-item svg {
+      :local(.NavbarBottom) ul .nav-item svg {
         display: block;
         margin: auto;
         font-size: 25px; }
-      :local .NavbarBottom ul .nav-item span {
+      :local(.NavbarBottom) ul .nav-item span {
         font-size: 12px;
         text-align: center;
         display: block; }

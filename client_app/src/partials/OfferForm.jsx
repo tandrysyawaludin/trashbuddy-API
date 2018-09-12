@@ -48,15 +48,15 @@ class OfferForm extends Component {
                   <Form>
                     <FormGroup>
                       <Label for="exampleEmail">Weight (kg)</Label>
-                      <Input type="number" autocomplete={false} />
+                      <Input type="number" autoComplete="false" />
                     </FormGroup>
                     <FormGroup>
                       <Label for="exampleEmail">Shipping Fee (Rp)</Label>
-                      <Input type="text" autocomplete={false} />
+                      <Input type="text" autoComplete="false" />
                     </FormGroup>
                     <FormGroup>
                       <Label for="exampleEmail">Price without Shipping Fee (Rp)</Label>
-                      <Input type="text" autocomplete={false} />
+                      <Input type="text" autoComplete="false" />
                     </FormGroup>
                     <FormGroup>
                       <Label for="exampleSelect">Category</Label>

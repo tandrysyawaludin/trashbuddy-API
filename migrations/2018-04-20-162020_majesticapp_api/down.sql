@@ -9,10 +9,11 @@ DROP TABLE IF EXISTS partners;
 DROP TABLE IF EXISTS partner_reviews;
 DROP TABLE IF EXISTS transactions;
 DROP TABLE IF EXISTS reports_to_block;
-DROP TABLE IF EXISTS provinces;
-DROP TABLE IF EXISTS districts;
-DROP TABLE IF EXISTS sub_districts;
-DROP TABLE IF EXISTS villages;
 
 DROP TYPE IF EXISTS status_transaction;
 DROP TYPE IF EXISTS user_role;
+
+-- DROP TABLE IF EXISTS provinces;
+-- DROP TABLE IF EXISTS districts;
+-- DROP TABLE IF EXISTS sub_districts;
+-- DROP TABLE IF EXISTS villages;

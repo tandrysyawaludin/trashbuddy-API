@@ -1,12 +1,21 @@
 :local(.ListOfPartners) {
+  .not-found {
+    text-align: center;
+    .message {
+      margin-bottom: 10px;
+      margin-top: 50px;
+    }
+  }
   .box {
     margin-bottom: 10px;
     .trash-category {
       margin-bottom: 10px;
-      span {
+      .badge {
         font-size: 12px;
         font-weight: 500;
-        color: #8c8c8c;
+        &:not(:first-child) {
+          margin-left: 4px;
+        }
       }
     }
     .caption {

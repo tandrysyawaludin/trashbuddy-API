@@ -12,7 +12,12 @@ import { Link } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
 import Select from 'react-select';
 import AsyncSelect from 'react-select/lib/Async';
-import { map, size } from 'lodash';
+import { 
+  map, 
+  size,
+  startCase,
+  upperCase
+} from 'lodash';
 import axios from 'axios';
 
 import NavbarBottom from '../partials/NavbarBottom';
@@ -54,11 +59,15 @@ class Home extends Component {
       url: 'http://localhost:8000/areas'
     })
     .then(response => {
-      let DATA = []
+      let DATA = [];
+      let area = '';
       map(response.data, (val) => {
+        area = startCase(val.province_name) + ", " + 
+              startCase(val.district_name) + ", " + 
+              startCase(val.sub_district_name);
         DATA.push({
           "value": val.sub_district_id,
-          "label": val.province_name + ", " + val.district_name + ", " + val.sub_district_name
+          "label": area
         });        
       });      
       this.setState({ optionsArea: DATA });
@@ -66,9 +75,6 @@ class Home extends Component {
     .catch(error => {
       console.log(error);                
     })
-    .then(() => {
-      
-    });
   }
 
   getOptionsCategory() {
@@ -78,12 +84,10 @@ class Home extends Component {
     })
     .then(response => {
       let DATA = []
-      map(response.data, (val) => {
-        console.log(val);
-        
+      map(response.data, (val) => {        
         DATA.push({
-          "value": val.id,
-          "label": val.name,
+          "value": val.name,
+          "label": upperCase(val.name),
           "description": val.description
         });
       });
@@ -92,9 +96,6 @@ class Home extends Component {
     .catch(error => {
       console.log(error);
     })
-    .then(() => {
-
-    });
   }
 
   loadOptionsArea = (input, callback) => {
@@ -110,7 +111,7 @@ class Home extends Component {
   }
 
   submitToSearch(category, area) {
-    this.props.history.push(`/search?category=${this.state.category}&area=${this.state.area}&page=1`)
+    this.props.history.push(`/search?area=${this.state.area}&category=${this.state.category}`)
   }
 
 
@@ -146,7 +147,10 @@ class Home extends Component {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Button color="main" size="md" block onClick={this.submitToSearch.bind(this)}>Find</Button>
+                  <Button color="main" size="md" block
+                    disabled={!this.state.category && !this.state.area} 
+                    onClick={this.submitToSearch.bind(this)}
+                  >Find</Button>
                 </FormGroup>
               </Col>
             </Row>

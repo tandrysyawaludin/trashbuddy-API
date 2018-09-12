@@ -20,9 +20,9 @@ class NavbarBottom extends Component {
       myAdPage: "",
       myAdLink: "/my_ad",
       offerPage: "",
-      offerLink: "",
+      offerLink: "/offer",
       settingPage: "",
-      settingLink: ""
+      settingLink: "/setting"
     };
   }
 
@@ -39,23 +39,29 @@ class NavbarBottom extends Component {
         postLink: this.props.currentRoute
       })
     }
+    else if (this.props.currentRoute == "/setting") {
+      this.setState({
+        settingPage: "active-menu",
+        settingLink: this.props.currentRoute
+      })
+    }
   }
 
   render() {    
     return (
       <Navbar fixed="bottom" light expand="md" styleName="NavbarBottom">
         <Nav>
-          <NavItem styleName="nav-item">
-            <Link to={this.state.homeLink} styleName={this.state.homePage}><FiHome /><span>Home</span></Link>
+          <NavItem className="nav-item">
+            <Link to={this.state.homeLink} className={this.state.homePage}><FiHome /><span>Home</span></Link>
           </NavItem>
-          <NavItem styleName="nav-item">
-            <Link to={this.state.myAdLink} styleName={this.state.myAdPage}><FiRadio /><span>My Ad</span></Link>
+          <NavItem className="nav-item">
+            <Link to={this.state.myAdLink} className={this.state.myAdPage}><FiRadio /><span>My Ad</span></Link>
           </NavItem>
-          <NavItem styleName="nav-item">
-            <Link to="#" styleName={this.state.offerPage}><FiMail /><span>Offer</span></Link>
+          <NavItem className="nav-item">
+            <Link to={this.state.offerLink} className={this.state.offerPage}><FiMail /><span>Offer</span></Link>
           </NavItem>
-          <NavItem styleName="nav-item">
-            <Link to="#" styleName={this.state.settingPage}><FiSettings /><span>Account</span></Link>
+          <NavItem className="nav-item">
+            <Link to={this.state.settingLink} className={this.state.settingPage}><FiSettings /><span>Account</span></Link>
           </NavItem>
         </Nav>
       </Navbar>

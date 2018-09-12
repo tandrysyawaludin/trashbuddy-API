@@ -17,6 +17,12 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {
+  map,
+  size,
+  startCase
+} from 'lodash';
+import AsyncSelect from 'react-select/lib/Async';
 
 import NavbarWelcome from '../partials/NavbarWelcome';
 import loader from '../img/loader.svg';
@@ -31,14 +37,62 @@ class SignUp extends Component {
       password_1: "",
       full_name: "",
       phone_number: "",
+      area: "",
+      address: "",
       errorSignUp: false,
       errorSignUpMessage: "",
       submitting: false,
+      optionsArea: []
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
+    this.handleChangeArea = this.handleChangeArea.bind(this);    
+  }
+
+  componentDidMount() {
+    this.getOptionsArea();
+  }
+
+  getOptionsArea() {
+    axios({
+      method: 'GET',
+      url: 'http://localhost:8000/areas'
+    })
+      .then(response => {
+        let DATA = [];
+        let area = '';
+        map(response.data, (val) => {
+          area = startCase(val.province_name) + ", " +
+            startCase(val.district_name) + ", " +
+            startCase(val.sub_district_name);
+          DATA.push({
+            "value": val.sub_district_id,
+            "label": area
+          });
+        });
+        this.setState({ optionsArea: DATA });
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
+  handleChangeArea(area) {
+    this.setState({ area: area.value });
+  }
+
+  loadOptionsArea = (input, callback) => {
+    let DATA = this.state.optionsArea;
+    if (size(input) > 3) {
+      let optionsArea = DATA.filter(i =>
+        i.label.toLowerCase().includes(input.toLowerCase())
+      );
+      setTimeout(() => {
+        callback(optionsArea);
+      }, 1000);
+    }
   }
 
   handleInputChange(event) {
@@ -68,8 +122,10 @@ class SignUp extends Component {
     let data = {
       email: this.state.email,
       password: this.state.password,
-      full_name: this.state.full_name,
+      name: this.state.full_name,
       phone_number: this.state.phone_number,
+      area: "",
+      address: ""
     }
 
     let headers = {
@@ -82,8 +138,7 @@ class SignUp extends Component {
       url: 'http://localhost:8000/supplier',
       data: data
     })
-      .then(response => {
-        console.log(response);        
+      .then(response => {       
         this.props.history.push('/');
       })
       .catch(error => {
@@ -129,6 +184,22 @@ class SignUp extends Component {
                       <Input type="text" name="full_name" placeholder="input your full name" onChange={this.handleInputChange} />
                     </FormGroup>
                     <FormGroup>
+                      <Label for="exampleSelect">Area</Label>
+                      <AsyncSelect
+                        classNamePrefix="select-input"
+                        cacheOptions
+                        loadOptions={this.loadOptionsArea}
+                        defaultOptions
+                        loadingMessage={() => "minimal 3 character"}
+                        noOptionsMessage={() => "area is not found"}
+                        onChange={this.handleChangeArea}
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <Label for="exampleEmail">Address</Label>
+                      <Input type="textarea" name="address" placeholder="input your address" onChange={this.handleInputChange} />
+                    </FormGroup>
+                    <FormGroup>
                       <Label for="exampleEmail">Phone Number</Label>
                       <Input type="text" name="phone_number" placeholder="input your active phone number" onChange={this.handleInputChange} />
                     </FormGroup>
@@ -136,7 +207,8 @@ class SignUp extends Component {
                       <small className="text-muted">Click Sign Up button is accept our <CardLink href="#">Terms and Privacy</CardLink></small>
                     </CardText>
                     <FormGroup>
-                      <Button color="main" size="md" block onClick={this.handleSubmit}>
+                      <Button color="main" size="md" block onClick={this.handleSubmit}
+                        disabled={this.state.submitting}>
                         {this.state.submitting ? <img src={loader} /> : "Sign Up"}
                       </Button>
                     </FormGroup>

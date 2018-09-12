@@ -16,6 +16,7 @@ pub struct NewPartner {
   pub phone_number: String,
   pub email: String,
   pub area: String,
+  pub address: String,
   pub machine_code: String,
 }
 
@@ -28,6 +29,7 @@ pub struct Partner {
   pub password: String,
   pub phone_number: String,
   pub area: String,
+  pub address: String,  
   pub category_of_trash_id: Option<Vec<String>>,
   pub machine_code: Option<String>,
   pub is_live: bool,
@@ -49,6 +51,7 @@ pub struct AlreadyPartner {
   pub phone_number: String,
   pub email: String,
   pub area: String,
+  pub address: String,  
   pub machine_code: String,
   pub created_at: Option<SystemTime>,
 }
@@ -90,14 +93,10 @@ impl Partner {
   }
 
   pub fn read(page: i64, area: String, category: String, connection: &PgConnection) -> Vec<Partner> {
-    let encoded = make_password("aku");
-    println!("Hash: {:?}", encoded);
-    let is_valid = check_password(&category, &encoded).unwrap();
-    println!("Is valid: {:?}", is_valid);
-    
+    let param = format!("category_of_trash_id @> ARRAY['{}']::text[]", category);
     partners::table
       .filter(partners::area.eq(&area))
-      .filter(sql::<Bool>("category_of_trash_id @> ARRAY['s']::text[]"))
+      .filter(sql::<Bool>(&param.to_string()))
       .order(partners::id)
       .limit(10)
       .offset(page * 10)
@@ -105,9 +104,12 @@ impl Partner {
       .unwrap()
   }
 
-  pub fn count_all(connection: &PgConnection) -> i64 {
+  pub fn count_all(area: String, category: String, connection: &PgConnection) -> i64 {
+    let param = format!("category_of_trash_id @> ARRAY['{}']::text[]", category);    
     let total = partners::table
       .select(count(partners::id))
+      .filter(partners::area.eq(&area))
+      .filter(sql::<Bool>(&param.to_string()))
       .first::<i64>(connection);
     match total {
       Ok(v) => return v,

@@ -6,5 +6,10 @@ export const Auth = {
   authenticate(cb) {
     this.isAuthenticated = isString(Cookies.get('auth_trashbuddy'));
     setTimeout(cb, 100);
+  },
+  revoke(cb) {
+    Cookies.remove('auth_trashbuddy');
+    this.isAuthenticated = isString(Cookies.get('auth_trashbuddy'));
+    setTimeout(cb, 100);
   }
 };

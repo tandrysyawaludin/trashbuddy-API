@@ -15,6 +15,7 @@ pub struct NewSupplier {
   pub password: String,
   pub phone_number: String,
   pub area: String,
+  pub address: String,  
 }
 
 #[table_name = "suppliers"]
@@ -26,6 +27,7 @@ pub struct Supplier {
   pub password: String,
   pub phone_number: String,
   pub area: String,
+  pub address: String,  
   pub created_at: Option<SystemTime>,
 }
 
@@ -37,6 +39,7 @@ pub struct AlreadySupplier {
   pub password: String,
   pub phone_number: String,
   pub area: String,
+  pub address: String,  
   pub created_at: Option<SystemTime>,
 }
 

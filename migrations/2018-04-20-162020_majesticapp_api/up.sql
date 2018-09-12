@@ -21,6 +21,7 @@ CREATE TABLE suppliers (
     password TEXT NOT NULL,
     phone_number VARCHAR(20) UNIQUE NOT NULL,
     area VARCHAR(100) NOT NULL,    
+    address TEXT NOT NULL,    
     profile_pic bytea NULL,
     id_card_pic bytea NULL,
     created_at TIMESTAMP DEFAULT NOW()
@@ -41,6 +42,7 @@ CREATE TABLE partners (
     password TEXT NOT NULL,
     phone_number VARCHAR(20) UNIQUE NOT NULL,
     area VARCHAR(100) NOT NULL,
+    address TEXT NOT NULL,
     profile_pic bytea NULL,
     id_card_pic bytea NULL,
     category_of_trash_id TEXT[],
@@ -92,25 +94,25 @@ CREATE TABLE reports_to_block (
     created_at TIMESTAMP DEFAULT NOW()    
 );
 
-CREATE TABLE provinces (
-    id VARCHAR(2) PRIMARY KEY,
-    name VARCHAR(50) NOT NULL
-);
+-- CREATE TABLE provinces (
+--     id VARCHAR(2) PRIMARY KEY,
+--     name VARCHAR(50) NOT NULL
+-- );
 
-CREATE TABLE districts (
-    id VARCHAR(4) PRIMARY KEY,    
-    name VARCHAR(50) NOT NULL,
-    province_id VARCHAR(2) NOT NULL
-);
+-- CREATE TABLE districts (
+--     id VARCHAR(4) PRIMARY KEY,    
+--     name VARCHAR(50) NOT NULL,
+--     province_id VARCHAR(2) NOT NULL
+-- );
 
-CREATE TABLE sub_districts (
-    id VARCHAR(6) PRIMARY KEY,    
-    name VARCHAR(50) NOT NULL,
-    district_id VARCHAR(4) NOT NULL
-);
+-- CREATE TABLE sub_districts (
+--     id VARCHAR(6) PRIMARY KEY,    
+--     name VARCHAR(50) NOT NULL,
+--     district_id VARCHAR(4) NOT NULL
+-- );
 
-CREATE TABLE villages (
-    id VARCHAR(10) PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    sub_district_id VARCHAR(6) NOT NULL
-);
+-- CREATE TABLE villages (
+--     id VARCHAR(10) PRIMARY KEY,
+--     name VARCHAR(50) NOT NULL,
+--     sub_district_id VARCHAR(6) NOT NULL
+-- );

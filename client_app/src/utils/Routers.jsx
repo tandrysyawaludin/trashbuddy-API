@@ -4,9 +4,12 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Home from '../pages/Home';
+import Setting from '../pages/Setting';
+import Offer from '../pages/Offer';
+import Blank from '../pages/Blank';
 import ListOfPartners from '../pages/ListOfPartners';
 import MyAd from '../pages/MyAd';
-import Blank from '../pages/Blank';
+
 import { Auth } from '../helper/CheckAuth';
 
 const NoMatch = ({ location }) => (
@@ -56,12 +59,14 @@ class Routers extends Component {
     return (
       <Router>
         <Switch>
-          <PublicRoute exact path="/" component={Blank} />
+          <PublicRoute exact path="/" component={SignIn} />
           <PublicRoute path="/sign_in" component={SignIn} />
           <PublicRoute path="/sign_up" component={SignUp} />
           <PrivateRoute path="/home" component={Home} />
           <PrivateRoute path="/search" component={ListOfPartners} />
           <PrivateRoute path="/my_ad" component={MyAd} />
+          <PrivateRoute path="/setting" component={Setting} />
+          <PrivateRoute path="/offer" component={Offer} />
           <Route component={NoMatch} />
         </Switch>
       </Router>

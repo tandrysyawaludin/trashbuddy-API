@@ -49,7 +49,7 @@ fn read_all_partners(params: Option<Params>, connection: database::db_setting::C
 
   Json(json_internal!(
     {
-      "total": Partner::count_all(&connection),
+      "total": Partner::count_all(area.clone(), category.clone(), &connection),
       "data": Partner::read(page, area, category, &connection)
     }
   ))

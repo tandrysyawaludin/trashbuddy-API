@@ -1,6 +1,6 @@
 @import './Colors.scss';
 
-:local .NavbarBottom {
+:local(.NavbarBottom) {
   background: #fdfdfd;
   border-top: 1px solid #adadad;
   height: 42px;

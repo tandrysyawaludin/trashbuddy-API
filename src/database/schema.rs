@@ -25,6 +25,7 @@ table! {
         password -> Varchar,
         phone_number -> Varchar,
         area -> Varchar,
+        address -> Varchar,
         category_of_trash_id -> Nullable<Array<Text>>,
         machine_code -> Nullable<Varchar>,
         is_live -> Bool,
@@ -58,6 +59,7 @@ table! {
         password -> Varchar,
         phone_number -> Varchar,
         area -> Varchar,
+        address -> Varchar,        
         created_at -> Nullable<Timestamp>,
     }
 }

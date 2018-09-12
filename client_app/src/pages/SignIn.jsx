@@ -130,7 +130,8 @@ class SignIn extends Component {
                         <small className="text-muted">Click Sign In button is accept our <CardLink href="#">Terms and Privacy</CardLink></small>
                       </CardText>
                       <FormGroup>
-                        <Button color="main" size="md" block onClick={this.handleSubmit} type="submit">
+                        <Button color="main" size="md" block onClick={this.handleSubmit} 
+                          type="submit" disabled={this.state.submitting}>
                           { this.state.submitting ? <img src={loader} /> : "Sign In" }
                         </Button>
                       </FormGroup>
