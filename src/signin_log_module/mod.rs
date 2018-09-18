@@ -43,14 +43,14 @@ fn read_all_signin_logs(page: i64, connection: database::db_setting::Connection)
   ))
 }
 
-#[get("/<id>")]
-fn read_one_singin_log(id: i32, connection: database::db_setting::Connection) -> Json<Value> {
-    Json(json_internal!({ "data": SigninLog::read_one(id, &connection) }))
+#[get("/<token>")]
+fn read_one_singin_log(token: String, connection: database::db_setting::Connection) -> Json<Value> {
+    Json(json_internal!({ "data": SigninLog::read_one(token, &connection) }))
 }
 
-#[put("/<id>", data = "<signin_log>", format = "application/json")]
+#[put("/<token>", data = "<signin_log>", format = "application/json")]
 fn update_signin_log(
-    id: i32,
+    token: String,
     signin_log: Json<AlreadySigninLog>,
     connection: database::db_setting::Connection,
 ) -> Json<Value> {
@@ -59,8 +59,8 @@ fn update_signin_log(
     };
     Json(json_internal!(
     {
-      "success": SigninLog::update(id, update, &connection),
-      "data": SigninLog::read_one(id, &connection)
+      "success": SigninLog::update(token.clone(), update, &connection),
+      "data": SigninLog::read_one(token, &connection)
     }
   ))
 }

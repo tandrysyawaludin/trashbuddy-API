@@ -4,12 +4,14 @@ use diesel::dsl::count;
 use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use std::time::SystemTime;
+use frank_jwt::{Algorithm, decode};
 
 #[derive(Serialize, Deserialize, Insertable)]
 #[table_name = "signin_logs"]
 pub struct NewSigninLog {
   pub user_id: i32,
-  pub user_group: String,
+  pub token: String,
+  pub is_valid: bool  
 }
 
 #[derive(Serialize, Deserialize, Queryable, Insertable, AsChangeset)]
@@ -17,16 +19,20 @@ pub struct NewSigninLog {
 pub struct SigninLog {
   pub id: i32,
   pub user_id: i32,
-  pub user_group: String,
-  pub created_at: Option<SystemTime>,
+  pub token: String,
+  pub is_valid: bool,  
+  pub created_at: Option<SystemTime>
 }
 
 #[derive(Serialize, Deserialize, Queryable, Insertable, AsChangeset)]
 #[table_name = "signin_logs"]
 pub struct AlreadySigninLog {
-  pub user_id: i32,
-  pub user_group: String,
-  pub created_at: Option<SystemTime>,
+  pub is_valid: bool,
+}
+
+pub struct JWTContent {
+  pub id: i32,
+  pub email: String
 }
 
 impl SigninLog {
@@ -44,10 +50,11 @@ impl SigninLog {
       .unwrap()
   }
 
-  pub fn update(id: i32, signin_log: AlreadySigninLog, connection: &PgConnection) -> bool {
-    let exists = signin_logs::table.find(id).limit(1).execute(connection);
+  pub fn update(token: String, signin_log: AlreadySigninLog, connection: &PgConnection) -> bool {
+    let user_id = SigninLog::decode_jwt_get_id(token.to_string());
+    let exists = signin_logs::table.filter(signin_logs::user_id.is_not_distinct_from(user_id)).limit(1).execute(connection);
     match exists {
-      Ok(1) => diesel::update(signin_logs::table.find(id))
+      Ok(1) => diesel::update(signin_logs::table.filter(signin_logs::user_id.is_not_distinct_from(user_id)))
         .set(&signin_log)
         .execute(connection)
         .is_ok(),
@@ -80,11 +87,26 @@ impl SigninLog {
     }
   }
 
-  pub fn read_one(id: i32, connection: &PgConnection) -> Vec<SigninLog> {
+  pub fn read_one(token: String, connection: &PgConnection) -> Vec<SigninLog> {
+    let user_id = SigninLog::decode_jwt_get_id(token.to_string());    
     signin_logs::table
-      .find(id)
+      .filter(signin_logs::user_id.is_not_distinct_from(user_id))
       .limit(1)
       .load::<SigninLog>(connection)
       .unwrap()
+  }
+
+  pub fn decode_jwt_get_id(header: String) -> i32 {
+    let secret = "secret123";    
+    let jwt = decode(&header.to_string(), &secret.to_string(), Algorithm::HS256);
+    match jwt {
+      Ok((header, payload)) => {
+        let id: i32 = payload[0]["id"].to_string().parse().unwrap();
+        return id
+      },
+      Err(e) => {
+        return 0
+      }
+    }
   }
 }

@@ -9,16 +9,34 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
+import axios from 'axios';
+import * as Cookies from "js-cookie";
 
 import NavbarBottom from '../partials/NavbarBottom';
 import NavbarMain from '../partials/NavbarMain';
 import styles from '../css/Setting.css';
-
 import { Auth } from '../helper/CheckAuth';
 
 class Setting extends Component {
   constructor(props) {
     super(props)
+
+    this.handleSignOut = this.handleSignOut.bind(this);
+  }
+
+  handleSignOut() {
+    let data = {
+      is_valid: false
+    };
+
+    axios({
+      method: 'PUT',
+      url: 'http://localhost:8000/signin_log/' + Cookies.get('auth_trashbuddy'),
+      data: data
+    })
+      .then(response => {
+        Auth.revoke(() => this.props.history.push('/'));
+      })
   }
 
   render() {
@@ -33,9 +51,7 @@ class Setting extends Component {
                   <ListGroupItem tag="a" href="/">Edit Profile</ListGroupItem>
                   <ListGroupItem tag="a" href="/">About</ListGroupItem>
                 </ListGroup>
-                <Button className="logout-button" outline block size="sm" onClick={() => {
-                  Auth.revoke(() => this.props.history.push("/"));
-                }}>Logout</Button>
+                <Button className="logout-button" outline block size="sm" onClick={this.handleSignOut}>Logout</Button>
               </Col>
             </Row>
           </Container>

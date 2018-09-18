@@ -4,12 +4,10 @@ CREATE TABLE categories_of_trash (
     description TEXT NOT NULL
 );
 
-CREATE TYPE user_role AS ENUM ('supplier', 'partner');
 CREATE TABLE signin_logs (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
     token TEXT NOT NULL,
-    user_group user_role NOT NULL,
     is_valid BOOLEAN NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );

@@ -46,7 +46,8 @@ table! {
     signin_logs (id) {
         id -> Int4,
         user_id -> Int4,
-        user_group -> Varchar,
+        token -> Varchar,
+        is_valid -> Bool,
         created_at -> Nullable<Timestamp>,
     }
 }

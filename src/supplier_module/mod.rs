@@ -6,7 +6,6 @@ mod supplier;
 use rocket::Outcome;
 use rocket::http::Status;
 use rocket::request::{self, Request, FromRequest};
-use rocket::http::{Cookie, Cookies};
 
 #[post("/", data = "<supplier>", format = "application/json")]
 fn create_supplier(
@@ -80,8 +79,7 @@ fn delete_supplier(id: i32, connection: database::db_setting::Connection) -> Jso
 #[post("/auth", data = "<supplier>", format = "application/json")]
 fn auth_supplier(
   supplier: Json<AuthSupplier>,
-  connection: database::db_setting::Connection,
-  mut cookies: Cookies
+  connection: database::db_setting::Connection
 ) -> Json<Value> {
   let auth = AuthSupplier {
     ..supplier.into_inner()
@@ -93,15 +91,12 @@ fn auth_supplier(
     true => {
       let response_for_jwt = Supplier::read_jwt(email, &connection);
       let encode_jwt = Supplier::encode_jwt(response_for_jwt, &connection);
-      cookies.add(Cookie::new("auth_token", encode_jwt.clone()));
-      let a = cookies.get("auth_token");
-      println!("{:?}", a);
 
       Json(json_internal!(
         {
           "success": success_status,
           "jwt": encode_jwt,
-          "decode_jwt": Supplier::decode_jwt("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.W3siZW1haWwiOiIyYWFALmEiLCJpZCI6MX1d.pePih6txMLPJi_jhu4mQH76RqWYZ5_ivcwsPcysBfq0=".to_string(), &connection)[0]
+          "data": Supplier::decode_jwt(encode_jwt.to_string(), &connection)[0]
         }
       ))
     }

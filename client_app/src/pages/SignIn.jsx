@@ -38,7 +38,7 @@ class SignIn extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
   }
 
@@ -51,7 +51,7 @@ class SignIn extends Component {
     });
   }
 
-  handleSubmit(event) { 
+  handleSignIn(event) { 
     event.preventDefault();
     event.stopPropagation();
 
@@ -62,40 +62,64 @@ class SignIn extends Component {
       password: this.state.password
     }
 
-    let headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }    
-
     axios({
       method: 'POST',
       url: 'http://localhost:8000/supplier/auth',
-      headers: headers,
       data: data
     })
-    .then(response => {
-      if (response.data.success === true) {
-        Cookies.set('auth_trashbuddy', response.data.jwt, { expires: 1 });
-        Auth.authenticate(() => this.props.history.push('/home'));
-      }
-      else {
-        this.setState({ errorSignIn: true, errorSignInMessage: "Email and password do not match" });  
-        let cookies = Cookies.get();
-        mapKeys(cookies, (val, key) => {        
-          Cookies.remove(key);
-        });
-      }
+    .then(response => {      
+      this.handleAuthSuccess(response);
     })
     .catch(error => {
-      this.setState({ errorSignIn: true, errorSignInMessage: "Sorry, our system is busy now :(" });
-      let cookies = Cookies.get();
-      mapKeys(cookies, (val, key) => {
-        Cookies.remove(key);
-      });     
+      this.handleAuthFailed();
     })
     .then(() => {
       this.setState({ submitting: false });     
     });
+  }
+
+  handleAuthSuccess(response) {
+    let data = {};
+    if (response.data.success === true) {
+      data = {
+        user_id: response.data.data.id,
+        token: response.data.jwt,
+        is_valid: true 
+      }
+      this.handleSaveToken(data);
+    }
+    else {
+      this.setState({ errorSignIn: true, errorSignInMessage: "Email and password do not match" });
+      let cookies = Cookies.get();
+      mapKeys(cookies, (val, key) => {
+        Cookies.remove(key);
+      });
+    }
+  }
+
+  handleAuthFailed() {
+    this.setState({ errorSignIn: true, errorSignInMessage: "Sorry, our system is busy now :(" });
+    let cookies = Cookies.get();
+    mapKeys(cookies, (val, key) => {
+      Cookies.remove(key);
+    });  
+  }
+
+  handleSaveToken(data) {
+    axios({
+      method: 'POST',
+      url: 'http://localhost:8000/signin_log',
+      data: data
+    })
+      .then(response => {
+        Cookies.set('auth_trashbuddy', data.token, { expires: 1 });
+        Auth.authenticate(() => this.props.history.push('/home'));        
+      })
+      .catch(error => {
+        
+      })
+      .then(() => {
+      });
   }
 
   onDismiss() {
@@ -130,7 +154,7 @@ class SignIn extends Component {
                         <small className="text-muted">Click Sign In button is accept our <CardLink href="#">Terms and Privacy</CardLink></small>
                       </CardText>
                       <FormGroup>
-                        <Button color="main" size="md" block onClick={this.handleSubmit} 
+                        <Button color="main" size="md" block onClick={this.handleSignIn} 
                           type="submit" disabled={this.state.submitting}>
                           { this.state.submitting ? <img src={loader} /> : "Sign In" }
                         </Button>
