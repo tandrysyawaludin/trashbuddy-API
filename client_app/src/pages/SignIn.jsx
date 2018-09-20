@@ -19,7 +19,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import CSSModules from 'react-css-modules';
 import * as Cookies from "js-cookie";
-import { mapKeys } from 'lodash';
+import { 
+  mapKeys,
+  toLower 
+} from 'lodash';
 
 import NavbarWelcome from '../partials/NavbarWelcome';
 import styles from '../css/SignIn.css';
@@ -58,7 +61,7 @@ class SignIn extends Component {
     this.setState({ submitting: true });
 
     let data = {
-      email: this.state.email,
+      email: toLower(this.state.email),
       password: this.state.password
     }
 
