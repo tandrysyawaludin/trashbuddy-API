@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react'
 import {
   ListGroup,
   ListGroupItem,
@@ -6,15 +6,15 @@ import {
   Col,
   Container,
   Button
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
-import CSSModules from 'react-css-modules';
+} from 'reactstrap'
+import { Link } from 'react-router-dom'
+import CSSModules from 'react-css-modules'
 
-import NavbarBottom from '../partials/NavbarBottom';
-import NavbarMain from '../partials/NavbarMain';
-import styles from '../css/Offer.css';
+import NavbarBottom from '../partials/NavbarBottom'
+import NavbarMain from '../partials/NavbarMain'
+import styles from '../css/Offer.css'
 
-import { Auth } from '../helper/CheckAuth';
+import { Auth } from '../helper/CheckAuth'
 
 class Offer extends Component {
   constructor(props) {
@@ -43,4 +43,4 @@ class Offer extends Component {
   }
 }
 
-export default CSSModules(Offer, styles, { allowMultiple: true });
+export default CSSModules(Offer, styles, { allowMultiple: true })

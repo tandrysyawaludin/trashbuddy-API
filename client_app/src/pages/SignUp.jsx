@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react'
 import {
   Container,
   Row,
@@ -14,45 +14,37 @@ import {
   Input,
   Button,
   Alert
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+} from 'reactstrap'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 import {
   map,
   size,
   startCase
-} from 'lodash';
-import AsyncSelect from 'react-select/lib/Async';
+} from 'lodash'
+import AsyncSelect from 'react-select/lib/Async'
 
-import NavbarWelcome from '../partials/NavbarWelcome';
-import loader from '../img/loader.svg';
+import NavbarWelcome from '../partials/NavbarWelcome'
+import loader from '../img/loader.svg'
 
-import '../css/SignUp.css';
+import '../css/SignUp.css'
 class SignUp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      password_1: "",
-      full_name: "",
-      phone_number: "",
-      area: "",
-      address: "",
-      errorSignUp: false,
-      errorSignUpMessage: "",
-      submitting: false,
-      optionsArea: []
-    };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.onDismiss = this.onDismiss.bind(this);
-    this.handleChangeArea = this.handleChangeArea.bind(this);    
+  state = {
+    email: "",
+    password: "",
+    password_1: "",
+    full_name: "",
+    phone_number: "",
+    area: "",
+    address: "",
+    errorSignUp: false,
+    errorSignUpMessage: "",
+    submitting: false,
+    optionsArea: []
   }
 
   componentDidMount() {
-    this.getOptionsArea();
+    this.getOptionsArea()
   }
 
   getOptionsArea() {
@@ -61,63 +53,66 @@ class SignUp extends Component {
       url: 'http://localhost:8000/areas'
     })
       .then(response => {
-        let DATA = [];
-        let area = '';
-        map(response.data, (val) => {
-          area = startCase(val.province_name) + ", " +
-            startCase(val.district_name) + ", " +
-            startCase(val.sub_district_name);
-          DATA.push({
-            "value": val.sub_district_id,
-            "label": area
-          });
-        });
-        this.setState({ optionsArea: DATA });
+        this.setterDataAreas(response)
       })
       .catch(error => {
-        console.log(error);
+        console.log(error)
       })
   }
 
-  handleChangeArea(area) {
-    this.setState({ area: area.value });
+  setterDataAreas = () => {
+    const DATA = []
+    let area = ''
+    map(response.data, (val) => {
+      area = startCase(val.province_name) + ", " +
+        startCase(val.district_name) + ", " +
+        startCase(val.sub_district_name)
+      DATA.push({
+        "value": val.sub_district_id,
+        "label": area
+      })
+    }, () => this.setState({ optionsArea: DATA }))
+  }
+
+  handleChangeArea = (area) => {
+    this.setState({ area: area.value })
   }
 
   loadOptionsArea = (input, callback) => {
-    let DATA = this.state.optionsArea;
+    let DATA = this.state.optionsArea
     if (size(input) > 3) {
       let optionsArea = DATA.filter(i =>
         i.label.toLowerCase().includes(input.toLowerCase())
-      );
+      )
       setTimeout(() => {
-        callback(optionsArea);
-      }, 1000);
+        callback(optionsArea)
+      }, 1000)
     }
   }
 
-  handleInputChange(event) {
-    const value = event.target.value;
-    const name = event.target.name;
+  handleInputChange = (event) => {
+    const value = event.target.value
+    const name = event.target.name
 
     this.setState({
       [name]: value
     }, () => {
       if (name === "password" || name === "password_1") {
         (this.state.password !== this.state.password_1) ?
-          this.setState({ 
+          this.setState({
             errorSignUpMessage: "Password and Confirmation Password are not match",
             errorSignUp: true
           }) :
           this.setState({ errorSignUp: false })
       }
-    });
-  }  
+    })
+  }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    event.stopPropagation();
+  handleSubmit = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
 
-    this.setState({ submitting: true });
+    this.setState({ submitting: true })
 
     let data = {
       email: this.state.email,
@@ -138,19 +133,19 @@ class SignUp extends Component {
       url: 'http://localhost:8000/supplier',
       data: data
     })
-      .then(response => {       
-        this.props.history.push('/');
+      .then(response => {
+        this.props.history.push('/')
       })
       .catch(error => {
-        
+
       })
       .then(() => {
-        this.setState({ submitting: false });  
-      });
+        this.setState({ submitting: false })
+      })
   }
 
-  onDismiss() {
-    this.setState({ errorSignUp: false });
+  handleShowAlert = () => {
+    this.setState({ errorSignUp: false })
   }
 
   render() {
@@ -160,7 +155,7 @@ class SignUp extends Component {
         <Container className="singup-form-container">
           <Row>
             <Col md={{ size: 6, offset: 3 }}>
-              <Alert color="danger" isOpen={this.state.errorSignUp} toggle={this.onDismiss}>
+              <Alert color="danger" isOpen={this.state.errorSignUp} toggle={this.handleShowAlert}>
                 {this.state.errorSignUpMessage}
               </Alert>
               <Card>
@@ -207,7 +202,7 @@ class SignUp extends Component {
                       <small className="text-muted">Click Sign Up button is accept our <CardLink href="#">Terms and Privacy</CardLink></small>
                     </CardText>
                     <FormGroup>
-                      <Button color="main" size="md" block onClick={this.handleSubmit}
+                      <Button color="main" size="md" block onMouseDown={this.handleSubmit}
                         disabled={this.state.submitting}>
                         {this.state.submitting ? <img src={loader} /> : "Sign Up"}
                       </Button>

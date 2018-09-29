@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import * as Cookies from "js-cookie";
+import React, { Component } from 'react'
+import * as Cookies from "js-cookie"
 
-import loader from '../img/loader.svg';
+import loader from '../img/loader.svg'
 
 class Blank extends Component {
   render() {
-    let style = {
+    const style = {
       div: {
         background: 'green',
         padding: '10px',
@@ -30,4 +30,4 @@ class Blank extends Component {
   }
 }
 
-export default Blank;
+export default Blank

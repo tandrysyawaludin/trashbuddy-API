@@ -72,8 +72,8 @@ class OfferForm extends Component {
                       <small className="text-muted">Please make sure your data is correct before you click "Offer"</small>
                     </CardText>
                     <FormGroup>
-                      <Button color="main" size="sm" onClick={this.submitToOffer}>Offer</Button>
-                      <Button outline size="sm" onClick={this.props.handleCancelOffer}>Cancel</Button>                      
+                      <Button color="main" size="sm" onMouseDown={this.submitToOffer}>Offer</Button>
+                      <Button outline size="sm" onMouseDown={this.props.handleCancelOffer}>Cancel</Button>                      
                     </FormGroup>
                   </Form>
                 </CardBody>

@@ -1,25 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Container, Row, Col,
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button,
   CardFooter
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
-import NavbarMain from '../partials/NavbarMain';
-import NavbarBottom from '../partials/NavbarBottom';
-import CssModules from 'react-css-modules';
+} from 'reactstrap'
+import { Link } from 'react-router-dom'
+import NavbarMain from '../partials/NavbarMain'
+import NavbarBottom from '../partials/NavbarBottom'
+import CssModules from 'react-css-modules'
 
 import dummyImg from '../img/dummy-img.png'
-import styles from '../css/MyAd.css';
+import styles from '../css/MyAd.css'
 import ToggleButton from '../partials/ToggleButton'
 
 class MyAd extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      AdStatus: false
-    }
+  state = {
+    AdStatus: false
   }
 
   changeAdStatus = () => {
@@ -66,4 +63,4 @@ class MyAd extends Component {
   }
 }
 
-export default CssModules(MyAd, styles, { allowMultiple: true });
+export default CssModules(MyAd, styles, { allowMultiple: true })

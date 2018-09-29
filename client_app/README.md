@@ -461,7 +461,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleClick}>Load</button>
+        <button onMouseDown={this.handleClick}>Load</button>
       </div>
     );
   }

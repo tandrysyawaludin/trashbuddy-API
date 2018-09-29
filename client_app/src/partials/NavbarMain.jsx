@@ -46,7 +46,7 @@ class NavbarMain extends Component {
     return (
       <div styleName="NavbarMain">
         <Navbar fixed="top" light expand="md" className="navbar-default navbar-main">
-          {this.state.backOnNav && <FiArrowLeft onClick={this.props.prevRoute} />}
+          {this.state.backOnNav && <FiArrowLeft onMouseDown={this.props.prevRoute} />}
           {/* {this.state.searchOnNav && <Link to="/" styleName="undo-navigation"><FiX /></Link>} */}
           {this.state.searchOnNav && <Link to="/home" className="link-left-icon"><FiSearch /></Link>}
           <NavbarBrand href="#" className="navbar-brand">

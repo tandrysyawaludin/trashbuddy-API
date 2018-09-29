@@ -1,98 +1,94 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react'
 import {
-  Container, 
-  Row, 
+  Container,
+  Row,
   Col,
-  Card, 
-  CardImg, 
-  CardText, 
+  Card,
+  CardImg,
+  CardText,
   CardBody,
-  CardTitle, 
-  CardSubtitle, 
+  CardTitle,
+  CardSubtitle,
   CardLink,
-  Button, 
+  Button,
   Badge
-} from 'reactstrap';
-import CssModules from 'react-css-modules';
-import { Link } from 'react-router-dom';
-import { 
+} from 'reactstrap'
+import CssModules from 'react-css-modules'
+import { Link } from 'react-router-dom'
+import {
   map,
   upperCase,
   isEmpty,
   size
-} from 'lodash';
-import { FiZap } from "react-icons/fi";
-import axios from 'axios';
+} from 'lodash'
+import { FiZap } from "react-icons/fi"
+import axios from 'axios'
 
-import NavbarMain from '../partials/NavbarMain';
-import NavbarBottom from '../partials/NavbarBottom';
-import OfferForm from '../partials/OfferForm';
+import NavbarMain from '../partials/NavbarMain'
+import NavbarBottom from '../partials/NavbarBottom'
+import OfferForm from '../partials/OfferForm'
 import dummyImg from '../img/dummy-img.png'
-import styles from '../css/ListOfPartners.css';
+import styles from '../css/ListOfPartners.css'
 
 class ListOfPartners extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      showOfferForm: false,
-      area: '',
-      category: '',
-      data: '',
-      page: 0,
-      totalData: 0,
-      elmPartner: []
-    }
-
-    this.handleLoadMore = this.handleLoadMore.bind(this);
-    this.handleCancelOffer = this.handleCancelOffer.bind(this);
-    this.toggleOfferForm = this.toggleOfferForm.bind(this);
+  state = {
+    showOfferForm: false,
+    area: '',
+    category: '',
+    data: '',
+    page: 0,
+    totalData: 0,
+    elmPartner: []
   }
 
   componentDidMount() {
-    const params = new URLSearchParams(this.props.location.search);
+    const params = new URLSearchParams(this.props.location.search)
 
     this.setState({
       area: params.get('area'),
       category: params.get('category'),
       page: 0
-    }, () => this.getPartners());
+    }, () => this.getPartners())
   }
 
-  getPartners(page) {    
-    let apiParams = `area=${this.state.area}&category=${this.state.category}&page=${this.state.page}`;
+  getPartners(page) {
+    const apiParams = `area=${this.state.area}&category=${this.state.category}&page=${this.state.page}`
     axios({
       method: 'GET',
       url: `http://localhost:8000/partners/find?${apiParams}`
     })
-    .then(response => {    
-      let elmPartner = this.state.elmPartner;
-      map(response.data.data, (data) => {
-        elmPartner.push(
-          this.renderPartnersCard(
-            data.id,
-            data.name,
-            data.area,
-            data.category_of_trash_id,
-            data.address
-          )
-        )
-      });
-      this.setState({
-        data: response.data.data,
-        totalData: response.data.total,
-        elmPartner: elmPartner
-      })
+    .then(response => {
+      this.setterDataPartners(response)
     })
     .catch(error => {
-      console.log(error);
+      console.log(error)
     })
   }
 
-  renderOfferForm() {
-    return <OfferForm handleCancelOffer={this.handleCancelOffer} />
+  setterDataPartners = (response) => {
+    const elmPartner = this.state.elmPartner
+    map(response.data.data, (data) => {
+      elmPartner.push(
+        this.renderPartnersCard(
+          data.id,
+          data.name,
+          data.area,
+          data.category_of_trash_id,
+          data.address
+        )
+      )
+    }, () => this.setState({
+      data: response.data.data,
+      totalData: response.data.total,
+      elmPartner: elmPartner
+    }))
   }
 
-  renderPartnersCard(id, name, area, category, address) {    
+  renderOfferForm = () => (
+    <OfferForm handleCancelOffer={this.handleCancelOffer} />
+  )
+
+  renderPartnersCard(id, name, area, category, address) {
     return (
       <Row className="box" key={id}>
         <Col md={{ size: 4, offset: 4 }}>
@@ -104,7 +100,7 @@ class ListOfPartners extends Component {
                 {map(category, (x) => <Badge color="secondary">{upperCase(x)}</Badge>)}
               </CardSubtitle>
               <CardText className="caption">{address}</CardText>
-              <CardLink href="#" onClick={this.toggleOfferForm} className="action-menu"><FiZap /><span>Offer</span></CardLink>
+              <CardLink href="#" onMouseDown={this.toggleOfferForm} className="action-menu"><FiZap /><span>Offer</span></CardLink>
             </CardBody>
           </Card>
         </Col>
@@ -120,7 +116,7 @@ class ListOfPartners extends Component {
             <Col md={{ size: 4, offset: 4 }} className="not-found">
               <div className="message">Empty, please search again</div>
               <Link to="/home">
-                <Button color="main" size="sm">Search</Button>                
+                <Button color="main" size="sm">Search</Button>
               </Link>
             </Col>:
             <Fragment>
@@ -128,7 +124,7 @@ class ListOfPartners extends Component {
               {this.state.totalData > size(this.state.elmPartner) &&
                 <Row>
                   <Col md={{ size: 4, offset: 4 }}>
-                    <Button outline block size="sm" onClick={() => this.handleLoadMore()}>Load More</Button>
+                    <Button outline block size="sm" onMouseDown={this.handleLoadMore}>Load More</Button>
                   </Col>
                 </Row>}
             </Fragment>
@@ -138,28 +134,28 @@ class ListOfPartners extends Component {
     )
   }
 
-  toggleOfferForm() {
-    this.setState({ showOfferForm: !this.state.showOfferForm }) 
-  }
-
-  handleLoadMore(elmPartner) {
-    this.setState({
-      page: this.state.page + 1
-    }, () => this.getPartners());
-  }
-
-  handleCancelOffer() {
+  toggleOfferForm = () => {
     this.setState({ showOfferForm: !this.state.showOfferForm })
   }
 
-  render() {    
+  handleLoadMore = (elmPartner) => {
+    this.setState({
+      page: this.state.page + 1
+    }, () => this.getPartners())
+  }
+
+  handleCancelOffer = () => {
+    this.setState({ showOfferForm: !this.state.showOfferForm })
+  }
+
+  render() {
     return (
       <Fragment>
         <NavbarMain prevRoute={this.props.history.goBack} currentRoute={this.props.location.pathname} />
         {this.state.showOfferForm ? this.renderOfferForm() : this.renderPartners()}
-        <NavbarBottom currentRoute={this.props.location.pathname} />  
+        <NavbarBottom currentRoute={this.props.location.pathname} />
       </Fragment>
     )
   }
 }
-export default CssModules(ListOfPartners, styles, { allowMultiple: true });
+export default CssModules(ListOfPartners, styles, { allowMultiple: true })

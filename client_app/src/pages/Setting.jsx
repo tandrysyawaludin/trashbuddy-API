@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react'
 import {
   ListGroup, 
   ListGroupItem,
@@ -6,28 +6,22 @@ import {
   Col,
   Container,
   Button
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
-import CSSModules from 'react-css-modules';
-import axios from 'axios';
-import * as Cookies from "js-cookie";
+} from 'reactstrap'
+import { Link } from 'react-router-dom'
+import CSSModules from 'react-css-modules'
+import axios from 'axios'
+import * as Cookies from "js-cookie"
 
-import NavbarBottom from '../partials/NavbarBottom';
-import NavbarMain from '../partials/NavbarMain';
-import styles from '../css/Setting.css';
-import { Auth } from '../helper/CheckAuth';
+import NavbarBottom from '../partials/NavbarBottom'
+import NavbarMain from '../partials/NavbarMain'
+import styles from '../css/Setting.css'
+import { Auth } from '../helper/CheckAuth'
 
 class Setting extends Component {
-  constructor(props) {
-    super(props)
-
-    this.handleSignOut = this.handleSignOut.bind(this);
-  }
-
-  handleSignOut() {
+  handleSignOut = () => {
     let data = {
       is_valid: false
-    };
+    }
 
     axios({
       method: 'PUT',
@@ -35,7 +29,7 @@ class Setting extends Component {
       data: data
     })
       .then(response => {
-        Auth.revoke(() => this.props.history.push('/'));
+        Auth.revoke(() => this.props.history.push('/'))
       })
   }
 
@@ -51,7 +45,15 @@ class Setting extends Component {
                   <ListGroupItem tag="a" href="/">Edit Profile</ListGroupItem>
                   <ListGroupItem tag="a" href="/">About</ListGroupItem>
                 </ListGroup>
-                <Button className="logout-button" outline block size="sm" onClick={this.handleSignOut}>Logout</Button>
+                <Button 
+                  className="logout-button" 
+                  outline 
+                  block 
+                  size="sm" 
+                  onMouseDown={this.handleSignOut}
+                >
+                  Logout
+                </Button>
               </Col>
             </Row>
           </Container>
@@ -62,4 +64,4 @@ class Setting extends Component {
   }
 }
 
-export default CSSModules(Setting, styles, { allowMultiple: true });
+export default CSSModules(Setting, styles, { allowMultiple: true })
