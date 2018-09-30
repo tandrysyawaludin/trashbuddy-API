@@ -5,6 +5,7 @@ import {
   Col,
   Button,
   FormGroup,
+  Form,
   Label,
   Input
 } from 'reactstrap'
@@ -108,47 +109,42 @@ class Home extends Component {
     this.props.history.push(`/search?area=${this.state.area}&category=${this.state.category}`)
   }
 
-  renderSelectCategory = () => (
-    <FormGroup>
-      <Label for="exampleSelect">Category</Label>
-      <Select
-        classNamePrefix="select-input"
-        defaultValue={this.state.optionsCategory[0]}
-        options={this.state.optionsCategory}
-        onChange={this.handleChangeCategory}
-      />
-      {this.state.categoryDescription &&
-        <div className="category-description">{this.state.categoryDescription}</div>}
-    </FormGroup>
-  )
-
-  renderSelectArea = () => (
-    <FormGroup>
-      <Label for="exampleSelect">Area</Label>
-      <AsyncSelect
-        classNamePrefix="select-input"
-        cacheOptions
-        loadOptions={this.loadOptionsArea}
-        defaultOptions
-        loadingMessage={() => "minimal 3 character"}
-        noOptionsMessage={() => "area is not found"}
-        onChange={this.handleChangeArea}
-      />
-    </FormGroup>
-  )
-
-  renderSubmitButton = () => (
-    <FormGroup>
-      <Button
-        color="main"
-        size="md"
-        block
-        disabled={!this.state.category && !this.state.area}
-        onMouseDown={this.submitToSearch}
-      >
-        Find
-      </Button>
-    </FormGroup>
+  renderSearchForm = () => (
+    <Form onSubmit={this.submitToSearch}>
+      <FormGroup>
+        <Label for="exampleSelect">Category</Label>
+        <Select
+          classNamePrefix="select-input"
+          defaultValue={this.state.optionsCategory[0]}
+          options={this.state.optionsCategory}
+          onChange={this.handleChangeCategory}
+        />
+        {this.state.categoryDescription &&
+          <div className="category-description">{this.state.categoryDescription}</div>}
+      </FormGroup>
+      <FormGroup>
+        <Label for="exampleSelect">Area</Label>
+        <AsyncSelect
+          classNamePrefix="select-input"
+          cacheOptions
+          loadOptions={this.loadOptionsArea}
+          defaultOptions
+          loadingMessage={() => "minimal 3 character"}
+          noOptionsMessage={() => "area is not found"}
+          onChange={this.handleChangeArea}
+        />
+      </FormGroup>
+      <FormGroup>
+        <Button
+          color="main"
+          size="md"
+          block
+          disabled={!this.state.category && !this.state.area}
+        >
+          Find
+        </Button>
+      </FormGroup>
+    </Form>
   )
 
   render() {
@@ -159,9 +155,7 @@ class Home extends Component {
           <Container className="basic-container">
             <Row>
               <Col md={{ size: 6, offset: 3 }}>
-                {this.renderSelectCategory()}
-                {this.renderSelectArea()}
-                {this.renderSubmitButton()}
+                {this.renderSearchForm()}
               </Col>
             </Row>
           </Container>

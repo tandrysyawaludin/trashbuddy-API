@@ -61,7 +61,9 @@ impl Supplier {
   pub fn create(mut new_supplier: NewSupplier, connection: &PgConnection) -> bool {
     let encoded_password = make_password(&new_supplier.password);
     new_supplier.password = encoded_password.to_string();
-    diesel::insert_into(suppliers::table)
+    new_supplier.email = encoded_password.to_lowercase();
+    
+    ldiesel::insert_into(suppliers::table)
       .values(&new_supplier)
       .execute(connection)
       .is_ok()
@@ -125,7 +127,7 @@ impl Supplier {
   pub fn auth(data: AuthSupplier, connection: &PgConnection) -> bool {
     let exists = suppliers::table
       .select(suppliers::password)    
-      .filter(suppliers::email.is_not_distinct_from(data.email))
+      .filter(suppliers::email.is_not_distinct_from(data.email.to_lowercase()))
       .limit(1)
       .first::<String>(connection);
     match exists {
@@ -139,7 +141,7 @@ impl Supplier {
   pub fn read_jwt(email: String, connection: &PgConnection) -> Vec<JWTContentSupplier> {
     suppliers::table
       .select((suppliers::id, suppliers::email))
-      .filter(suppliers::email.is_not_distinct_from(email))
+      .filter(suppliers::email.is_not_distinct_from(email.to_lowercase()))
       .load::<JWTContentSupplier>(connection)
       .unwrap()
   }
@@ -162,7 +164,7 @@ impl Supplier {
       Ok((header, payload)) => {
         let id: i32 = payload[0]["id"].to_string().parse().unwrap();
         let email = payload[0]["email"].to_string().trim_matches('\"').to_string();
-        let decode_jwt = vec![JWTContentSupplier{id: id, email: email}];
+        let decode_jwt = vec![JWTContentSupplier{id: id, email: email.to_lowercase()}];
         return decode_jwt
       },
       Err(e) => {

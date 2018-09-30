@@ -51,6 +51,9 @@ class SignIn extends Component {
     event.preventDefault()
     event.stopPropagation()
 
+    console.log('masuk')
+    
+
     this.setState({ submitting: true })
 
     let data = {
@@ -129,7 +132,7 @@ class SignIn extends Component {
   )
 
   renderFormSignin = () => (
-    <Form>
+    <Form onSubmit={this.handleSignIn}>
       <FormGroup>
         <Label for="exampleEmail">Email</Label>
         <Input type="email" name="email" placeholder="please input valid email" onChange={this.handleInputChange} />
@@ -143,8 +146,13 @@ class SignIn extends Component {
         <small className="text-muted">Click Sign In button is accept our <CardLink href="#">Terms and Privacy</CardLink></small>
       </CardText>
       <FormGroup>
-        <Button color="main" size="md" block onMouseDown={this.handleSignIn}
-          type="submit" disabled={this.state.submitting}>
+        <Button 
+          color="main" 
+          size="md" 
+          block
+          type="submit" 
+          disabled={this.state.submitting}
+        >
           {this.state.submitting ? <img src={loader} /> : "Sign In"}
         </Button>
       </FormGroup>
@@ -172,7 +180,7 @@ class SignIn extends Component {
                 {this.renderAlert()}
                 <Card>
                   <CardBody>
-                    <CardTitle className="text-center">Sign In</CardTitle>
+                    <CardTitle className="text-center">Sign iIn</CardTitle>
                     {this.renderFormSignin()}
                     {this.renderLinks()}
                   </CardBody>
