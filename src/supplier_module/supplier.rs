@@ -63,7 +63,7 @@ impl Supplier {
     new_supplier.password = encoded_password.to_string();
     new_supplier.email = encoded_password.to_lowercase();
     
-    ldiesel::insert_into(suppliers::table)
+    diesel::insert_into(suppliers::table)
       .values(&new_supplier)
       .execute(connection)
       .is_ok()
@@ -104,6 +104,19 @@ impl Supplier {
       .offset(page * 10)
       .load::<Supplier>(connection)
       .unwrap()
+  }
+
+  pub fn check_existing_supplier(email: String, connection: &PgConnection) -> bool {
+    let exists = suppliers::table
+      .filter(suppliers::email.is_not_distinct_from(email.to_lowercase()))
+      .limit(1)
+      .execute(connection);
+    match exists {
+      Ok(1) => {
+        return true
+      },
+      _ => return false,
+    }
   }
 
   pub fn count_all(connection: &PgConnection) -> i64 {

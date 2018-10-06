@@ -12,17 +12,16 @@ fn create_supplier(
   supplier: Json<NewSupplier>,
   connection: database::db_setting::Connection,
 ) -> Json<Value> {
-  // Parse the string of data into serde_json::Value.
-  let insert = NewSupplier {
-    ..supplier.into_inner()
-  };
-  let success_status = Supplier::create(insert, &connection);
-  match success_status {
+  let email = &supplier.email.clone();  
+  let check_existing_supplier = Supplier::check_existing_supplier(email.to_string(), &connection);
+  match check_existing_supplier {
     true => {
+      let array: [i32; 0] = [];      
       return Json(json_internal!(
         { 
-          "success": success_status, 
-          "data": Supplier::read_after_create(&connection)
+          "success": false, 
+          "data": array,
+          "message": "Email already registered"
         }
       ))
     }
@@ -30,12 +29,36 @@ fn create_supplier(
       let array: [i32; 0] = [];
       return Json(json_internal!(
         {
-          "success": success_status,
+          "success": true,
           "data": array
         }
       ))
     }
   }
+
+  // let insert = NewSupplier {
+  //   ..supplier.into_inner()
+  // };
+  // let success_status = Supplier::create(insert, &connection);
+  // match success_status {
+  //   true => {
+  //     return Json(json_internal!(
+  //       { 
+  //         "success": success_status, 
+  //         "data": Supplier::read_after_create(&connection)
+  //       }
+  //     ))
+  //   }
+  //   _ => {
+  //     let array: [i32; 0] = [];
+  //     return Json(json_internal!(
+  //       {
+  //         "success": success_status,
+  //         "data": array
+  //       }
+  //     ))
+  //   }
+  // }
 }
 
 #[get("/<page>")]
