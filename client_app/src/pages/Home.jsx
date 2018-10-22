@@ -13,12 +13,10 @@ import { Link } from 'react-router-dom'
 import CSSModules from 'react-css-modules'
 import Select from 'react-select'
 import AsyncSelect from 'react-select/lib/Async'
-import {
-  map,
-  size,
-  startCase,
-  upperCase
-} from 'lodash'
+import map from 'lodash/map'
+import size from 'lodash/size'
+import startCase from 'lodash/startCase'
+import upperCase from 'lodash/upperCase'
 import axios from 'axios'
 
 import NavbarBottom from '../partials/NavbarBottom'
@@ -44,8 +42,10 @@ class Home extends Component {
   }
 
   handleChangeCategory = (category) => {
-    this.setState({ category: category.value })
-    this.setState({ categoryDescription: category.description })
+    this.setState({ 
+      category: category.value,
+      categoryDescription: category.description
+    })
   }
 
   getOptionsArea() {
@@ -95,13 +95,16 @@ class Home extends Component {
 
   loadOptionsArea = (input, callback) => {
     let DATA = this.state.optionsArea
-    if (size(input) > 3) {
+    if (size(input) >= 3) {
       let optionsArea = DATA.filter(i =>
         i.label.toLowerCase().includes(input.toLowerCase())
       )
       setTimeout(() => {
         callback(optionsArea)
       }, 1000)
+    }
+    else {
+      callback(null)
     }
   }
 
@@ -148,21 +151,19 @@ class Home extends Component {
   )
 
   render() {
-    return (
-      <Fragment>
-        <NavbarMain />
-        <div styleName="Home">
-          <Container className="basic-container">
-            <Row>
-              <Col md={{ size: 6, offset: 3 }}>
-                {this.renderSearchForm()}
-              </Col>
-            </Row>
-          </Container>
-        </div>
-        <NavbarBottom currentRoute={this.props.location.pathname} />
-      </Fragment>
-    )
+    return <Fragment>
+      <NavbarMain />
+      <div styleName="Home">
+        <Container className="basic-container">
+          <Row>
+            <Col md={{ size: 6, offset: 3 }}>
+              {this.renderSearchForm()}
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      <NavbarBottom currentRoute={this.props.location.pathname} />
+    </Fragment>
   }
 }
 

@@ -66,7 +66,11 @@ fn manual_options(cors: Guard) -> Responder<&str> {
 }
 
 fn main() {
-  let (allowed_origins, failed_origins) = AllowedOrigins::some(&["http://localhost:3000"]);
+  let (allowed_origins, failed_origins) = AllowedOrigins::some(&[
+    "http://localhost:3000", 
+    "http://localhost:8000",
+    "http://localhost:80"
+  ]);
   assert!(failed_origins.is_empty());
 
   let options = rocket_cors::Cors {

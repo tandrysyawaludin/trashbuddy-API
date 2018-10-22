@@ -17,8 +17,8 @@ easy_install supervisor
 /usr/local/bin/echo_supervisord_conf > /usr/local/etc/supervisord.conf
 brew services start supervisor
 sudo unlink /tmp/supervisor.sock
-supervisord -c /usr/local/etc/supervisord.conf
-supervisorctl -c /usr/local/etc/supervisord.conf
+supervisord -c /usr/local/etc/supervisord.conf atau supervisord
+supervisorctl -c /usr/local/etc/supervisord.conf atau supervisorctl
 
 Shutdown Supervisord:
 sudo ps -ef | grep supervisord

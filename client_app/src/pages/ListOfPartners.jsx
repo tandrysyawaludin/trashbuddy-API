@@ -15,12 +15,10 @@ import {
 } from 'reactstrap'
 import CssModules from 'react-css-modules'
 import { Link } from 'react-router-dom'
-import {
-  map,
-  upperCase,
-  isEmpty,
-  size
-} from 'lodash'
+import map from 'lodash/map'
+import upperCase from 'lodash/upperCase'
+import isEmpty from 'lodash/isEmpty'
+import size from 'lodash/size'
 import { FiZap } from "react-icons/fi"
 import axios from 'axios'
 
@@ -51,14 +49,14 @@ class ListOfPartners extends Component {
     }, () => this.getPartners())
   }
 
-  getPartners(page) {
+  getPartners() {
     const apiParams = `area=${this.state.area}&category=${this.state.category}&page=${this.state.page}`
     axios({
       method: 'GET',
       url: `http://localhost:8000/partners/find?${apiParams}`
     })
     .then(response => {
-      this.setterDataPartners(response)
+      this.setterDataPartners(response)      
     })
     .catch(error => {
       console.log(error)
@@ -77,11 +75,12 @@ class ListOfPartners extends Component {
           data.address
         )
       )
-    }, () => this.setState({
+    })    
+    this.setState({
       data: response.data.data,
       totalData: response.data.total,
       elmPartner: elmPartner
-    }))
+    })
   }
 
   renderOfferForm = () => (
@@ -89,49 +88,50 @@ class ListOfPartners extends Component {
   )
 
   renderPartnersCard(id, name, area, category, address) {
-    return (
-      <Row className="box" key={id}>
-        <Col md={{ size: 4, offset: 4 }}>
-          <Card>
-            <CardImg top width="100%" src={dummyImg} alt="Card image cap" />
-            <CardBody>
-              <CardTitle>{name}</CardTitle>
-              <CardSubtitle className="trash-category">
-                {map(category, (x) => <Badge color="secondary">{upperCase(x)}</Badge>)}
-              </CardSubtitle>
-              <CardText className="caption">{address}</CardText>
-              <CardLink href="#" onMouseDown={this.toggleOfferForm} className="action-menu"><FiZap /><span>Offer</span></CardLink>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-    )
+    return <Row className="box" key={id}>
+      <Col md={{ size: 4, offset: 4 }}>
+        <Card>
+          <CardImg top width="100%" src={dummyImg} alt="Card image cap" />
+          <CardBody>
+            <CardTitle>{name}</CardTitle>
+            <CardSubtitle className="trash-category">
+              {category.map((val, i) => <Badge color="secondary" key={i}>{upperCase(val)}</Badge>)}
+            </CardSubtitle>
+            <CardText className="caption">{address}</CardText>
+            <CardLink href="#" onMouseDown={this.toggleOfferForm} className="action-menu"><FiZap /><span>Offer</span></CardLink>
+          </CardBody>
+        </Card>
+      </Col>
+    </Row>
   }
 
+  renderEmptyPartner = () => (
+    <Col md={{ size: 4, offset: 4 }} className="not-found">
+      <div className="message">Empty, please search again</div>
+      <Link to="/home">
+        <Button color="main" size="sm">Search</Button>
+      </Link>
+    </Col>
+  )
+
+  renderPartnerLine = () => (
+    <Fragment>
+      {this.state.elmPartner}
+      {this.state.totalData > size(this.state.elmPartner) &&
+        <Row>
+          <Col md={{ size: 4, offset: 4 }}>
+            <Button outline block size="sm" onMouseDown={this.handleLoadMore}>Load More</Button>
+          </Col>
+        </Row>}
+    </Fragment>
+  )
+
   renderPartners() {
-    return (
-      <div styleName="ListOfPartners">
-        <Container className="basic-container">
-          {isEmpty(this.state.data) ?
-            <Col md={{ size: 4, offset: 4 }} className="not-found">
-              <div className="message">Empty, please search again</div>
-              <Link to="/home">
-                <Button color="main" size="sm">Search</Button>
-              </Link>
-            </Col>:
-            <Fragment>
-              {this.state.elmPartner}
-              {this.state.totalData > size(this.state.elmPartner) &&
-                <Row>
-                  <Col md={{ size: 4, offset: 4 }}>
-                    <Button outline block size="sm" onMouseDown={this.handleLoadMore}>Load More</Button>
-                  </Col>
-                </Row>}
-            </Fragment>
-          }
-        </Container>
-      </div>
-    )
+    return <div styleName="ListOfPartners">
+      <Container className="basic-container">
+        {isEmpty(this.state.data) ? this.renderEmptyPartner(): this.renderPartnerLine()}
+      </Container>
+    </div>
   }
 
   toggleOfferForm = () => {
