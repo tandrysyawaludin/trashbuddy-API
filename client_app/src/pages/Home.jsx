@@ -51,7 +51,7 @@ class Home extends Component {
   getOptionsArea() {
     axios({
       method: 'GET',
-      url: 'http://localhost:8000/areas'
+      url: '/areas'
     })
     .then(response => {
       const DATA = []
@@ -75,7 +75,7 @@ class Home extends Component {
   getOptionsCategory() {
     axios({
       method: 'GET',
-      url: 'http://localhost:8000/categories_of_trash'
+      url: '/categories_of_trash'
     })
     .then(response => {
       const DATA = []

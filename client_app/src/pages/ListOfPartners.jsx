@@ -53,7 +53,7 @@ class ListOfPartners extends Component {
     const apiParams = `area=${this.state.area}&category=${this.state.category}&page=${this.state.page}`
     axios({
       method: 'GET',
-      url: `http://localhost:8000/partners/find?${apiParams}`
+      url: `/partners/find?${apiParams}`
     })
     .then(response => {
       this.setterDataPartners(response)      

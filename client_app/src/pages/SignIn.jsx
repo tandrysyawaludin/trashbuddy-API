@@ -63,7 +63,7 @@ class SignIn extends Component {
 
     axios({
       method: 'POST',
-      url: 'http://localhost:8000/supplier/auth',
+      url: '/supplier/auth',
       data: data
     })
     .then(response => {
@@ -107,7 +107,7 @@ class SignIn extends Component {
   handleSaveToken(data) {
     axios({
       method: 'POST',
-      url: 'http://localhost:8000/signin_log',
+      url: '/signin_log',
       data: data
     })
       .then(response => {

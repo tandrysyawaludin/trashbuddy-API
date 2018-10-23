@@ -25,7 +25,7 @@ class Setting extends Component {
 
     axios({
       method: 'PUT',
-      url: 'http://localhost:8000/signin_log/' + Cookies.get('auth_trashbuddy'),
+      url: '/signin_log/' + Cookies.get('auth_trashbuddy'),
       data: data
     })
       .then(response => {

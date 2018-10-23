@@ -50,7 +50,7 @@ class SignUp extends Component {
   getOptionsArea() {
     axios({
       method: 'GET',
-      url: 'http://localhost:8000/areas'
+      url: '/areas'
     })
       .then(response => {
         this.setterDataAreas(response)        
@@ -133,7 +133,7 @@ class SignUp extends Component {
 
     axios({
       method: 'POST',
-      url: 'http://localhost:8000/supplier',
+      url: '/supplier',
       data: data
     })
       .then(response => {
