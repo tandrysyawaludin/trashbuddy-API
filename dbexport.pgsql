@@ -30,7 +30,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
--- Name: status_transaction; Type: TYPE; Schema: public; Owner: tandrysyawaludin
+-- Name: status_transaction; Type: TYPE; Schema: public; Owner: postgres
 --
 
 CREATE TYPE public.status_transaction AS ENUM (
@@ -40,10 +40,10 @@ CREATE TYPE public.status_transaction AS ENUM (
 );
 
 
-ALTER TYPE public.status_transaction OWNER TO tandrysyawaludin;
+ALTER TYPE public.status_transaction OWNER TO postgres;
 
 --
--- Name: user_role; Type: TYPE; Schema: public; Owner: tandrysyawaludin
+-- Name: user_role; Type: TYPE; Schema: public; Owner: postgres
 --
 
 CREATE TYPE public.user_role AS ENUM (
@@ -52,10 +52,10 @@ CREATE TYPE public.user_role AS ENUM (
 );
 
 
-ALTER TYPE public.user_role OWNER TO tandrysyawaludin;
+ALTER TYPE public.user_role OWNER TO postgres;
 
 --
--- Name: diesel_manage_updated_at(regclass); Type: FUNCTION; Schema: public; Owner: tandrysyawaludin
+-- Name: diesel_manage_updated_at(regclass); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.diesel_manage_updated_at(_tbl regclass) RETURNS void
@@ -68,10 +68,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.diesel_manage_updated_at(_tbl regclass) OWNER TO tandrysyawaludin;
+ALTER FUNCTION public.diesel_manage_updated_at(_tbl regclass) OWNER TO postgres;
 
 --
--- Name: diesel_set_updated_at(); Type: FUNCTION; Schema: public; Owner: tandrysyawaludin
+-- Name: diesel_set_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.diesel_set_updated_at() RETURNS trigger
@@ -89,14 +89,14 @@ END;
 $$;
 
 
-ALTER FUNCTION public.diesel_set_updated_at() OWNER TO tandrysyawaludin;
+ALTER FUNCTION public.diesel_set_updated_at() OWNER TO postgres;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: __diesel_schema_migrations; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: __diesel_schema_migrations; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.__diesel_schema_migrations (
@@ -105,10 +105,10 @@ CREATE TABLE public.__diesel_schema_migrations (
 );
 
 
-ALTER TABLE public.__diesel_schema_migrations OWNER TO tandrysyawaludin;
+ALTER TABLE public.__diesel_schema_migrations OWNER TO postgres;
 
 --
--- Name: categories_of_trash; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: categories_of_trash; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.categories_of_trash (
@@ -117,10 +117,10 @@ CREATE TABLE public.categories_of_trash (
 );
 
 
-ALTER TABLE public.categories_of_trash OWNER TO tandrysyawaludin;
+ALTER TABLE public.categories_of_trash OWNER TO postgres;
 
 --
--- Name: districts; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: districts; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.districts (
@@ -130,10 +130,10 @@ CREATE TABLE public.districts (
 );
 
 
-ALTER TABLE public.districts OWNER TO tandrysyawaludin;
+ALTER TABLE public.districts OWNER TO postgres;
 
 --
--- Name: messages; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: messages; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.messages (
@@ -145,10 +145,10 @@ CREATE TABLE public.messages (
 );
 
 
-ALTER TABLE public.messages OWNER TO tandrysyawaludin;
+ALTER TABLE public.messages OWNER TO postgres;
 
 --
--- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: tandrysyawaludin
+-- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.messages_id_seq
@@ -160,17 +160,17 @@ CREATE SEQUENCE public.messages_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.messages_id_seq OWNER TO tandrysyawaludin;
+ALTER TABLE public.messages_id_seq OWNER TO postgres;
 
 --
--- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tandrysyawaludin
+-- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.messages_id_seq OWNED BY public.messages.id;
 
 
 --
--- Name: packages_of_supplier; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: packages_of_supplier; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.packages_of_supplier (
@@ -184,10 +184,10 @@ CREATE TABLE public.packages_of_supplier (
 );
 
 
-ALTER TABLE public.packages_of_supplier OWNER TO tandrysyawaludin;
+ALTER TABLE public.packages_of_supplier OWNER TO postgres;
 
 --
--- Name: packages_of_supplier_id_seq; Type: SEQUENCE; Schema: public; Owner: tandrysyawaludin
+-- Name: packages_of_supplier_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.packages_of_supplier_id_seq
@@ -199,17 +199,17 @@ CREATE SEQUENCE public.packages_of_supplier_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.packages_of_supplier_id_seq OWNER TO tandrysyawaludin;
+ALTER TABLE public.packages_of_supplier_id_seq OWNER TO postgres;
 
 --
--- Name: packages_of_supplier_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tandrysyawaludin
+-- Name: packages_of_supplier_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.packages_of_supplier_id_seq OWNED BY public.packages_of_supplier.id;
 
 
 --
--- Name: partner_reviews; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: partner_reviews; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.partner_reviews (
@@ -221,10 +221,10 @@ CREATE TABLE public.partner_reviews (
 );
 
 
-ALTER TABLE public.partner_reviews OWNER TO tandrysyawaludin;
+ALTER TABLE public.partner_reviews OWNER TO postgres;
 
 --
--- Name: partner_reviews_id_seq; Type: SEQUENCE; Schema: public; Owner: tandrysyawaludin
+-- Name: partner_reviews_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.partner_reviews_id_seq
@@ -236,17 +236,17 @@ CREATE SEQUENCE public.partner_reviews_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.partner_reviews_id_seq OWNER TO tandrysyawaludin;
+ALTER TABLE public.partner_reviews_id_seq OWNER TO postgres;
 
 --
--- Name: partner_reviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tandrysyawaludin
+-- Name: partner_reviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.partner_reviews_id_seq OWNED BY public.partner_reviews.id;
 
 
 --
--- Name: partners; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: partners; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.partners (
@@ -266,10 +266,10 @@ CREATE TABLE public.partners (
 );
 
 
-ALTER TABLE public.partners OWNER TO tandrysyawaludin;
+ALTER TABLE public.partners OWNER TO postgres;
 
 --
--- Name: partners_id_seq; Type: SEQUENCE; Schema: public; Owner: tandrysyawaludin
+-- Name: partners_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.partners_id_seq
@@ -281,17 +281,17 @@ CREATE SEQUENCE public.partners_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.partners_id_seq OWNER TO tandrysyawaludin;
+ALTER TABLE public.partners_id_seq OWNER TO postgres;
 
 --
--- Name: partners_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tandrysyawaludin
+-- Name: partners_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.partners_id_seq OWNED BY public.partners.id;
 
 
 --
--- Name: provinces; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: provinces; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.provinces (
@@ -300,10 +300,10 @@ CREATE TABLE public.provinces (
 );
 
 
-ALTER TABLE public.provinces OWNER TO tandrysyawaludin;
+ALTER TABLE public.provinces OWNER TO postgres;
 
 --
--- Name: reports_to_block; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: reports_to_block; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.reports_to_block (
@@ -314,10 +314,10 @@ CREATE TABLE public.reports_to_block (
 );
 
 
-ALTER TABLE public.reports_to_block OWNER TO tandrysyawaludin;
+ALTER TABLE public.reports_to_block OWNER TO postgres;
 
 --
--- Name: reports_to_block_id_seq; Type: SEQUENCE; Schema: public; Owner: tandrysyawaludin
+-- Name: reports_to_block_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.reports_to_block_id_seq
@@ -329,17 +329,17 @@ CREATE SEQUENCE public.reports_to_block_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.reports_to_block_id_seq OWNER TO tandrysyawaludin;
+ALTER TABLE public.reports_to_block_id_seq OWNER TO postgres;
 
 --
--- Name: reports_to_block_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tandrysyawaludin
+-- Name: reports_to_block_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.reports_to_block_id_seq OWNED BY public.reports_to_block.id;
 
 
 --
--- Name: signin_logs; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: signin_logs; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.signin_logs (
@@ -351,10 +351,10 @@ CREATE TABLE public.signin_logs (
 );
 
 
-ALTER TABLE public.signin_logs OWNER TO tandrysyawaludin;
+ALTER TABLE public.signin_logs OWNER TO postgres;
 
 --
--- Name: signin_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: tandrysyawaludin
+-- Name: signin_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.signin_logs_id_seq
@@ -366,17 +366,17 @@ CREATE SEQUENCE public.signin_logs_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.signin_logs_id_seq OWNER TO tandrysyawaludin;
+ALTER TABLE public.signin_logs_id_seq OWNER TO postgres;
 
 --
--- Name: signin_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tandrysyawaludin
+-- Name: signin_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.signin_logs_id_seq OWNED BY public.signin_logs.id;
 
 
 --
--- Name: sub_districts; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: sub_districts; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.sub_districts (
@@ -386,10 +386,10 @@ CREATE TABLE public.sub_districts (
 );
 
 
-ALTER TABLE public.sub_districts OWNER TO tandrysyawaludin;
+ALTER TABLE public.sub_districts OWNER TO postgres;
 
 --
--- Name: supplier_reviews; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: supplier_reviews; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.supplier_reviews (
@@ -401,10 +401,10 @@ CREATE TABLE public.supplier_reviews (
 );
 
 
-ALTER TABLE public.supplier_reviews OWNER TO tandrysyawaludin;
+ALTER TABLE public.supplier_reviews OWNER TO postgres;
 
 --
--- Name: supplier_reviews_id_seq; Type: SEQUENCE; Schema: public; Owner: tandrysyawaludin
+-- Name: supplier_reviews_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.supplier_reviews_id_seq
@@ -416,17 +416,17 @@ CREATE SEQUENCE public.supplier_reviews_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.supplier_reviews_id_seq OWNER TO tandrysyawaludin;
+ALTER TABLE public.supplier_reviews_id_seq OWNER TO postgres;
 
 --
--- Name: supplier_reviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tandrysyawaludin
+-- Name: supplier_reviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.supplier_reviews_id_seq OWNED BY public.supplier_reviews.id;
 
 
 --
--- Name: suppliers; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: suppliers; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.suppliers (
@@ -443,10 +443,10 @@ CREATE TABLE public.suppliers (
 );
 
 
-ALTER TABLE public.suppliers OWNER TO tandrysyawaludin;
+ALTER TABLE public.suppliers OWNER TO postgres;
 
 --
--- Name: suppliers_id_seq; Type: SEQUENCE; Schema: public; Owner: tandrysyawaludin
+-- Name: suppliers_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.suppliers_id_seq
@@ -458,17 +458,17 @@ CREATE SEQUENCE public.suppliers_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.suppliers_id_seq OWNER TO tandrysyawaludin;
+ALTER TABLE public.suppliers_id_seq OWNER TO postgres;
 
 --
--- Name: suppliers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tandrysyawaludin
+-- Name: suppliers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.suppliers_id_seq OWNED BY public.suppliers.id;
 
 
 --
--- Name: transactions; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: transactions; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.transactions (
@@ -481,10 +481,10 @@ CREATE TABLE public.transactions (
 );
 
 
-ALTER TABLE public.transactions OWNER TO tandrysyawaludin;
+ALTER TABLE public.transactions OWNER TO postgres;
 
 --
--- Name: transactions_id_seq; Type: SEQUENCE; Schema: public; Owner: tandrysyawaludin
+-- Name: transactions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.transactions_id_seq
@@ -496,17 +496,17 @@ CREATE SEQUENCE public.transactions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.transactions_id_seq OWNER TO tandrysyawaludin;
+ALTER TABLE public.transactions_id_seq OWNER TO postgres;
 
 --
--- Name: transactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tandrysyawaludin
+-- Name: transactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.transactions_id_seq OWNED BY public.transactions.id;
 
 
 --
--- Name: villages; Type: TABLE; Schema: public; Owner: tandrysyawaludin
+-- Name: villages; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.villages (
@@ -516,73 +516,73 @@ CREATE TABLE public.villages (
 );
 
 
-ALTER TABLE public.villages OWNER TO tandrysyawaludin;
+ALTER TABLE public.villages OWNER TO postgres;
 
 --
--- Name: messages id; Type: DEFAULT; Schema: public; Owner: tandrysyawaludin
+-- Name: messages id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.messages ALTER COLUMN id SET DEFAULT nextval('public.messages_id_seq'::regclass);
 
 
 --
--- Name: packages_of_supplier id; Type: DEFAULT; Schema: public; Owner: tandrysyawaludin
+-- Name: packages_of_supplier id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.packages_of_supplier ALTER COLUMN id SET DEFAULT nextval('public.packages_of_supplier_id_seq'::regclass);
 
 
 --
--- Name: partner_reviews id; Type: DEFAULT; Schema: public; Owner: tandrysyawaludin
+-- Name: partner_reviews id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.partner_reviews ALTER COLUMN id SET DEFAULT nextval('public.partner_reviews_id_seq'::regclass);
 
 
 --
--- Name: partners id; Type: DEFAULT; Schema: public; Owner: tandrysyawaludin
+-- Name: partners id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.partners ALTER COLUMN id SET DEFAULT nextval('public.partners_id_seq'::regclass);
 
 
 --
--- Name: reports_to_block id; Type: DEFAULT; Schema: public; Owner: tandrysyawaludin
+-- Name: reports_to_block id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.reports_to_block ALTER COLUMN id SET DEFAULT nextval('public.reports_to_block_id_seq'::regclass);
 
 
 --
--- Name: signin_logs id; Type: DEFAULT; Schema: public; Owner: tandrysyawaludin
+-- Name: signin_logs id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.signin_logs ALTER COLUMN id SET DEFAULT nextval('public.signin_logs_id_seq'::regclass);
 
 
 --
--- Name: supplier_reviews id; Type: DEFAULT; Schema: public; Owner: tandrysyawaludin
+-- Name: supplier_reviews id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.supplier_reviews ALTER COLUMN id SET DEFAULT nextval('public.supplier_reviews_id_seq'::regclass);
 
 
 --
--- Name: suppliers id; Type: DEFAULT; Schema: public; Owner: tandrysyawaludin
+-- Name: suppliers id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.suppliers ALTER COLUMN id SET DEFAULT nextval('public.suppliers_id_seq'::regclass);
 
 
 --
--- Name: transactions id; Type: DEFAULT; Schema: public; Owner: tandrysyawaludin
+-- Name: transactions id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.transactions ALTER COLUMN id SET DEFAULT nextval('public.transactions_id_seq'::regclass);
 
 
 --
--- Data for Name: __diesel_schema_migrations; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: __diesel_schema_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.__diesel_schema_migrations (version, run_on) FROM stdin;
@@ -592,7 +592,7 @@ COPY public.__diesel_schema_migrations (version, run_on) FROM stdin;
 
 
 --
--- Data for Name: categories_of_trash; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: categories_of_trash; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.categories_of_trash (name, description) FROM stdin;
@@ -607,7 +607,7 @@ others	Tipe dan jenis plastik ini merupakan kategori dari semua jenis lainnya da
 
 
 --
--- Data for Name: districts; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: districts; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.districts (id, name, province_id) FROM stdin;
@@ -1129,7 +1129,7 @@ COPY public.districts (id, name, province_id) FROM stdin;
 
 
 --
--- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.messages (id, sender, receiver, content, created_at) FROM stdin;
@@ -1137,7 +1137,7 @@ COPY public.messages (id, sender, receiver, content, created_at) FROM stdin;
 
 
 --
--- Data for Name: packages_of_supplier; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: packages_of_supplier; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.packages_of_supplier (id, weight, shipping_fee, price, category_of_trash_id, supplier_id, created_at) FROM stdin;
@@ -1145,7 +1145,7 @@ COPY public.packages_of_supplier (id, weight, shipping_fee, price, category_of_t
 
 
 --
--- Data for Name: partner_reviews; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: partner_reviews; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.partner_reviews (id, score, comment, created_at, transactions_id) FROM stdin;
@@ -1153,7 +1153,7 @@ COPY public.partner_reviews (id, score, comment, created_at, transactions_id) FR
 
 
 --
--- Data for Name: partners; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: partners; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.partners (id, name, email, password, phone_number, area, address, profile_pic, id_card_pic, category_of_trash_id, machine_code, is_live, created_at) FROM stdin;
@@ -1174,7 +1174,7 @@ COPY public.partners (id, name, email, password, phone_number, area, address, pr
 
 
 --
--- Data for Name: provinces; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: provinces; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.provinces (id, name) FROM stdin;
@@ -1216,7 +1216,7 @@ COPY public.provinces (id, name) FROM stdin;
 
 
 --
--- Data for Name: reports_to_block; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: reports_to_block; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.reports_to_block (id, target_user, comment, created_at) FROM stdin;
@@ -1224,7 +1224,7 @@ COPY public.reports_to_block (id, target_user, comment, created_at) FROM stdin;
 
 
 --
--- Data for Name: signin_logs; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: signin_logs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.signin_logs (id, user_id, token, is_valid, created_at) FROM stdin;
@@ -1243,7 +1243,7 @@ COPY public.signin_logs (id, user_id, token, is_valid, created_at) FROM stdin;
 
 
 --
--- Data for Name: sub_districts; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: sub_districts; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.sub_districts (id, name, district_id) FROM stdin;
@@ -8345,7 +8345,7 @@ COPY public.sub_districts (id, name, district_id) FROM stdin;
 
 
 --
--- Data for Name: supplier_reviews; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: supplier_reviews; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.supplier_reviews (id, score, comment, created_at, transactions_id) FROM stdin;
@@ -8353,7 +8353,7 @@ COPY public.supplier_reviews (id, score, comment, created_at, transactions_id) F
 
 
 --
--- Data for Name: suppliers; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: suppliers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.suppliers (id, name, email, password, phone_number, area, address, profile_pic, id_card_pic, created_at) FROM stdin;
@@ -8362,7 +8362,7 @@ COPY public.suppliers (id, name, email, password, phone_number, area, address, p
 
 
 --
--- Data for Name: transactions; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: transactions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.transactions (id, supplier_id, partner_id, id_package_of_supplier, status, created_at) FROM stdin;
@@ -8370,7 +8370,7 @@ COPY public.transactions (id, supplier_id, partner_id, id_package_of_supplier, s
 
 
 --
--- Data for Name: villages; Type: TABLE DATA; Schema: public; Owner: tandrysyawaludin
+-- Data for Name: villages; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.villages (id, name, sub_district_id) FROM stdin;
@@ -90883,70 +90883,70 @@ COPY public.villages (id, name, sub_district_id) FROM stdin;
 
 
 --
--- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tandrysyawaludin
+-- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.messages_id_seq', 1, false);
 
 
 --
--- Name: packages_of_supplier_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tandrysyawaludin
+-- Name: packages_of_supplier_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.packages_of_supplier_id_seq', 1, false);
 
 
 --
--- Name: partner_reviews_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tandrysyawaludin
+-- Name: partner_reviews_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.partner_reviews_id_seq', 1, false);
 
 
 --
--- Name: partners_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tandrysyawaludin
+-- Name: partners_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.partners_id_seq', 16, true);
 
 
 --
--- Name: reports_to_block_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tandrysyawaludin
+-- Name: reports_to_block_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.reports_to_block_id_seq', 1, false);
 
 
 --
--- Name: signin_logs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tandrysyawaludin
+-- Name: signin_logs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.signin_logs_id_seq', 18, true);
 
 
 --
--- Name: supplier_reviews_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tandrysyawaludin
+-- Name: supplier_reviews_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.supplier_reviews_id_seq', 1, false);
 
 
 --
--- Name: suppliers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tandrysyawaludin
+-- Name: suppliers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.suppliers_id_seq', 6, true);
 
 
 --
--- Name: transactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tandrysyawaludin
+-- Name: transactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.transactions_id_seq', 1, false);
 
 
 --
--- Name: __diesel_schema_migrations __diesel_schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: __diesel_schema_migrations __diesel_schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.__diesel_schema_migrations
@@ -90954,7 +90954,7 @@ ALTER TABLE ONLY public.__diesel_schema_migrations
 
 
 --
--- Name: categories_of_trash categories_of_trash_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: categories_of_trash categories_of_trash_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.categories_of_trash
@@ -90962,7 +90962,7 @@ ALTER TABLE ONLY public.categories_of_trash
 
 
 --
--- Name: districts districts_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: districts districts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.districts
@@ -90970,7 +90970,7 @@ ALTER TABLE ONLY public.districts
 
 
 --
--- Name: messages messages_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: messages messages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.messages
@@ -90978,7 +90978,7 @@ ALTER TABLE ONLY public.messages
 
 
 --
--- Name: packages_of_supplier packages_of_supplier_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: packages_of_supplier packages_of_supplier_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.packages_of_supplier
@@ -90986,7 +90986,7 @@ ALTER TABLE ONLY public.packages_of_supplier
 
 
 --
--- Name: partner_reviews partner_reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: partner_reviews partner_reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.partner_reviews
@@ -90994,7 +90994,7 @@ ALTER TABLE ONLY public.partner_reviews
 
 
 --
--- Name: partners partners_email_key; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: partners partners_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.partners
@@ -91002,7 +91002,7 @@ ALTER TABLE ONLY public.partners
 
 
 --
--- Name: partners partners_phone_number_key; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: partners partners_phone_number_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.partners
@@ -91010,7 +91010,7 @@ ALTER TABLE ONLY public.partners
 
 
 --
--- Name: partners partners_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: partners partners_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.partners
@@ -91018,7 +91018,7 @@ ALTER TABLE ONLY public.partners
 
 
 --
--- Name: provinces provinces_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: provinces provinces_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.provinces
@@ -91026,7 +91026,7 @@ ALTER TABLE ONLY public.provinces
 
 
 --
--- Name: reports_to_block reports_to_block_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: reports_to_block reports_to_block_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.reports_to_block
@@ -91034,7 +91034,7 @@ ALTER TABLE ONLY public.reports_to_block
 
 
 --
--- Name: signin_logs signin_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: signin_logs signin_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.signin_logs
@@ -91042,7 +91042,7 @@ ALTER TABLE ONLY public.signin_logs
 
 
 --
--- Name: sub_districts sub_districts_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: sub_districts sub_districts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.sub_districts
@@ -91050,7 +91050,7 @@ ALTER TABLE ONLY public.sub_districts
 
 
 --
--- Name: supplier_reviews supplier_reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: supplier_reviews supplier_reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.supplier_reviews
@@ -91058,7 +91058,7 @@ ALTER TABLE ONLY public.supplier_reviews
 
 
 --
--- Name: suppliers suppliers_email_key; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: suppliers suppliers_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.suppliers
@@ -91066,7 +91066,7 @@ ALTER TABLE ONLY public.suppliers
 
 
 --
--- Name: suppliers suppliers_phone_number_key; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: suppliers suppliers_phone_number_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.suppliers
@@ -91074,7 +91074,7 @@ ALTER TABLE ONLY public.suppliers
 
 
 --
--- Name: suppliers suppliers_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: suppliers suppliers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.suppliers
@@ -91082,7 +91082,7 @@ ALTER TABLE ONLY public.suppliers
 
 
 --
--- Name: transactions transactions_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: transactions transactions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.transactions
@@ -91090,7 +91090,7 @@ ALTER TABLE ONLY public.transactions
 
 
 --
--- Name: villages villages_pkey; Type: CONSTRAINT; Schema: public; Owner: tandrysyawaludin
+-- Name: villages villages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.villages
