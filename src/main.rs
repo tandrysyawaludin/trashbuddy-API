@@ -69,7 +69,8 @@ fn main() {
   let (allowed_origins, failed_origins) = AllowedOrigins::some(&[
     "http://localhost:3000", 
     "http://localhost:8000",
-    "http://localhost:80"
+    "http://localhost:80",
+    "http://185.201.9.200/"
   ]);
   assert!(failed_origins.is_empty());
 
