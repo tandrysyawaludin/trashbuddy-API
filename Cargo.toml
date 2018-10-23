@@ -41,3 +41,9 @@ workers = 10
 log = "critical"
 secret_key = "7rV/SBmxl6VVBknASqYSrpo4z258B3rGobift+E1aK8="
 limits = { forms = 32768 }
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
