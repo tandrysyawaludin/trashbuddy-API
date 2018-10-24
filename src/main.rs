@@ -70,7 +70,7 @@ fn main() {
     "http://localhost:3000", 
     "http://localhost:8000",
     "http://localhost:80",
-    "http://185.201.9.200/"
+    "https://trashbuddy-client.herokuapp.com"
   ]);
   assert!(failed_origins.is_empty());
 
