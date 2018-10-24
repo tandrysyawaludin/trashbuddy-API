@@ -23,7 +23,7 @@ address = "localhost"
 port = 8000
 workers = 10
 log = "normal"
-secret_key = "7rV/SBmxl6VVBknASqYSrpo4z258B3rGobift+E1aK8="
+secret_key = "8Xui8SN4mI+7egV/9dlfYYLGQJeEx4+nnn="
 limits = { forms = 32768 }
 
 [staging]
@@ -31,15 +31,12 @@ address = "0.0.0.0"
 port = 80
 workers = 10
 log = "normal"
-secret_key = "7rV/SBmxl6VVBknASqYSrpo4z258B3rGobift+E1aK8="
+secret_key = "8Xui8SN4mI+7egV/9dlfYYLGQJeEx4+DwmSQLwDVaag="
 limits = { forms = 32768 }
 
 [production]
 address = "0.0.0.0"
 port = 80
-workers = 10
-log = "critical"
-secret_key = "7rV/SBmxl6VVBknASqYSrpo4z258B3rGobift+E1aK8="
 limits = { forms = 32768 }
 
 [profile.dev]
