@@ -1,1 +1,1 @@
-web: ROCKET_PORT=process.env.PORT target/release/trashbuddy
+web: ROCKET_PORT=8000 target/release/trashbuddy
