@@ -35,6 +35,7 @@ diesel print-schema
 diesel print-schema > path/to/schema.rs
 
 Postgres:
+brew services restart postgresql
 psql postgres
 http://www.postgresqltutorial.com/postgresql-trim-function/
 UPDATE table_name SET column=lower(column)
