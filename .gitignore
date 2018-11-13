@@ -3,4 +3,4 @@ rls/
 \.vscode/
 \.DS_Store
 .env
-./Cargo.lock
+Cargo.lock
