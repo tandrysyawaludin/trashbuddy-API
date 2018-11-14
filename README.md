@@ -45,3 +45,4 @@ use regex::Regex;
 let re = Regex::new(r"[^a-zA-Z0-9_.+-@]").unwrap();
 let email_after_regex = re.replace_all(&email, "").to_string();
 
+If you don't use sqlite, you could install diesel_cli without the sqlite backend by running cargo install diesel_cli --no-default-features --features "backend" where backend is "postgres", "mysql" or "sqlite"
