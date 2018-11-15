@@ -2,5 +2,6 @@ target/
 rls/
 \.vscode/
 \.DS_Store
-.env
 Cargo.lock
+
+\.env
