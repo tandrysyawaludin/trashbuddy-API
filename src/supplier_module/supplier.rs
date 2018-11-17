@@ -3,9 +3,9 @@ use diesel;
 use diesel::dsl::count;
 use diesel::pg::PgConnection;
 use diesel::prelude::*;
-use std::time::SystemTime;
-use frank_jwt::{Algorithm, encode, decode};
 use djangohashers::{check_password, make_password};
+use frank_jwt::{decode, encode, Algorithm};
+use std::time::SystemTime;
 
 #[table_name = "suppliers"]
 #[derive(Serialize, Deserialize, Insertable, Debug)]
@@ -15,7 +15,7 @@ pub struct NewSupplier {
   pub password: String,
   pub phone_number: String,
   pub area: String,
-  pub address: String,  
+  pub address: String,
 }
 
 #[table_name = "suppliers"]
@@ -27,7 +27,7 @@ pub struct Supplier {
   pub password: String,
   pub phone_number: String,
   pub area: String,
-  pub address: String,  
+  pub address: String,
   pub created_at: Option<SystemTime>,
 }
 
@@ -39,7 +39,7 @@ pub struct AlreadySupplier {
   pub password: String,
   pub phone_number: String,
   pub area: String,
-  pub address: String,  
+  pub address: String,
   pub created_at: Option<SystemTime>,
 }
 
@@ -47,22 +47,21 @@ pub struct AlreadySupplier {
 #[derive(Serialize, Deserialize, Queryable, AsChangeset, Debug)]
 pub struct AuthSupplier {
   pub email: String,
-  pub password: String  
+  pub password: String,
 }
 
 #[table_name = "suppliers"]
 #[derive(Serialize, Deserialize, Queryable, AsChangeset, Debug)]
 pub struct JWTContentSupplier {
   pub id: i32,
-  pub email: String
+  pub email: String,
 }
 
 impl Supplier {
   pub fn create(mut new_supplier: NewSupplier, connection: &PgConnection) -> bool {
     let encoded_password = make_password(&new_supplier.password);
     new_supplier.password = encoded_password.to_string();
-    new_supplier.email = encoded_password.to_lowercase();
-    
+    new_supplier.email = new_supplier.email.to_lowercase();
     diesel::insert_into(suppliers::table)
       .values(&new_supplier)
       .execute(connection)
@@ -112,9 +111,7 @@ impl Supplier {
       .limit(1)
       .execute(connection);
     match exists {
-      Ok(1) => {
-        return true
-      },
+      Ok(1) => return true,
       _ => return false,
     }
   }
@@ -139,14 +136,12 @@ impl Supplier {
 
   pub fn auth(data: AuthSupplier, connection: &PgConnection) -> bool {
     let exists = suppliers::table
-      .select(suppliers::password)    
+      .select(suppliers::password)
       .filter(suppliers::email.is_not_distinct_from(data.email.to_lowercase()))
       .limit(1)
       .first::<String>(connection);
     match exists {
-      Ok(v) => {
-        return check_password(&data.password, &v).unwrap()
-      },
+      Ok(v) => return check_password(&data.password, &v).unwrap(),
       _ => return false,
     }
   }
@@ -171,18 +166,22 @@ impl Supplier {
   }
 
   pub fn decode_jwt(header: String, connection: &PgConnection) -> Vec<JWTContentSupplier> {
-    let secret = "secret123";    
+    let secret = "secret123";
     let jwt = decode(&header.to_string(), &secret.to_string(), Algorithm::HS256);
     match jwt {
       Ok((header, payload)) => {
         let id: i32 = payload[0]["id"].to_string().parse().unwrap();
-        let email = payload[0]["email"].to_string().trim_matches('\"').to_string();
-        let decode_jwt = vec![JWTContentSupplier{id: id, email: email.to_lowercase()}];
-        return decode_jwt
-      },
-      Err(e) => {
-        return Vec::new()
+        let email = payload[0]["email"]
+          .to_string()
+          .trim_matches('\"')
+          .to_string();
+        let decode_jwt = vec![JWTContentSupplier {
+          id: id,
+          email: email.to_lowercase(),
+        }];
+        return decode_jwt;
       }
+      Err(e) => return Vec::new(),
     }
   }
 }

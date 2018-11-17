@@ -26,44 +26,35 @@ fn create_supplier(
       ))
     }
     _ => {
-      let array: [i32; 0] = [];
-      return Json(json_internal!(
-        {
-          "success": true,
-          "data": array
+      let insert = NewSupplier {
+        ..supplier.into_inner()
+      };
+      let success_status = Supplier::create(insert, &connection);
+      match success_status {
+        true => {
+          return Json(json_internal!(
+            { 
+              "success": success_status, 
+              "data": Supplier::read_after_create(&connection)
+            }
+          ))
         }
-      ))
+        _ => {
+          let array: [i32; 0] = [];
+          return Json(json_internal!(
+            {
+              "success": success_status,
+              "data": array
+            }
+          ))
+        }
+      }
     }
   }
-
-  // let insert = NewSupplier {
-  //   ..supplier.into_inner()
-  // };
-  // let success_status = Supplier::create(insert, &connection);
-  // match success_status {
-  //   true => {
-  //     return Json(json_internal!(
-  //       { 
-  //         "success": success_status, 
-  //         "data": Supplier::read_after_create(&connection)
-  //       }
-  //     ))
-  //   }
-  //   _ => {
-  //     let array: [i32; 0] = [];
-  //     return Json(json_internal!(
-  //       {
-  //         "success": success_status,
-  //         "data": array
-  //       }
-  //     ))
-  //   }
-  // }
 }
 
 #[get("/<page>")]
 fn read_all_suppliers(page: i64, token: Authorization, connection: database::db_setting::Connection) -> Json<Value> {
-  println!("{:?}", token);
   Json(json_internal!(
     {
       "total": Supplier::count_all(&connection),
@@ -147,7 +138,6 @@ impl<'a, 'r> FromRequest<'a, 'r> for Authorization {
 
     fn from_request(request: &'a Request<'r>) -> request::Outcome<Authorization, ()> {
         let keys: Vec<_> = request.headers().get("Authorization").collect();
-        println!("{:?}", keys);
         if keys.len() != 1 {
           return Outcome::Failure((Status::BadRequest, ()));
         }
@@ -155,7 +145,6 @@ impl<'a, 'r> FromRequest<'a, 'r> for Authorization {
         let key = keys[0];
         
         if !token_is_valid(keys[0]) {
-          println!("masuk");
           return Outcome::Forward(());
         }
 
