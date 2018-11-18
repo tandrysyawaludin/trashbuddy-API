@@ -1,11 +1,11 @@
+mod supplier;
 use database;
 use rocket_contrib::{Json, Value};
-use self::supplier::{AlreadySupplier, NewSupplier, Supplier, AuthSupplier};
-mod supplier;
-
 use rocket::Outcome;
 use rocket::http::Status;
+use rocket::response::content;
 use rocket::request::{self, Request, FromRequest};
+use self::supplier::{AlreadySupplier, NewSupplier, Supplier, AuthSupplier};
 
 #[post("/", data = "<supplier>", format = "application/json")]
 fn create_supplier(
@@ -16,7 +16,7 @@ fn create_supplier(
   let check_existing_supplier = Supplier::check_existing_supplier(email.to_string(), &connection);
   match check_existing_supplier {
     true => {
-      let array: [i32; 0] = [];      
+      let array: [i32; 0] = [];
       return Json(json_internal!(
         { 
           "success": false, 
@@ -118,7 +118,8 @@ fn auth_supplier(
       Json(json_internal!(
         {
           "success": success_status,
-          "jwt": ""
+          "jwt": "",
+          "message": "Email and Password do not match"          
         }
       ))
     }
