@@ -1,23 +1,22 @@
 use database::schema::partners;
 use diesel;
 use diesel::dsl::count;
+use diesel::expression::dsl::sql;
 use diesel::pg::PgConnection;
 use diesel::prelude::*;
-use std::time::SystemTime;
-use diesel::expression::dsl::sql;
 use diesel::sql_types::Bool;
 use djangohashers::{check_password, make_password};
+use std::time::SystemTime;
 
 #[table_name = "partners"]
-#[derive(Serialize, Deserialize, Insertable)]
+#[derive(Serialize, Deserialize, Insertable, Debug)]
 pub struct NewPartner {
   pub name: String,
+  pub email: String,
   pub password: String,
   pub phone_number: String,
-  pub email: String,
   pub area: String,
   pub address: String,
-  pub machine_code: String,
 }
 
 #[table_name = "partners"]
@@ -29,7 +28,7 @@ pub struct Partner {
   pub password: String,
   pub phone_number: String,
   pub area: String,
-  pub address: String,  
+  pub address: String,
   pub category_of_trash_id: Option<Vec<String>>,
   pub machine_code: Option<String>,
   pub is_live: bool,
@@ -47,17 +46,20 @@ pub struct SignInPartner {
 #[derive(Serialize, Deserialize, Queryable, Insertable, AsChangeset)]
 pub struct AlreadyPartner {
   pub name: String,
+  pub email: String,
   pub password: String,
   pub phone_number: String,
-  pub email: String,
   pub area: String,
-  pub address: String,  
+  pub address: String,
   pub machine_code: String,
   pub created_at: Option<SystemTime>,
 }
 
 impl Partner {
-  pub fn create(new_partner: NewPartner, connection: &PgConnection) -> bool {
+  pub fn create(mut new_partner: NewPartner, connection: &PgConnection) -> bool {
+    let encoded_password = make_password(&new_partner.password);
+    new_partner.password = encoded_password.to_string();
+    new_partner.email = new_partner.email.to_lowercase();
     diesel::insert_into(partners::table)
       .values(&new_partner)
       .execute(connection)
@@ -92,7 +94,12 @@ impl Partner {
     }
   }
 
-  pub fn read(page: i64, area: String, category: String, connection: &PgConnection) -> Vec<Partner> {
+  pub fn read(
+    page: i64,
+    area: String,
+    category: String,
+    connection: &PgConnection,
+  ) -> Vec<Partner> {
     let param = format!("category_of_trash_id @> ARRAY['{}']::text[]", category);
     partners::table
       .filter(partners::area.eq(&area))
@@ -104,8 +111,19 @@ impl Partner {
       .unwrap()
   }
 
+  pub fn check_existing_partner(email: String, connection: &PgConnection) -> bool {
+    let exists = partners::table
+      .filter(partners::email.is_not_distinct_from(email.to_lowercase()))
+      .limit(1)
+      .execute(connection);
+    match exists {
+      Ok(1) => return true,
+      _ => return false,
+    }
+  }
+
   pub fn count_all(area: String, category: String, connection: &PgConnection) -> i64 {
-    let param = format!("category_of_trash_id @> ARRAY['{}']::text[]", category);    
+    let param = format!("category_of_trash_id @> ARRAY['{}']::text[]", category);
     let total = partners::table
       .select(count(partners::id))
       .filter(partners::area.eq(&area))

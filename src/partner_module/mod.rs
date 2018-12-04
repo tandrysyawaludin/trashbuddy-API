@@ -8,27 +8,44 @@ fn create_partner(
   partner: Json<NewPartner>,
   connection: database::db_setting::Connection,
 ) -> Json<Value> {
-  let insert = NewPartner {
-    ..partner.into_inner()
-  };
-  let success_status = Partner::create(insert, &connection);
-  match success_status {
+  let email = &partner.email.clone();  
+  let check_existing_partner = Partner::check_existing_partner(email.to_string(), &connection);
+  match check_existing_partner {
     true => {
+      let array: [i32; 0] = [];
       return Json(json_internal!(
         { 
-          "success": success_status, 
-          "data": Partner::read_after_create(&connection)
+          "success": false, 
+          "data": array,
+          "message": "Email already registered"
         }
       ))
     }
     _ => {
-      let array: [i32; 0] = [];
-      return Json(json_internal!(
-        {
-          "success": success_status,
-          "data": array
+      let insert = NewPartner {
+        ..partner.into_inner()
+      };
+      println!("{:?}", &insert);
+      let success_status = Partner::create(insert, &connection);
+      match success_status {
+        true => {
+          return Json(json_internal!(
+            { 
+              "success": success_status, 
+              "data": Partner::read_after_create(&connection)
+            }
+          ))
         }
-      ))
+        _ => {
+          let array: [i32; 0] = [];
+          return Json(json_internal!(
+            {
+              "success": success_status,
+              "data": array
+            }
+          ))
+        }
+      }
     }
   }
 }
